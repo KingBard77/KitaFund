@@ -184,7 +184,6 @@ $employee_num = mysqli_num_rows($employee);
                         <p class="font-weight-500">The total number of sessions within the date range. It is the period
                             time a user is actively engaged with your website, page or app, etc</p>
                         <canvas id="graphCanvas" class="chartjs-legend mt-4 mb-2"></canvas>
-                        <canvas id="graphCanvas" class="chartjs-legend mt-4 mb-2"></canvas>
                         <script>
                         $(document).ready(function() {
                             showGraph();
