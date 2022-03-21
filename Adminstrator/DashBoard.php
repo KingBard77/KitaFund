@@ -149,24 +149,24 @@ $employee_num = mysqli_num_rows($employee);
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-title">Order Details</p>
+                        <p class="card-title">BurgerByte Details</p>
                         <p class="font-weight-500">The total number of sessions within the date range. It is the period
                             time a user is actively engaged with your website, page or app, etc</p>
                         <div class="d-flex flex-wrap mb-5">
                             <div class="mr-5 mt-3">
-                                <p class="text-muted">Order value</p>
+                                <p class="text-muted">Stock value</p>
                                 <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
                             </div>
                             <div class="mr-5 mt-3">
-                                <p class="text-muted">Orders</p>
+                                <p class="text-muted">Sales</p>
                                 <h3 class="text-primary fs-30 font-weight-medium">14k</h3>
                             </div>
                             <div class="mr-5 mt-3">
-                                <p class="text-muted">Users</p>
+                                <p class="text-muted">Invoice</p>
                                 <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>
                             </div>
                             <div class="mt-3">
-                                <p class="text-muted">Downloads</p>
+                                <p class="text-muted">Income</p>
                                 <h3 class="text-primary fs-30 font-weight-medium">34040</h3>
                             </div>
                         </div>
@@ -181,47 +181,55 @@ $employee_num = mysqli_num_rows($employee);
                             <p class="card-title">Sales Report</p>
                             <a href="#" class="text-info">View all</a>
                         </div>
-                        <p class="font-weight-500">The total number of sessions within the date range. It is the period
-                            time a user is actively engaged with your website, page or app, etc</p>
-                        <canvas id="graphCanvas" class="chartjs-legend mt-4 mb-2"></canvas>
+                        <p class="font-weight-500">The is bar-graph total sales for BurgerByte Company every month.</p>
+                        <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+
+                        <canvas id="graphCanvas"></canvas>
                         <script>
                         $(document).ready(function() {
                             showGraph();
                         });
 
-
                         function showGraph() {
                             {
                                 $.post("../Database/Chart/Sales.php",
-                                function(data) {
-                                console.log(data);
-                                var date = [];
-                                var SubTotal = [];
+                                    function(data) {
+                                        console.log(data);
+                                        var date = [];
+                                        var sales = [];
+                                        var barColors = [
+                                            "rgba(75,73,172, 1.0)",
+                                            "rgba(75,73,172, 0.8)",
+                                            "rgba(75,73,172, 0.6)",
+                                            "rgba(75,73,172, 0.4)",
+                                            "rgba(75,73,172, 0.2)"
+                                        ];
 
-                                for (var i in data) {
-                                    date.push(data[i].Sales_Date);
-                                    SubTotal.push(data[i].SubTotal);
-                                }
 
-                                var chartdata = {
-                                    labels: date,
-                                    datasets: [{
-                                        label: 'Sales Date',
-                                        backgroundColor: '#49e2ff',
-                                        borderColor: '#46d5f1',
-                                        hoverBackgroundColor: '#CCCCCC',
-                                        hoverBorderColor: '#666666',
-                                        data: SubTotal
-                                    }]
-                                };
+                                        for (var i in data) {
+                                            date.push(data[i].month);
+                                            sales.push(data[i].sales);
+                                        }
 
-                                    var graphTarget = $("#graphCanvas");
+                                        var chartdata = {
+                                            labels: date,
+                                            datasets: [{
+                                                label: 'Total Sales',
+                                                backgroundColor: barColors,
+                                                borderColor: '#4B49AC',
+                                                hoverBackgroundColor: '#CCCCCC',
+                                                hoverBorderColor: '#666666',
+                                                data: sales
+                                            }]
+                                        };
 
-                                    var barGraph = new Chart(graphTarget, {
-                                    type: 'bar',
-                                    data: chartdata
+                                        var graphTarget = $("#graphCanvas");
+
+                                        var barGraph = new Chart(graphTarget, {
+                                            type: 'bar',
+                                            data: chartdata
+                                        });
                                     });
-                                });
                             }
                         }
                         </script>
@@ -785,7 +793,7 @@ $employee_num = mysqli_num_rows($employee);
         <script src="../js/Chart.roundedBarCharts.js"></script>
         <!-- End custom js for this page-->
 
-        <script type = "text/javascript" src = "../js/Chart.min.js" ></script>
+        <script type="text/javascript" src="../js/Chart.min.js"></script>
         <script type="text/javascript" src="../js/Chart.min.js"></script>
         <!--========== INCLUDE FOOTER ==========-->
         <?php include('../partials/Footer.html'); ?>

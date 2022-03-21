@@ -5,7 +5,9 @@
   header('Content-Type: application/json');
   include '../connection.php';
  
-  $sqlQuery = "SELECT Sales_Id, SubTotal, Sales_Date FROM sales ORDER BY Sales_Id";
+  $sqlQuery = "SELECT MONTHNAME(Sales_Date) AS month, SUM(SubTotal) AS sales
+  FROM     sales
+  GROUP BY MONTHNAME(Sales_Date)";
 
   $result = mysqli_query($dbc,$sqlQuery);
   
