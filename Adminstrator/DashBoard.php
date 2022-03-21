@@ -94,10 +94,12 @@ $employee_num = mysqli_num_rows($employee);
                                 //display data on web page
                                 ?>
                                 <p class="mb-4">Total Sales</p>
-                                <p class="fs-30 mb-2"><?php 
-                                while($row = mysqli_fetch_array($invoice)){
-                                    echo "RM ". $row['SUM(Total_Sales)']; 
-                                }?></p>
+                                <p class="fs-30 mb-2">
+                                    <?php 
+                                    while($row = mysqli_fetch_array($invoice)){
+                                        echo "RM ". $row['SUM(Total_Sales)']; 
+                                    }?>
+                                </p>
                                 <p>22.00% (30 days)</p>
                             </div>
                         </div>
@@ -129,15 +131,17 @@ $employee_num = mysqli_num_rows($employee);
                             <div class="card-body">
                                 <?php
                                 // Define the Number of Income query:
-                                $sql = "SELECT  SUM(Net_Income) from income";
+                                $sql = "SELECT  SUM(Net_Income) FROM income";
                                 $income = $dbc->query($sql);
                                 //display data on web page
                                 ?>
                                 <p class="mb-4">Total Income</p>
-                                <p class="fs-30 mb-2"><?php 
-                                while($row = mysqli_fetch_array($income)){
-                                echo "RM ". $row['SUM(Net_Income)']; 
-                                }?></p>
+                                <p class="fs-30 mb-2">
+                                    <?php 
+                                    while($row = mysqli_fetch_array($income)){
+                                    echo "RM ". $row['SUM(Net_Income)']; 
+                                    }?>
+                                </p>
                                 <p>22.00% (30 days)</p>
                             </div>
                         </div>
@@ -145,7 +149,10 @@ $employee_num = mysqli_num_rows($employee);
                 </div>
             </div>
         </div>
+
+        <!-- SECTION 2 -->
         <div class="row">
+            <!-- Dotted Lined Graph Summary Report -->
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -155,25 +162,69 @@ $employee_num = mysqli_num_rows($employee);
                         <div class="d-flex flex-wrap mb-5">
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Stock value</p>
-                                <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
+                                <?php
+                                // Define the query:
+                                $query = "SELECT * 
+                                FROM category
+                                ORDER BY Category_Id ASC";
+                                $stock = @mysqli_query($dbc, $query);
+                                // Count the number of returned rows:
+                                $stock_num = mysqli_num_rows($stock);
+                                ?>
+                                <h3 class="text-primary fs-30 font-weight-medium"><?php echo $stock_num ?></h3>
                             </div>
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Sales</p>
-                                <h3 class="text-primary fs-30 font-weight-medium">14k</h3>
+                                <?php
+                                // Define the query:
+                                $sql = "SELECT  SUM(SubTotal) from sales";
+                                $sales = $dbc->query($sql);
+                                //display data on web page
+                                ?>
+                                <h3 class="text-primary fs-30 font-weight-medium">
+                                    <?php 
+                                    while($row = mysqli_fetch_array($sales)){
+                                        echo "RM ". $row['SUM(SubTotal)']; 
+                                    }?>
+                                </h3>
                             </div>
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Invoice</p>
-                                <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>
+                                <?php
+                                // Define the query:
+                                $sql = "SELECT  SUM(Total_Sales) from invoice";
+                                $invoice = $dbc->query($sql);
+                                //display data on web page
+                                ?>
+                                <h3 class="text-primary fs-30 font-weight-medium">
+                                    <?php 
+                                    while($row = mysqli_fetch_array($invoice)){
+                                        echo "RM ". $row['SUM(Total_Sales)']; 
+                                    }?>
+                                </h3>
                             </div>
                             <div class="mt-3">
                                 <p class="text-muted">Income</p>
-                                <h3 class="text-primary fs-30 font-weight-medium">34040</h3>
+                                <?php
+                                // Define the query:
+                                $sql = "SELECT  SUM(Net_Income) from income";
+                                $income = $dbc->query($sql);
+                                //display data on web page
+                                ?>
+                                <h3 class="text-primary fs-30 font-weight-medium">
+                                    <?php 
+                                    while($row = mysqli_fetch_array($income)){
+                                        echo "RM ". $row['SUM(Net_Income)']; 
+                                    }?>
+                                </h3>
                             </div>
                         </div>
                         <canvas id="order-chart"></canvas>
                     </div>
                 </div>
             </div>
+
+            <!-- Bar Graph Sales Report -->
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -181,7 +232,11 @@ $employee_num = mysqli_num_rows($employee);
                             <p class="card-title">Sales Report</p>
                             <a href="#" class="text-info">View all</a>
                         </div>
-                        <p class="font-weight-500">The is bar-graph total sales for BurgerByte Company every month.</p>
+                        <p class="font-weight-500">The is bar-graph total sales for BurgerByte Company every month.
+                            It is the period time in a year to show total sales for every month in BurgerByte Company,
+                            page or app, etc.
+                        </p>
+                        <br />
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
 
                         <canvas id="graphCanvas"></canvas>
@@ -219,7 +274,8 @@ $employee_num = mysqli_num_rows($employee);
                                                 borderColor: '#4B49AC',
                                                 hoverBackgroundColor: '#CCCCCC',
                                                 hoverBorderColor: '#666666',
-                                                data: sales
+                                                data: sales,
+                                                x : 100
                                             }]
                                         };
 
@@ -237,7 +293,10 @@ $employee_num = mysqli_num_rows($employee);
                 </div>
             </div>
         </div>
+
+        <!-- SECTION 3 -->
         <div class="row">
+            <!-- Pie Chart Graph Sales Month Report -->
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card position-relative">
                     <div class="card-body">
@@ -249,108 +308,127 @@ $employee_num = mysqli_num_rows($employee);
                                         <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
                                             <div class="ml-xl-4 mt-3">
                                                 <p class="card-title">Detailed Reports</p>
-                                                <h1 class="text-primary">$34040</h1>
-                                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
-                                                <p class="mb-2 mb-xl-0">The total number of sessions within the date
-                                                    range. It is the period time a user is actively engaged with your
-                                                    website, page or app, etc</p>
+                                                <?php
+                                                // Define the Number of Invoice query:
+                                                $sql = "SELECT  SUM(Total_Sales) from invoice";
+                                                $invoice = $dbc->query($sql);
+                                                //display data on web page
+                                                ?>
+                                                <h1 class="text-primary">
+                                                    <?php 
+                                                    while($row = mysqli_fetch_array($invoice)){
+                                                        echo "RM ". $row['SUM(Total_Sales)']; 
+                                                    }?>
+                                                </h1>
+                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total Sales</h3>
+                                                <p class="mb-2 mb-xl-0">The is total sales for every month in this year
+                                                    based on 9 stock.
+                                                    This part lists the detailed sum sales for all stock in every month
+                                                    into a pie chart.
+                                                    <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
+                                                    <b class="text-danger"><i class='ti-arrow-down'></i> Negative</b>
+                                                    Sales is happen when Total Sales is not balance or equal
+                                                    with SubTotal for all stock.
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-xl-9">
                                             <div class="row">
+                                                <!-- Detail Invoices Report -->
                                                 <div class="col-md-6 border-right">
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <table class="table table-borderless report-table">
+                                                            <th>Month</th>
+                                                            <th>Total Shot</th>
+                                                            <th>Sales</th>
+                                                            <th>Total Sales</th>
+                                                            <?php
+                                                            // Define the query:
+                                                            $sql = "SELECT 
+                                                            (Total - Total_Sales) AS Total_Shot,
+                                                            MONTHNAME(Invoice_Date) AS month, 
+                                                            SUM(Total_Sales) AS Total_Sales
+                                                            FROM     invoice
+                                                            GROUP BY MONTHNAME(Invoice_Date)";
+                                                            $sales_month = mysqli_query($dbc,$sql);
+
+                                                            // Count the number of returned rows:
+                                                            $employee_num = mysqli_num_rows($sales_month);
+                                                            if(mysqli_num_rows($sales_month) > 0)  
+                                                            {  
+                                                                while($row = mysqli_fetch_array($sales_month))  
+                                                                {  
+                                                            ?>
                                                             <tr>
-                                                                <td class="text-muted">Illinois</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-primary"
-                                                                            role="progressbar" style="width: 70%"
-                                                                            aria-valuenow="70" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
+                                                                <td class="text-muted"><?php echo $row["month"]; ?></td>
+
+                                                                <td class="text-muted">
+                                                                    RM
+                                                                    <?php echo number_format($row["Total_Shot"],2); ?>
+
+                                                                    <?php
+                                                                    $number = $row['Total_Shot']; // enter any number of your choice here
+                                                                    if ($number > 0) // condition for positive numbers
+                                                                    {
+                                                                        echo  " <td class='text-success'><i class='ti-arrow-up'></i> Positive Sales</td>";
+                                                                    } else if ($number < 0) // condition for negative number
+                                                                    {
+                                                                        echo " <td class='text-danger'><i class='ti-arrow-down'></i> Negative Sales</td>";
+                                                                    } else
+                                                                    {
+                                                                        echo " <td class='text-warning'>Balance Sales</td>";
+                                                                    } 
+                                                                ?>
                                                                 </td>
                                                                 <td>
-                                                                    <h5 class="font-weight-bold mb-0">713</h5>
+                                                                    <h5 class="font-weight-bold mb-0">
+                                                                        RM <?php echo $row["Total_Sales"]; ?>
+                                                                    </h5>
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="text-muted">Washington</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-warning"
-                                                                            role="progressbar" style="width: 30%"
-                                                                            aria-valuenow="30" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">583</h5>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted">Mississippi</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-danger"
-                                                                            role="progressbar" style="width: 95%"
-                                                                            aria-valuenow="95" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">924</h5>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted">California</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-info"
-                                                                            role="progressbar" style="width: 60%"
-                                                                            aria-valuenow="60" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">664</h5>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted">Maryland</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-primary"
-                                                                            role="progressbar" style="width: 40%"
-                                                                            aria-valuenow="40" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">560</h5>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted">Alaska</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-danger"
-                                                                            role="progressbar" style="width: 75%"
-                                                                            aria-valuenow="75" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">793</h5>
-                                                                </td>
-                                                            </tr>
+                                                            <?php
+                                                                }
+                                                            }
+                                                            ?>
                                                         </table>
                                                     </div>
                                                 </div>
+
+                                                <!-- Pie Chart Graph Sales Month Report -->
                                                 <div class="col-md-6 mt-3">
-                                                    <canvas id="north-america-chart"></canvas>
-                                                    <div id="north-america-legend"></div>
+                                                    <div id="piechartCanvas" style="width: 700px; height: 500px;"></div>
+                                                    <script type="text/javascript"
+                                                        src="https://www.gstatic.com/charts/loader.js"></script>
+                                                    <script type="text/javascript"
+                                                        src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                                    <script type="text/javascript">
+                                                    google.charts.load('current', {
+                                                        'packages': ['corechart']
+                                                    });
+
+                                                    google.charts.setOnLoadCallback(drawChart);
+
+                                                    function drawChart() {
+
+                                                        var chartData = $.ajax({
+                                                            url: "../Database/Chart/Invoice.php",
+                                                            dataType: "json",
+                                                            async: false
+                                                        }).responseText;
+
+                                                        var data = google.visualization.arrayToDataTable(JSON.parse(
+                                                            chartData));
+
+                                                        var options = {
+                                                            title: 'Total Invoices for Every Sales in each Month'
+                                                        };
+
+                                                        var chart = new google.visualization.PieChart(document
+                                                            .getElementById('piechartCanvas'));
+
+                                                        chart.draw(data, options);
+                                                    }
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>
@@ -482,7 +560,10 @@ $employee_num = mysqli_num_rows($employee);
                 </div>
             </div>
         </div>
+
+        <!-- SECTION 4 -->
         <div class="row">
+            <!-- Stock Purchase Table -->
             <div class="col-md-7 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -555,6 +636,8 @@ $employee_num = mysqli_num_rows($employee);
                     </div>
                 </div>
             </div>
+
+            <!-- To-Do-List -->
             <div class="col-md-5 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -617,7 +700,10 @@ $employee_num = mysqli_num_rows($employee);
                 </div>
             </div>
         </div>
+
+        <!-- SECTION 5 -->
         <div class="row">
+            <!-- Category Table -->
             <div class="col-md-4 stretch-card grid-margin">
                 <div class="card">
                     <div class="card-body">
@@ -671,6 +757,8 @@ $employee_num = mysqli_num_rows($employee);
                     </div>
                 </div>
             </div>
+
+            <!-- Stock Purchase Table -->
             <div class="col-md-4 stretch-card grid-margin">
                 <div class="row">
                     <div class="col-md-12 grid-margin stretch-card">
@@ -740,6 +828,8 @@ $employee_num = mysqli_num_rows($employee);
                     </div>
                 </div>
             </div>
+
+            <!-- My Employee Table -->
             <div class="col-md-4 stretch-card grid-margin">
                 <div class="card">
                     <div class="card-body">
