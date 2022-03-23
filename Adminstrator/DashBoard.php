@@ -318,7 +318,7 @@ $employee_num = mysqli_num_rows($employee);
                                                             $sales_month = mysqli_query($dbc,$sql);
 
                                                             // Count the number of returned rows:
-                                                            $employee_num = mysqli_num_rows($sales_month);
+                                                            $sales_num = mysqli_num_rows($sales_month);
                                                             if(mysqli_num_rows($sales_month) > 0)  
                                                             {  
                                                                 while($row = mysqli_fetch_array($sales_month))  
@@ -361,9 +361,12 @@ $employee_num = mysqli_num_rows($employee);
 
                                                 <!-- Pie Chart Graph Sales Month Report -->
                                                 <div class="col-md-6 mt-3">
+                                                    <p align="center" class="mb-2 mb-xl-0"><b>Total Sales of Every
+                                                            Month</b>
+                                                    </p>
                                                     <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
 
-                                                    <canvas id="piechartInvoices1"></canvas>
+                                                    <canvas id="piechartInvoices"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -375,20 +378,21 @@ $employee_num = mysqli_num_rows($employee);
                                         <!-- Detailed Invoices Report -->
                                         <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
                                             <div class="ml-xl-4 mt-3">
-                                                <p class="card-title">Detailed Invoices</p>
+                                                <p class="card-title">Detailed Income</p>
                                                 <?php
                                                 // Define the Number of Invoice query:
-                                                $sql = "SELECT  SUM(Total_Sales) from invoice";
-                                                $invoice = $dbc->query($sql);
+                                                $sql = "SELECT  SUM(Net_Income) 
+                                                from income";
+                                                $income = $dbc->query($sql);
                                                 //display data on web page
                                                 ?>
                                                 <h1 class="text-primary">
                                                     <?php 
-                                                    while($row = mysqli_fetch_array($invoice)){
-                                                        echo "RM ". $row['SUM(Total_Sales)']; 
+                                                    while($row = mysqli_fetch_array($income)){
+                                                        echo "RM ". $row['SUM(Net_Income)']; 
                                                     }?>
                                                 </h1>
-                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total Sales</h3>
+                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total Income</h3>
                                                 <p align="justify" class="mb-2 mb-xl-0">The is total sales for every
                                                     month in this year
                                                     based on 9 stock.
@@ -409,44 +413,38 @@ $employee_num = mysqli_num_rows($employee);
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <table class="table table-borderless report-table">
                                                             <th>Month</th>
-                                                            <th>Description</th>
-                                                            <th>Total Sales</th>
+                                                            <th>Expenses</th>
+                                                            <th>Total Income</th>
                                                             <?php
                                                             // Define the query:
                                                             $sql = "SELECT 
-                                                            MONTHNAME(Invoice_Date) AS month, 
-                                                            SUM(Overhead) AS Overhead,
-                                                            SUM(Total_Cash) AS Total_Cash,
-                                                            SUM(Total_Sales) AS Total_Sales
-                                                            FROM     invoice
-                                                            GROUP BY MONTHNAME(Invoice_Date)
-                                                            ORDER BY Invoice_Date";
-                                                            $sales_month = mysqli_query($dbc,$sql);
+                                                            MONTHNAME(Income_Date) AS month, 
+                                                            SUM(Net_Income) AS Net_Income,
+                                                            SUM(Total_Expenses) AS Total_Expenses
+                                                            FROM     income
+                                                            GROUP BY MONTHNAME(Income_Date)
+                                                            ORDER BY Income_Date";
+                                                            $income_month = mysqli_query($dbc,$sql);
 
                                                             // Count the number of returned rows:
-                                                            $employee_num = mysqli_num_rows($sales_month);
-                                                            if(mysqli_num_rows($sales_month) > 0)  
+                                                            $income_num = mysqli_num_rows($income_month);
+                                                            if(mysqli_num_rows($income_month) > 0)  
                                                             {  
-                                                                while($row = mysqli_fetch_array($sales_month))  
+                                                                while($row = mysqli_fetch_array($income_month))  
                                                                 {  
                                                             ?>
                                                             <tr>
                                                                 <td class="text-muted"><?php echo $row["month"]; ?></td>
 
                                                                 <td class="text-muted">
-                                                                    <p>Overhead
-                                                                        <b>RM
-                                                                            <?php echo number_format($row["Overhead"],2); ?></b>
-                                                                    </p>
-                                                                    <p>Total Cash
-                                                                        <b>RM
-                                                                            <?php echo number_format($row["Total_Cash"],2); ?></b>
+                                                                    <p><b>RM
+                                                                            <?php echo number_format($row["Total_Expenses"],2); ?></b>
                                                                     </p>
                                                                 </td>
 
                                                                 <td>
                                                                     <h5 class="font-weight-bold mb-0">
-                                                                        RM <?php echo $row["Total_Sales"]; ?>
+                                                                        RM <?php echo $row["Net_Income"]; ?>
                                                                     </h5>
                                                                 </td>
                                                             </tr>
@@ -460,9 +458,12 @@ $employee_num = mysqli_num_rows($employee);
 
                                                 <!-- Pie Chart Graph Sales Month Report -->
                                                 <div class="col-md-6 mt-3">
+                                                    <p align="center" class="mb-2 mb-xl-0"><b>Total Income of Every
+                                                            Month</b>
+                                                    </p>
                                                     <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
 
-                                                    <canvas id="piechartInvoices2"></canvas>
+                                                    <canvas id="piechartIncome"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -857,7 +858,7 @@ $employee_num = mysqli_num_rows($employee);
 
         function pieChart1() {
             {
-                $.post("../Database/Chart/Invoice1.php",
+                $.post("../Database/Chart/Invoice.php",
                     function(data) {
                         console.log(data);
                         var Invoice_Date = [];
@@ -890,7 +891,7 @@ $employee_num = mysqli_num_rows($employee);
                         };
 
 
-                        var graphTarget = $("#piechartInvoices1");
+                        var graphTarget = $("#piechartInvoices");
 
                         var barGraph = new Chart(graphTarget, {
                             type: 'doughnut',
@@ -907,11 +908,11 @@ $employee_num = mysqli_num_rows($employee);
 
         function pieChart2() {
             {
-                $.post("../Database/Chart/Invoice2.php",
+                $.post("../Database/Chart/Income.php",
                     function(data) {
                         console.log(data);
-                        var Invoice_Date = [];
-                        var Overhead = [];
+                        var Income_Date = [];
+                        var Net_Income = [];
                         var barColors = [
                             "rgba(75,73,172, 1.0)",
                             "rgba(75,73,172, 0.8)",
@@ -922,25 +923,25 @@ $employee_num = mysqli_num_rows($employee);
 
 
                         for (var i in data) {
-                            Invoice_Date.push(data[i].Invoice_Date);
-                            Overhead.push(data[i].Overhead);
+                            Income_Date.push(data[i].Income_Date);
+                            Net_Income.push(data[i].Net_Income);
                         }
 
                         var chartdata = {
-                            labels: Invoice_Date,
+                            labels: Income_Date,
                             datasets: [{
-                                label: 'Total Overhead RM',
+                                label: 'Total Net Income RM',
                                 backgroundColor: barColors,
                                 borderColor: '#4B49AC',
                                 hoverBackgroundColor: '#CCCCCC',
                                 hoverBorderColor: '#666666',
-                                data: Overhead,
+                                data: Net_Income,
                                 x: 100
                             }]
                         };
 
 
-                        var graphTarget = $("#piechartInvoices2");
+                        var graphTarget = $("#piechartIncome");
 
                         var barGraph = new Chart(graphTarget, {
                             type: 'doughnut',
