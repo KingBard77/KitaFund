@@ -22,7 +22,7 @@ badamin16@gmail.com
 
 
    
-   |   Owner                              | Employee           | 
+   |   Owner                    | Employee                     | 
    |----------------------------|------------------------------| 
    |**Username** : Badrul       | **Username** : EMP2001       | 
    |**Password**  : 251251      | **Password** : 251251        | 
