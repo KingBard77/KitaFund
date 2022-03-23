@@ -36,7 +36,7 @@ $msgBody = '
     <h3 align="left">Employee Details</h3>
     <table border="0" width="80%" cellpadding="5" cellspacing="5">
         <tr>
-            <td colspan="2">Hai, <b>'.$_SESSION['Employee_Code'].'</b> have apply for the <b>Application Commission</b> for the following details:</td>
+            <td colspan="2">Hai Owner, <b>'.$_SESSION['Employee_Code'].'</b> have apply for the <b>Application Commission</b> for the following details:</td>
         </tr>
         <tr>
             <td width="10%">Bank Name: </td>
@@ -63,14 +63,14 @@ if($query ==true)
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'badamin16@gmail.com';                     //SMTP username
-        $mail->Password   = 'KingAmin_77';                               //SMTP password
+        $mail->Username   = 'BurgerByte1998@gmail.com';                     //SMTP username
+        $mail->Password   = 'Adminstrator_1998';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
         //Recipients
-        $mail->setFrom('badamin16@gmail.com', 'Badrul');
-        $mail->addAddress('badamin16@gmail.com', 'Ali');     //Add a recipient
+        $mail->setFrom('BurgerByte1998@gmail.com', 'Badrul');
+        $mail->addAddress('BurgerByte1998@gmail.com', 'Ali');     //Add a recipient
     
         //Content
         $mail->isHTML(true);                                 //Set email format to HTML
