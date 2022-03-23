@@ -21,10 +21,11 @@ badamin16@gmail.com
 3. Then loging by typing **username** and **password**:
 
 
-   Owner                              | Employee                           | 
-   ----------------------------| -----------------------------| 
-   **Username** : Badrul   | **Username** : EMP2001| 
-   **Password**  : 251251 | **Password** : 251251    | 
+   
+   |   Owner                              | Employee           | 
+   |----------------------------|------------------------------| 
+   |**Username** : Badrul       | **Username** : EMP2001       | 
+   |**Password**  : 251251      | **Password** : 251251        | 
 
 6. Good luck!  
 
