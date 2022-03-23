@@ -14,7 +14,7 @@ badamin16@gmail.com
 ### Installing this application is fairly easy, just follow these steps:
 ****
 
-1. Import/load oswa_inv.sql into your mysql database. This should set up the basic structure of the database system.
+1. Import/load burgerbyte.sql into your mysql database. This should set up the basic structure of the database system.
 
 2. Modify the includes/config.php and change the variables to match your host, database, username and passwords.
 
@@ -22,10 +22,10 @@ badamin16@gmail.com
 
 
    
-   |   Owner                    | Employee                     | 
-   |----------------------------|------------------------------| 
-   |**Username** : Badrul       | **Username** : EMP2001       | 
-   |**Password**  : 251251      | **Password** : 251251        | 
+   |   Owner                 | Employee                 | 
+   |-------------------------|--------------------------| 
+   |**Username** : Badrul    | **Username** : EMP2001   | 
+   |**Password**  : 251251   | **Password** : 251251    | 
 
 6. Good luck!  
 
@@ -33,10 +33,10 @@ badamin16@gmail.com
 
 7. Gmail Account
 
-   |   Owner                               | Employee                          |  
-   |---------------------------------------|-----------------------------------| 
-   |**Email** : BurgerByte1998             | **Email** : employeeBurgerByte    | 
-   |**Password**  : Adminstrator_1998      | **Password** : Employee_1998      | 
+   |   Owner                            | Employee                          |  
+   |------------------------------------|-----------------------------------| 
+   |**Email**     : BurgerByte1998      | **Email**    : employeeBurgerByte | 
+   |**Password**  : Adminstrator_1998   | **Password** : Employee_1998      | 
 
 
 
@@ -46,5 +46,6 @@ badamin16@gmail.com
 
 ## DON'T FORGET TO GIVE US FEEDBACK
 ## THANK YOU
+## FOLLOW ME ON https://github.com/KingBard77
 
 - - - -
