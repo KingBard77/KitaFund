@@ -572,13 +572,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <form id="updateUser" enctype="multipart/form-data">
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="trid" id="trid" value="">
-                            <div class="mb-3 row">
+                            <!--<div class="mb-3 row">
                                 <div class="col-md-9">
-                                    <img src="../Images/Employee_Image/" id="ImageNameField" name="Image_Name"
-                                        class="rounded-circle float-left img-fluid mx-auto d-block" width="50"
-                                        height="35" />
+                                    <img src="../Images/Employee_Image/<?php echo $values["Image_Name"]; ?>"
+                                    id="ImageNameField<?php echo $values["Image_Name"]; ?>" 
+                                    name="Image_Name<?php echo $values["Image_Name"]; ?>"
+                                    class="rounded-circle float-left img-fluid mx-auto d-block" width="50"
+                                    height="35" />
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="mb-3 row">
                                 <label for="nameField" class="col-md-3 form-label">Employee Code</label>
                                 <div class="col-md-9">
