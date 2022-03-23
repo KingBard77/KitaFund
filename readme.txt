@@ -1,1 +1,1 @@
-nama saya badrul king of PARIT
+nama saya badrul king of 
