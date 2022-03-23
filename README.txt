@@ -31,6 +31,19 @@ badamin16@gmail.com
 
 - - - -
 
+7. Gmail Account
+
+   |   Owner                               | Employee                          |  
+   |---------------------------------------|-----------------------------------| 
+   |**Email** : BurgerByte1998             | **Email** : employeeBurgerByte    | 
+   |**Password**  : Adminstrator_1998      | **Password** : Employee_1998      | 
+
+
+
+
+
+
+
 ## DON'T FORGET TO GIVE US FEEDBACK
 ## THANK YOU
 
