@@ -5,11 +5,14 @@
   header('Content-Type: application/json');
   include '../connection.php';
  
-  $sqlQuery = "SELECT MONTHNAME(Sales_Date) AS month, 
-  SUM(SubTotal) AS sales
-  FROM     sales
-  GROUP BY MONTHNAME(Sales_Date)
-  ORDER BY Sales_Date";
+  $sqlQuery = "SELECT MONTHNAME(c.Commission_Date) AS month, 
+  SUM(c.Net_Commission) AS Net_Commission
+  FROM     comission c, employee e, profile p
+  WHERE c.Employee_Code = e.Profile_Id 
+  AND c.Employee_Code = p.Profile_Id
+  AND e.Employee_Code ='EMP2001'
+  GROUP BY MONTHNAME(c.Commission_Date)
+  ORDER BY c.Commission_Date";
 
   $result = mysqli_query($dbc,$sqlQuery);
   

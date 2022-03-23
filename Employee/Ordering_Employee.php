@@ -12,8 +12,11 @@ include '../partials/Sidebar - Employee.php';
 
 // Define the query:
 $query = "SELECT *
-FROM ordering 
-ORDER BY  Order_Id ASC";
+FROM ordering o, employee e, profile p
+WHERE o.Employee_Code = e.Profile_Id 
+AND o.Employee_Code = p.Profile_Id
+AND e.Employee_Code ='$id'
+ORDER BY  o.Order_Id ASC";
 $ordering = mysqli_query($dbc, $query);
 
 // Count the number of returned rows:
@@ -31,8 +34,6 @@ $ordering_num = mysqli_num_rows($ordering);
                             Registration for</h4>
                         <p class='card-description'>
                             Ordering Form <code>Submit</code>
-
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">

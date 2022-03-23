@@ -34,7 +34,7 @@ $employee_num = mysqli_num_rows($employee);
                 <div class="row">
                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                         <h3 class="font-weight-bold">Welcome <?php echo" Mr. {$_SESSION["Username"]} "?></h3>
-                        <h6 class="font-weight-normal mb-0">You're in BurgerByte system! You have <span
+                        <h6 class="font-weight-normal mb-0">You're in <b>BurgerByte System!</b> You have <span
                                 class="text-primary">3 unread alerts!</span></h6>
                     </div>
                     <div class="col-12 col-xl-4">
@@ -57,6 +57,8 @@ $employee_num = mysqli_num_rows($employee);
                 </div>
             </div>
         </div>
+
+        <!-- SECTION 1 -->
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card" style="width: 18rem;">
@@ -161,17 +163,17 @@ $employee_num = mysqli_num_rows($employee);
                             It is the period time in a year to show <b>Selling Price</b> for every stock in BurgerByte Company, page or app, etc.</p>
                         <div class="d-flex flex-wrap mb-5">
                             <div class="mr-5 mt-3">
-                                <p class="text-muted">Stock value</p>
+                                <p class="text-muted">Stock</p>
                                 <?php
-                                // Define the query:
-                                $query = "SELECT * 
-                                FROM category
-                                ORDER BY Category_Id ASC";
-                                $stock = @mysqli_query($dbc, $query);
-                                // Count the number of returned rows:
-                                $stock_num = mysqli_num_rows($stock);
-                                ?>
-                                <h3 class="text-primary fs-30 font-weight-medium"><?php echo $stock_num ?></h3>
+                                 $query = "SELECT * FROM stock
+                                 ORDER BY Stock_Id ASC";
+                                 $stock = mysqli_query($dbc, $query);
+                                 // Count the number of returned rows:
+                                 $stock_num = mysqli_num_rows($stock);
+                                 ?>
+                                 <h3 class="text-primary fs-30 font-weight-medium">
+                                     <?php echo "$stock_num"?>
+                                 </h3>
                             </div>
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Sales</p>
@@ -235,7 +237,7 @@ $employee_num = mysqli_num_rows($employee);
                             <p class="card-title">Sales Report</p>
                             <a href="#" class="text-info">View all</a>
                         </div>
-                        <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Total Sales</b> for BurgerByte Company every month. 
+                        <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Total Sales</b> for BurgerByte Company in every month. 
                         It is the period time in a year to show <b>Total Sales</b>  for every month in BurgerByte Company, page or app, etc.
                         </p>
                         <br />
@@ -284,7 +286,7 @@ $employee_num = mysqli_num_rows($employee);
                                                 <h3 class="font-weight-500 mb-xl-4 text-primary">Total Invoices</h3>
                                                 <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Invoices</b> for every
                                                     month in this year
-                                                    based on 9 stock.
+                                                    based on <b class="text-success"><?php echo "$stock_num" ?> Stock.</b>
                                                     This part lists the detailed sum sales for all stock in every month
                                                     into a <b>Pie Chart</b>.
                                                     <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
@@ -494,7 +496,7 @@ $employee_num = mysqli_num_rows($employee);
             <div class="col-md-7 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-title mb-0">Purcahse Stock</p>
+                        <p class="card-title mb-0">Purchase Stock</p>
                         <div class="table-responsive">
                             <table class="table table-striped table-borderless">
                                 <thead>
