@@ -31,5 +31,6 @@ badamin16@gmail.com
 - - - -
 
 ## DON'T FORGET TO GIVE US FEEDBACK
+## THANK YOU
 
 - - - -
