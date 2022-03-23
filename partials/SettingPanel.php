@@ -117,18 +117,28 @@ $employee_num = mysqli_num_rows($employee);
                 <b><?php echo "$event_num" ?> Events</b>
             </h4>
             <?php
-                while ($row = mysqli_fetch_array($event, MYSQLI_ASSOC)) {
-                echo '
+                 if(mysqli_num_rows($event) > 0)  
+                 {  
+                     while($row = mysqli_fetch_array($event))  
+                     {  
+                         ?>
             <div class="events pt-4 px-3">
-                <div class="wrapper d-flex mb-2">
-                    <i class="ti-control-record text-primary mr-2"></i>
-                    <span>' . $row['start'] . '</span>
+                <div class="form-check form-check-primary">
+                    <label align="left" class="form-check-label">
+                        <input type="checkbox" class="form-check-input" checked>
+                        <?php echo $row["title"]; ?>
+                    </label>
+                    <?php $start_event = strtotime ($row['start']);?>
+                    <p class="text-gray mb-0">Start : <?php echo date('d M, Y', $start_event)?></p>
+
+                    <?php $end_event = strtotime ($row['end']);?>
+                    <p class="text-gray mb-0">End : <?php echo date('d M, Y', $end_event)?></p>
                 </div>
-                
-                <p class="mb-0 font-weight-thin text-gray">' . $row['title'] . '</p>
-                <p class="text-gray mb-0">' . $row['end'] . '</p>
             </div>
-                ';}?>
+            <?php  
+                        }  
+                    }  
+                    ?>
         </div>
         <!-- To do section tab ends -->
         <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
@@ -138,7 +148,7 @@ $employee_num = mysqli_num_rows($employee);
                     All</small>
             </div>
             <ul class="chat-list">
-            <?php
+                <?php
                 ## Image Result
                 $image = $row['Image_Name'];
                 $image_src = "../Images/Employee_Image/".$image;

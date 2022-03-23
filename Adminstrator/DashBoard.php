@@ -157,11 +157,8 @@ $employee_num = mysqli_num_rows($employee);
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title">BurgerByte Details</p>
-                        <p class="font-weight-500">The is dotted-graph total sales & total invoices for BurgerByte
-                            Company
-                            every month. It is the period time in a year to show total sales & total invoices for every
-                            month
-                            in BurgerByte Company, page or app, etc.</p>
+                        <p class="font-weight-500">The is a <b>line graph</b> of the <b>Selling Price</b> for BurgerByte Company in every stock. 
+                            It is the period time in a year to show <b>Selling Price</b> for every stock in BurgerByte Company, page or app, etc.</p>
                         <div class="d-flex flex-wrap mb-5">
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Stock value</p>
@@ -222,7 +219,10 @@ $employee_num = mysqli_num_rows($employee);
                                 </h3>
                             </div>
                         </div>
-                        <canvas id="order-chart"></canvas>
+                        <!-- Line Graph Stock Report -->
+                        <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+                        <canvas id="lineChart"></canvas>
+                        
                     </div>
                 </div>
             </div>
@@ -235,9 +235,8 @@ $employee_num = mysqli_num_rows($employee);
                             <p class="card-title">Sales Report</p>
                             <a href="#" class="text-info">View all</a>
                         </div>
-                        <p class="font-weight-500">The is bar-graph total sales for BurgerByte Company every month.
-                            It is the period time in a year to show total sales for every month in BurgerByte Company,
-                            page or app, etc.
+                        <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Total Sales</b> for BurgerByte Company every month. 
+                        It is the period time in a year to show <b>Total Sales</b>  for every month in BurgerByte Company, page or app, etc.
                         </p>
                         <br />
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
@@ -283,11 +282,11 @@ $employee_num = mysqli_num_rows($employee);
                                                     }?>
                                                 </h1>
                                                 <h3 class="font-weight-500 mb-xl-4 text-primary">Total Sales</h3>
-                                                <p align="justify" class="mb-2 mb-xl-0">The is total sales for every
+                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Sales</b> for every
                                                     month in this year
                                                     based on 9 stock.
                                                     This part lists the detailed sum sales for all stock in every month
-                                                    into a pie chart.
+                                                    into a <b>Pie Chart</b>.
                                                     <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
                                                     <b class="text-danger"><i class='ti-arrow-down'></i> Negative</b>
                                                     Sales is happen when Total Sales is not balance or equal
@@ -305,7 +304,7 @@ $employee_num = mysqli_num_rows($employee);
                                                             <th>Month</th>
                                                             <th>Shot</th>
                                                             <th class="text-center">Comments</th>
-                                                            <th>Total Sales</th>
+                                                            <th class="text-right">Total Sales</th>
                                                             <?php
                                                             // Define the query:
                                                             $sql = "SELECT 
@@ -332,21 +331,21 @@ $employee_num = mysqli_num_rows($employee);
                                                                     <?php echo number_format($row["Total_Shot"],2); ?>
 
                                                                     <?php
-                                                                    $number = $row['Total_Shot']; // enter any number of your choice here
-                                                                    if ($number > 0) // condition for positive numbers
-                                                                    {
-                                                                        echo  " <td align='center' class='text-success'><i class='ti-arrow-up'></i> Positive Sales</td>";
-                                                                    } else if ($number < 0) // condition for negative number
-                                                                    {
-                                                                        echo " <td align='center' class='text-danger'><i class='ti-arrow-down'></i> Negative Sales</td>";
-                                                                    } else
-                                                                    {
-                                                                        echo " <td align='center' class='text-warning'>Balance Sales</td>";
-                                                                    } 
-                                                                ?>
+                                                                        $number = $row['Total_Shot']; // enter any number of your choice here
+                                                                        if ($number > 0) // condition for positive numbers
+                                                                        {
+                                                                            echo  " <td align='center' class='text-success'><i class='ti-arrow-up'></i> Positive Sales</td>";
+                                                                        } else if ($number < 0) // condition for negative number
+                                                                        {
+                                                                            echo " <td align='center' class='text-danger'><i class='ti-arrow-down'></i> Negative Sales</td>";
+                                                                        } else
+                                                                        {
+                                                                            echo " <td align='center' class='text-warning'>Balance Sales</td>";
+                                                                        } 
+                                                                    ?>
                                                                 </td>
                                                                 <td>
-                                                                    <h5 class="font-weight-bold mb-0">
+                                                                    <h5 class="font-weight-bold mb-0" align="right">
                                                                         RM <?php echo $row["Total_Sales"]; ?>
                                                                     </h5>
                                                                 </td>
@@ -393,15 +392,15 @@ $employee_num = mysqli_num_rows($employee);
                                                     }?>
                                                 </h1>
                                                 <h3 class="font-weight-500 mb-xl-4 text-primary">Total Income</h3>
-                                                <p align="justify" class="mb-2 mb-xl-0">The is total sales for every
+                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Income</b> for every
                                                     month in this year
-                                                    based on 9 stock.
-                                                    This part lists the detailed sum sales for all stock in every month
-                                                    into a pie chart.
+                                                    based on each of sales.
+                                                    This part lists the detailed net income for all sales in every month
+                                                    into a <b>Pie Chart</b>.
                                                     <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
                                                     <b class="text-danger"><i class='ti-arrow-down'></i> Negative</b>
-                                                    Sales is happen when Total Sales is not balance or equal
-                                                    with SubTotal for all stock.
+                                                    Sales is happen when Net Income is not balance or equal
+                                                    with Total Sales for all stock.
                                                 </p>
                                             </div>
                                         </div>
@@ -414,7 +413,8 @@ $employee_num = mysqli_num_rows($employee);
                                                         <table class="table table-borderless report-table">
                                                             <th>Month</th>
                                                             <th>Expenses</th>
-                                                            <th>Total Income</th>
+                                                            <th class="text-center">Comments</th>
+                                                            <th class="text-right">Total Income</th>
                                                             <?php
                                                             // Define the query:
                                                             $sql = "SELECT 
@@ -437,13 +437,25 @@ $employee_num = mysqli_num_rows($employee);
                                                                 <td class="text-muted"><?php echo $row["month"]; ?></td>
 
                                                                 <td class="text-muted">
-                                                                    <p><b>RM
-                                                                            <?php echo number_format($row["Total_Expenses"],2); ?></b>
-                                                                    </p>
-                                                                </td>
+                                                                    RM
+                                                                    <?php echo number_format($row["Total_Expenses"],2); ?>
 
+                                                                    <?php
+                                                                        $number = $row['Net_Income']; // enter any number of your choice here
+                                                                        if ($number > 0) // condition for positive numbers
+                                                                        {
+                                                                            echo  " <td align='center' class='text-success'><i class='ti-arrow-up'></i> Positive Income</td>";
+                                                                        } else if ($number < 0) // condition for negative number
+                                                                        {
+                                                                            echo " <td align='center' class='text-danger'><i class='ti-arrow-down'></i> Negative Income</td>";
+                                                                        } else
+                                                                        {
+                                                                            echo " <td align='center' class='text-warning'>Balance Income</td>";
+                                                                        } 
+                                                                    ?>
+                                                                </td>
                                                                 <td>
-                                                                    <h5 class="font-weight-bold mb-0">
+                                                                    <h5 class="font-weight-bold mb-0" align="right">
                                                                         RM <?php echo $row["Net_Income"]; ?>
                                                                     </h5>
                                                                 </td>
@@ -658,7 +670,7 @@ $employee_num = mysqli_num_rows($employee);
                                         </td>
                                         <td class="text-muted">
                                             <div class="col text-center">
-                                                <?php echo $row["Quantity_In"]; ?>
+                                                <?php echo $row["Quantity_In"]; ?> / pieces
                                             </div>
                                         </td>
                                     </tr>
@@ -745,7 +757,7 @@ $employee_num = mysqli_num_rows($employee);
                                             }?> / year
                                         </h3>
                                         <p class="text-white font-weight-500 mb-0">The total number of sessions within
-                                            the date range.It is calculated as the sum for Total Expenses over in this
+                                            the date range. It is calculated as the sum for Total Expenses over in this
                                             year. </p>
                                     </div>
                                     <div class="col-4 background-icon">
@@ -801,6 +813,56 @@ $employee_num = mysqli_num_rows($employee);
         </div>
 
         <script>
+        // SCRIPT FOR LINE CHART - STOCK
+        $(document).ready(function() {
+            lineChart();
+        });
+
+        function lineChart() {
+            {
+                $.post("../Database/Chart/Stock.php",
+                    function(data) {
+                        console.log(data);
+                        var Stock_Name = [];
+                        var Selling_Price = [];
+                        var barColors = [
+                            "rgba(75,73,172, 1.0)",
+                            "rgba(75,73,172, 0.8)",
+                            "rgba(75,73,172, 0.6)",
+                            "rgba(75,73,172, 0.4)",
+                            "rgba(75,73,172, 0.2)"
+                        ];
+
+
+                        for (var i in data) {
+                            Stock_Name.push(data[i].Stock_Name);
+                            Selling_Price.push(data[i].Selling_Price);
+                        }
+
+                        var chartdata = {
+                            labels: Stock_Name,
+                            datasets: [{
+                                label: 'Stock Name',
+                                backgroundColor: barColors,
+                                borderColor: '#4B49AC',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data: Selling_Price,
+                                x: 100
+                            }]
+                        };
+
+
+                        var graphTarget = $("#lineChart");
+
+                        var barGraph = new Chart(graphTarget, {
+                            type: 'line',
+                            data: chartdata
+                        });
+                    });
+            }
+        }
+
         // SCRIPT FOR BAR CHART - SALES
         $(document).ready(function() {
             barChart();
