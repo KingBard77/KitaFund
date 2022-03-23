@@ -157,8 +157,11 @@ $employee_num = mysqli_num_rows($employee);
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title">BurgerByte Details</p>
-                        <p class="font-weight-500">The total number of sessions within the date range. It is the period
-                            time a user is actively engaged with your website, page or app, etc</p>
+                        <p class="font-weight-500">The is dotted-graph total sales & total invoices for BurgerByte
+                            Company
+                            every month. It is the period time in a year to show total sales & total invoices for every
+                            month
+                            in BurgerByte Company, page or app, etc.</p>
                         <div class="d-flex flex-wrap mb-5">
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Stock value</p>
@@ -238,57 +241,7 @@ $employee_num = mysqli_num_rows($employee);
                         </p>
                         <br />
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
-
                         <canvas id="graphCanvas"></canvas>
-                        <script>
-                        $(document).ready(function() {
-                            showGraph();
-                        });
-
-                        function showGraph() {
-                            {
-                                $.post("../Database/Chart/Sales.php",
-                                    function(data) {
-                                        console.log(data);
-                                        var date = [];
-                                        var sales = [];
-                                        var barColors = [
-                                            "rgba(75,73,172, 1.0)",
-                                            "rgba(75,73,172, 0.8)",
-                                            "rgba(75,73,172, 0.6)",
-                                            "rgba(75,73,172, 0.4)",
-                                            "rgba(75,73,172, 0.2)"
-                                        ];
-
-
-                                        for (var i in data) {
-                                            date.push(data[i].month);
-                                            sales.push(data[i].sales);
-                                        }
-
-                                        var chartdata = {
-                                            labels: date,
-                                            datasets: [{
-                                                label: 'Total Sales',
-                                                backgroundColor: barColors,
-                                                borderColor: '#4B49AC',
-                                                hoverBackgroundColor: '#CCCCCC',
-                                                hoverBorderColor: '#666666',
-                                                data: sales,
-                                                x : 100
-                                            }]
-                                        };
-
-                                        var graphTarget = $("#graphCanvas");
-
-                                        var barGraph = new Chart(graphTarget, {
-                                            type: 'bar',
-                                            data: chartdata
-                                        });
-                                    });
-                            }
-                        }
-                        </script>
                     </div>
                 </div>
             </div>
@@ -302,12 +255,21 @@ $employee_num = mysqli_num_rows($employee);
                     <div class="card-body">
                         <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2"
                             data-ride="carousel">
+                            <a class="carousel-control-prev" href="#detailedReports" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#detailedReports" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <div class="row">
+                                        <!-- Detailed Invoices Report -->
                                         <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
                                             <div class="ml-xl-4 mt-3">
-                                                <p class="card-title">Detailed Reports</p>
+                                                <p class="card-title">Detailed Invoices</p>
                                                 <?php
                                                 // Define the Number of Invoice query:
                                                 $sql = "SELECT  SUM(Total_Sales) from invoice";
@@ -321,7 +283,8 @@ $employee_num = mysqli_num_rows($employee);
                                                     }?>
                                                 </h1>
                                                 <h3 class="font-weight-500 mb-xl-4 text-primary">Total Sales</h3>
-                                                <p class="mb-2 mb-xl-0">The is total sales for every month in this year
+                                                <p align="justify" class="mb-2 mb-xl-0">The is total sales for every
+                                                    month in this year
                                                     based on 9 stock.
                                                     This part lists the detailed sum sales for all stock in every month
                                                     into a pie chart.
@@ -332,6 +295,7 @@ $employee_num = mysqli_num_rows($employee);
                                                 </p>
                                             </div>
                                         </div>
+
                                         <div class="col-md-12 col-xl-9">
                                             <div class="row">
                                                 <!-- Detail Invoices Report -->
@@ -339,8 +303,8 @@ $employee_num = mysqli_num_rows($employee);
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <table class="table table-borderless report-table">
                                                             <th>Month</th>
-                                                            <th>Total Shot</th>
-                                                            <th>Sales</th>
+                                                            <th>Shot</th>
+                                                            <th class="text-center">Comments</th>
                                                             <th>Total Sales</th>
                                                             <?php
                                                             // Define the query:
@@ -349,7 +313,8 @@ $employee_num = mysqli_num_rows($employee);
                                                             MONTHNAME(Invoice_Date) AS month, 
                                                             SUM(Total_Sales) AS Total_Sales
                                                             FROM     invoice
-                                                            GROUP BY MONTHNAME(Invoice_Date)";
+                                                            GROUP BY MONTHNAME(Invoice_Date)
+                                                            ORDER BY Invoice_Date";
                                                             $sales_month = mysqli_query($dbc,$sql);
 
                                                             // Count the number of returned rows:
@@ -370,13 +335,13 @@ $employee_num = mysqli_num_rows($employee);
                                                                     $number = $row['Total_Shot']; // enter any number of your choice here
                                                                     if ($number > 0) // condition for positive numbers
                                                                     {
-                                                                        echo  " <td class='text-success'><i class='ti-arrow-up'></i> Positive Sales</td>";
+                                                                        echo  " <td align='center' class='text-success'><i class='ti-arrow-up'></i> Positive Sales</td>";
                                                                     } else if ($number < 0) // condition for negative number
                                                                     {
-                                                                        echo " <td class='text-danger'><i class='ti-arrow-down'></i> Negative Sales</td>";
+                                                                        echo " <td align='center' class='text-danger'><i class='ti-arrow-down'></i> Negative Sales</td>";
                                                                     } else
                                                                     {
-                                                                        echo " <td class='text-warning'>Balance Sales</td>";
+                                                                        echo " <td align='center' class='text-warning'>Balance Sales</td>";
                                                                     } 
                                                                 ?>
                                                                 </td>
@@ -396,165 +361,114 @@ $employee_num = mysqli_num_rows($employee);
 
                                                 <!-- Pie Chart Graph Sales Month Report -->
                                                 <div class="col-md-6 mt-3">
-                                                    <div id="piechartCanvas" style="width: 700px; height: 500px;"></div>
-                                                    <script type="text/javascript"
-                                                        src="https://www.gstatic.com/charts/loader.js"></script>
-                                                    <script type="text/javascript"
-                                                        src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                                    <script type="text/javascript">
-                                                    google.charts.load('current', {
-                                                        'packages': ['corechart']
-                                                    });
+                                                    <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
 
-                                                    google.charts.setOnLoadCallback(drawChart);
-
-                                                    function drawChart() {
-
-                                                        var chartData = $.ajax({
-                                                            url: "../Database/Chart/Invoice.php",
-                                                            dataType: "json",
-                                                            async: false
-                                                        }).responseText;
-
-                                                        var data = google.visualization.arrayToDataTable(JSON.parse(
-                                                            chartData));
-
-                                                        var options = {
-                                                            title: 'Total Invoices for Every Sales in each Month'
-                                                        };
-
-                                                        var chart = new google.visualization.PieChart(document
-                                                            .getElementById('piechartCanvas'));
-
-                                                        chart.draw(data, options);
-                                                    }
-                                                    </script>
+                                                    <canvas id="piechartInvoices1"></canvas>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="carousel-item">
                                     <div class="row">
+                                        <!-- Detailed Invoices Report -->
                                         <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
                                             <div class="ml-xl-4 mt-3">
-                                                <p class="card-title">Detailed Products</p>
-                                                <h1 class="text-primary">$34040</h1>
-                                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
-                                                <p class="mb-2 mb-xl-0">The total number of sessions within the date
-                                                    range. It is the period time a user is actively engaged with your
-                                                    website, page or app, etc</p>
+                                                <p class="card-title">Detailed Invoices</p>
+                                                <?php
+                                                // Define the Number of Invoice query:
+                                                $sql = "SELECT  SUM(Total_Sales) from invoice";
+                                                $invoice = $dbc->query($sql);
+                                                //display data on web page
+                                                ?>
+                                                <h1 class="text-primary">
+                                                    <?php 
+                                                    while($row = mysqli_fetch_array($invoice)){
+                                                        echo "RM ". $row['SUM(Total_Sales)']; 
+                                                    }?>
+                                                </h1>
+                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total Sales</h3>
+                                                <p align="justify" class="mb-2 mb-xl-0">The is total sales for every
+                                                    month in this year
+                                                    based on 9 stock.
+                                                    This part lists the detailed sum sales for all stock in every month
+                                                    into a pie chart.
+                                                    <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
+                                                    <b class="text-danger"><i class='ti-arrow-down'></i> Negative</b>
+                                                    Sales is happen when Total Sales is not balance or equal
+                                                    with SubTotal for all stock.
+                                                </p>
                                             </div>
                                         </div>
+
                                         <div class="col-md-12 col-xl-9">
                                             <div class="row">
+                                                <!-- Detail Invoices Report -->
                                                 <div class="col-md-6 border-right">
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <table class="table table-borderless report-table">
+                                                            <th>Month</th>
+                                                            <th>Description</th>
+                                                            <th>Total Sales</th>
+                                                            <?php
+                                                            // Define the query:
+                                                            $sql = "SELECT 
+                                                            MONTHNAME(Invoice_Date) AS month, 
+                                                            SUM(Overhead) AS Overhead,
+                                                            SUM(Total_Cash) AS Total_Cash,
+                                                            SUM(Total_Sales) AS Total_Sales
+                                                            FROM     invoice
+                                                            GROUP BY MONTHNAME(Invoice_Date)
+                                                            ORDER BY Invoice_Date";
+                                                            $sales_month = mysqli_query($dbc,$sql);
+
+                                                            // Count the number of returned rows:
+                                                            $employee_num = mysqli_num_rows($sales_month);
+                                                            if(mysqli_num_rows($sales_month) > 0)  
+                                                            {  
+                                                                while($row = mysqli_fetch_array($sales_month))  
+                                                                {  
+                                                            ?>
                                                             <tr>
-                                                                <td class="text-muted">Illinois</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-primary"
-                                                                            role="progressbar" style="width: 70%"
-                                                                            aria-valuenow="70" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
+                                                                <td class="text-muted"><?php echo $row["month"]; ?></td>
+
+                                                                <td class="text-muted">
+                                                                    <p>Overhead
+                                                                        <b>RM
+                                                                            <?php echo number_format($row["Overhead"],2); ?></b>
+                                                                    </p>
+                                                                    <p>Total Cash
+                                                                        <b>RM
+                                                                            <?php echo number_format($row["Total_Cash"],2); ?></b>
+                                                                    </p>
                                                                 </td>
+
                                                                 <td>
-                                                                    <h5 class="font-weight-bold mb-0">713</h5>
+                                                                    <h5 class="font-weight-bold mb-0">
+                                                                        RM <?php echo $row["Total_Sales"]; ?>
+                                                                    </h5>
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="text-muted">Washington</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-warning"
-                                                                            role="progressbar" style="width: 30%"
-                                                                            aria-valuenow="30" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">583</h5>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted">Mississippi</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-danger"
-                                                                            role="progressbar" style="width: 95%"
-                                                                            aria-valuenow="95" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">924</h5>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted">California</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-info"
-                                                                            role="progressbar" style="width: 60%"
-                                                                            aria-valuenow="60" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">664</h5>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted">Maryland</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-primary"
-                                                                            role="progressbar" style="width: 40%"
-                                                                            aria-valuenow="40" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">560</h5>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted">Alaska</td>
-                                                                <td class="w-100 px-0">
-                                                                    <div class="progress progress-md mx-4">
-                                                                        <div class="progress-bar bg-danger"
-                                                                            role="progressbar" style="width: 75%"
-                                                                            aria-valuenow="75" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <h5 class="font-weight-bold mb-0">793</h5>
-                                                                </td>
-                                                            </tr>
+                                                            <?php
+                                                                }
+                                                            }
+                                                            ?>
                                                         </table>
                                                     </div>
                                                 </div>
+
+                                                <!-- Pie Chart Graph Sales Month Report -->
                                                 <div class="col-md-6 mt-3">
-                                                    <canvas id="south-america-chart"></canvas>
-                                                    <div id="south-america-legend"></div>
+                                                    <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+
+                                                    <canvas id="piechartInvoices2"></canvas>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <a class="carousel-control-prev" href="#detailedReports" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#detailedReports" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -575,7 +489,7 @@ $employee_num = mysqli_num_rows($employee);
                                         <th>Owner Code</th>
                                         <th class="text-center">Purchase Date</th>
                                         <th class="text-center">Purchase Status</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center"></th>
                                     </tr>
                                 </thead>
                                 <?php
@@ -621,8 +535,8 @@ $employee_num = mysqli_num_rows($employee);
                                         </td>
                                         <td>
                                             <div class="col text-center">
-                                                <a href="javascript:void();" data-id="'.$row['Purchase_Id'].'"
-                                                    class="btn btn-outline-info btn-sm editbtn">View</a>
+                                                <a href="Purchase.php" class="btn btn-outline-info btn-sm editbtn"><i
+                                                        class="bi bi-three-dots-vertical"></i>More</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -758,7 +672,7 @@ $employee_num = mysqli_num_rows($employee);
                 </div>
             </div>
 
-            <!-- Stock Purchase Table -->
+            <!-- Stock list Table -->
             <div class="col-md-4 stretch-card grid-margin">
                 <div class="row">
                     <div class="col-md-12 grid-margin stretch-card">
@@ -810,15 +724,28 @@ $employee_num = mysqli_num_rows($employee);
                             </div>
                         </div>
                     </div>
+
+                    <!-- Total Expenses -->
                     <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
                         <div class="card data-icon-card-primary">
                             <div class="card-body">
-                                <p class="card-title text-white">Number of Meetings</p>
+                                <p class="card-title text-white">Total Expenses </p>
                                 <div class="row">
                                     <div class="col-8 text-white">
-                                        <h3>34040</h3>
+                                        <?php
+                                        // Define the Number of Income query:
+                                        $sql = "SELECT  SUM(Total_Expenses) FROM income";
+                                        $income = $dbc->query($sql);
+                                        //display data on web page
+                                        ?>
+                                        <h3><?php 
+                                            while($row = mysqli_fetch_array($income)){
+                                            echo "RM ". $row['SUM(Total_Expenses)']; 
+                                            }?> / year
+                                        </h3>
                                         <p class="text-white font-weight-500 mb-0">The total number of sessions within
-                                            the date range.It is calculated as the sum . </p>
+                                            the date range.It is calculated as the sum for Total Expenses over in this
+                                            year. </p>
                                     </div>
                                     <div class="col-4 background-icon">
                                     </div>
@@ -871,6 +798,158 @@ $employee_num = mysqli_num_rows($employee);
                 </div>
             </div>
         </div>
+
+        <script>
+        // SCRIPT FOR BAR CHART - SALES
+        $(document).ready(function() {
+            barChart();
+        });
+
+        function barChart() {
+            {
+                $.post("../Database/Chart/Sales.php",
+                    function(data) {
+                        console.log(data);
+                        var date = [];
+                        var sales = [];
+                        var barColors = [
+                            "rgba(75,73,172, 1.0)",
+                            "rgba(75,73,172, 0.8)",
+                            "rgba(75,73,172, 0.6)",
+                            "rgba(75,73,172, 0.4)",
+                            "rgba(75,73,172, 0.2)"
+                        ];
+
+
+                        for (var i in data) {
+                            date.push(data[i].month);
+                            sales.push(data[i].sales);
+                        }
+
+                        var chartdata = {
+                            labels: date,
+                            datasets: [{
+                                label: 'Total Sales',
+                                backgroundColor: barColors,
+                                borderColor: '#4B49AC',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data: sales,
+                                x: 100
+                            }]
+                        };
+
+
+                        var graphTarget = $("#graphCanvas");
+
+                        var barGraph = new Chart(graphTarget, {
+                            type: 'bar',
+                            data: chartdata
+                        });
+                    });
+            }
+        }
+
+        // SCRIPT FOR PIE CHART 1 - INVOICES 1
+        $(document).ready(function() {
+            pieChart1();
+        });
+
+        function pieChart1() {
+            {
+                $.post("../Database/Chart/Invoice1.php",
+                    function(data) {
+                        console.log(data);
+                        var Invoice_Date = [];
+                        var Total_Sales = [];
+                        var barColors = [
+                            "rgba(75,73,172, 1.0)",
+                            "rgba(75,73,172, 0.8)",
+                            "rgba(75,73,172, 0.6)",
+                            "rgba(75,73,172, 0.4)",
+                            "rgba(75,73,172, 0.2)"
+                        ];
+
+
+                        for (var i in data) {
+                            Invoice_Date.push(data[i].Invoice_Date);
+                            Total_Sales.push(data[i].Total_Sales);
+                        }
+
+                        var chartdata = {
+                            labels: Invoice_Date,
+                            datasets: [{
+                                label: 'Total Sales RM',
+                                backgroundColor: barColors,
+                                borderColor: '#4B49AC',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data: Total_Sales,
+                                x: 100
+                            }]
+                        };
+
+
+                        var graphTarget = $("#piechartInvoices1");
+
+                        var barGraph = new Chart(graphTarget, {
+                            type: 'doughnut',
+                            data: chartdata
+                        });
+                    });
+            }
+        }
+
+        // SCRIPT FOR PIE CHART 2 - INVOICES 2
+        $(document).ready(function() {
+            pieChart2();
+        });
+
+        function pieChart2() {
+            {
+                $.post("../Database/Chart/Invoice2.php",
+                    function(data) {
+                        console.log(data);
+                        var Invoice_Date = [];
+                        var Overhead = [];
+                        var barColors = [
+                            "rgba(75,73,172, 1.0)",
+                            "rgba(75,73,172, 0.8)",
+                            "rgba(75,73,172, 0.6)",
+                            "rgba(75,73,172, 0.4)",
+                            "rgba(75,73,172, 0.2)"
+                        ];
+
+
+                        for (var i in data) {
+                            Invoice_Date.push(data[i].Invoice_Date);
+                            Overhead.push(data[i].Overhead);
+                        }
+
+                        var chartdata = {
+                            labels: Invoice_Date,
+                            datasets: [{
+                                label: 'Total Overhead RM',
+                                backgroundColor: barColors,
+                                borderColor: '#4B49AC',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data: Overhead,
+                                x: 100
+                            }]
+                        };
+
+
+                        var graphTarget = $("#piechartInvoices2");
+
+                        var barGraph = new Chart(graphTarget, {
+                            type: 'doughnut',
+                            data: chartdata
+                        });
+                    });
+            }
+        }
+        </script>
 
         <!-- Plugin js for this page -->
         <script src="../vendors/chart.js/Chart.min.js"></script>

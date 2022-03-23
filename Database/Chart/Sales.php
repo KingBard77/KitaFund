@@ -7,7 +7,8 @@
  
   $sqlQuery = "SELECT MONTHNAME(Sales_Date) AS month, SUM(SubTotal) AS sales
   FROM     sales
-  GROUP BY MONTHNAME(Sales_Date)";
+  GROUP BY MONTHNAME(Sales_Date)
+  ORDER BY Sales_Date";
 
   $result = mysqli_query($dbc,$sqlQuery);
   
