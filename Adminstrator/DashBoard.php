@@ -221,7 +221,9 @@ $employee_num = mysqli_num_rows($employee);
                                 </h3>
                             </div>
                         </div>
-                        <!-- Line Graph Stock Report -->
+                        <!-- Line Graph Selling Price Stock Report -->
+                        <p align="center" class="mb-2 mb-xl-0"><b>Selling Pirce of Every Stock</b>
+                        </p>
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
                         <canvas id="lineChart"></canvas>
                         
@@ -240,7 +242,12 @@ $employee_num = mysqli_num_rows($employee);
                         <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Total Sales</b> for BurgerByte Company in every month. 
                         It is the period time in a year to show <b>Total Sales</b>  for every month in BurgerByte Company, page or app, etc.
                         </p>
-                        <br />
+                        <br/>
+                        <br/>
+                        <!-- Bar Graph Sales Report -->
+                        <p align="center" class="mb-2 mb-xl-0"><b>Total Sales of Every Month</b>
+                        </p>
+                        <br/>
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
                         <canvas id="graphCanvas"></canvas>
                     </div>

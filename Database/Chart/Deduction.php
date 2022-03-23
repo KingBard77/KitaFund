@@ -10,7 +10,7 @@
   $emp_code = $_SESSION["Employee_Code"];
  
   $sqlQuery = "SELECT MONTHNAME(c.Commission_Date) AS month, 
-  SUM(c.Net_Commission) AS Net_Commission
+  SUM(c.Deduction) AS Deduction
   FROM     comission c, employee e, profile p
   WHERE c.Employee_Code = e.Profile_Id 
   AND c.Employee_Code = p.Profile_Id

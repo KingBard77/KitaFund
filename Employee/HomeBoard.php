@@ -81,7 +81,7 @@ $Employee_Code = $_SESSION['Profile_Id'];
                             <div class="card-body">
                                 <?php
                                 // Define the query:
-                                $query = "SELECT *
+                                $query = "SELECT  SUM(c.Net_Commission)
                                 FROM comission c, employee e, profile p
                                 WHERE c.Employee_Code = e.Profile_Id 
                                 AND c.Employee_Code = p.Profile_Id
@@ -92,8 +92,11 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                 // Count the number of returned rows:
                                 $commission_num = mysqli_num_rows($commission);
                                 ?>
-                                <p class="mb-4">Commissions</p>
-                                <p class="fs-30 mb-2"><?php echo "$commission_num" ?></p>
+                                <p class="mb-4">Total Commissions</p>
+                                <p class="fs-30 mb-2"><?php 
+                                    while($row = mysqli_fetch_array($commission)){
+                                     echo "RM ". $row['SUM(c.Net_Commission)']; 
+                                }?></p>
                                 <p>22.00% (30 days)</p>
                             </div>
                         </div>
@@ -156,9 +159,9 @@ $Employee_Code = $_SESSION['Profile_Id'];
                     <div class="card-body">
                         <p class="card-title">BurgerByte Details</p>
                         <p class="font-weight-500">The is a <b>line graph</b> of the <b>Selling Price</b> for <b
-                            class="text-success"><?php echo" {$_SESSION["Employee_Code"]} "?></b>
+                                class="text-success"><?php echo" {$_SESSION["Employee_Code"]} "?></b>
                             BurgerByte Company in every stock. It is the period time in a year to show <b>Selling
-                            Price</b>for every stock in BurgerByte Company, page or app, etc.</p>
+                                Price</b>for every stock in BurgerByte Company, page or app, etc.</p>
                         <div class="d-flex flex-wrap mb-5">
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Category</p>
@@ -188,21 +191,6 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                     <?php echo "$stock_num"?>
                                 </h3>
                             </div>
-                            <div class="mt-3">
-                                <p class="text-muted">Stock In</p>
-                                <?php
-                                // Define the query:
-                                $sql = "SELECT  SUM(Quantity_In) from stock";
-                                $Quantity_In = $dbc->query($sql);
-                                //display data on web page
-                                ?>
-                                <h3 class="text-primary fs-30 font-weight-medium">
-                                    <?php 
-                                    while($row = mysqli_fetch_array($Quantity_In)){
-                                        echo "In - ". $row['SUM(Quantity_In)']; 
-                                    }?>
-                                </h3>
-                            </div>
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Sales</p>
                                 <?php
@@ -218,8 +206,25 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                     }?>
                                 </h3>
                             </div>
+                            <div class="mr-5 mt-3">
+                                <p class="text-muted">Invoice</p>
+                                <?php
+                                // Define the query:
+                                $sql = "SELECT  SUM(Total_Sales) from invoice";
+                                $invoice = $dbc->query($sql);
+                                //display data on web page
+                                ?>
+                                <h3 class="text-primary fs-30 font-weight-medium">
+                                    <?php 
+                                    while($row = mysqli_fetch_array($invoice)){
+                                        echo "RM ". $row['SUM(Total_Sales)']; 
+                                    }?>
+                                </h3>
+                            </div>
                         </div>
-                        <!-- Line Graph Stock Report -->
+                        <!-- Line Graph Selling Price Stock Report -->
+                        <p align="center" class="mb-2 mb-xl-0"><b>Selling Pirce of Every Stock</b>
+                        </p>
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
                         <canvas id="lineChart"></canvas>
 
@@ -236,9 +241,15 @@ $Employee_Code = $_SESSION['Profile_Id'];
                             <a href="#" class="text-info">View all</a>
                         </div>
                         <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Net Commission</b> for <b
-                            class="text-success"><?php echo" {$_SESSION["Employee_Code"]} "?></b>
+                                class="text-success"><?php echo" {$_SESSION["Employee_Code"]} "?></b>
                             BurgerByte Company in every month. It is the period time in a year to show <b>Net
-                            Commission</b> for every month in BurgerByte Company, page or app, etc.
+                                Commission</b> for every month in BurgerByte Company, page or app, etc.
+                        </p>
+                        <br />
+                        <br />
+                        <!-- Bar Graph Commission Report -->
+                        <p align="center" class="mb-2 mb-xl-0"><b>Net Commission of
+                                <?php echo" {$_SESSION["Employee_Code"]} "?></b>
                         </p>
                         <br />
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
@@ -287,7 +298,8 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                                 <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Sales</b> for
                                                     every
                                                     month in this year
-                                                    based on <b class="text-success"><?php echo "$stock_num" ?> Stock.</b>
+                                                    based on <b class="text-success"><?php echo "$stock_num" ?>
+                                                        Stock.</b>
                                                     This part lists the detailed sum sales for all stock in every month
                                                     into a <b>Pie Chart</b>.
                                                     <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
@@ -300,7 +312,7 @@ $Employee_Code = $_SESSION['Profile_Id'];
 
                                         <div class="col-md-12 col-xl-9">
                                             <div class="row">
-                                                <!-- Detail Invoices Report -->
+                                                <!-- Detail Sales Report -->
                                                 <div class="col-md-6 border-right">
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <table class="table table-borderless report-table">
@@ -377,57 +389,66 @@ $Employee_Code = $_SESSION['Profile_Id'];
 
                                 <div class="carousel-item">
                                     <div class="row">
-                                        <!-- Detailed Invoices Report -->
+                                        <!-- Detailed Commission Report -->
                                         <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
                                             <div class="ml-xl-4 mt-3">
-                                                <p class="card-title">Detailed Income</p>
+                                                <p class="card-title">Detailed Commission</p>
                                                 <?php
                                                 // Define the Number of Invoice query:
-                                                $sql = "SELECT  SUM(Net_Income) 
-                                                from income";
-                                                $income = $dbc->query($sql);
+                                                $sql = "SELECT  SUM(c.Net_Commission)
+                                                FROM comission c, employee e, profile p
+                                                WHERE c.Employee_Code = e.Profile_Id 
+                                                AND c.Employee_Code = p.Profile_Id
+                                                AND e.Employee_Code ='$id' ";
+                                                $commission = $dbc->query($sql);
                                                 //display data on web page
                                                 ?>
                                                 <h1 class="text-primary">
                                                     <?php 
-                                                    while($row = mysqli_fetch_array($income)){
-                                                        echo "RM ". $row['SUM(Net_Income)']; 
+                                                    while($row = mysqli_fetch_array($commission)){
+                                                        echo "RM ". $row['SUM(c.Net_Commission)']; 
                                                     }?>
                                                 </h1>
-                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total Income</h3>
-                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Income</b> for
+                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total Commission</h3>
+                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Commission</b>
+                                                    for
                                                     every
                                                     month in this year
-                                                    based on each of sales.
-                                                    This part lists the detailed net income for all sales in every month
+                                                    based on each of employee.
+                                                    This part lists the detailed net commission every employee
                                                     into a <b>Pie Chart</b>.
                                                     <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
                                                     <b class="text-danger"><i class='ti-arrow-down'></i> Negative</b>
-                                                    Sales is happen when Net Income is not balance or equal
-                                                    with Total Sales for all stock.
+                                                    Comission is happen when Deduction is not balance or equal
+                                                    with Net Commission for all stock.
                                                 </p>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12 col-xl-9">
                                             <div class="row">
-                                                <!-- Detail Invoices Report -->
+                                                <!-- Detail Commission Report -->
                                                 <div class="col-md-6 border-right">
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <table class="table table-borderless report-table">
                                                             <th>Month</th>
-                                                            <th>Expenses</th>
-                                                            <th class="text-center">Comments</th>
-                                                            <th class="text-right">Total Income</th>
+                                                            <th>Basic</th>
+                                                            <th>Description</th>
+                                                            <th class="text-right">Total</th>
                                                             <?php
                                                             // Define the query:
                                                             $sql = "SELECT 
-                                                            MONTHNAME(Income_Date) AS month, 
-                                                            SUM(Net_Income) AS Net_Income,
-                                                            SUM(Total_Expenses) AS Total_Expenses
-                                                            FROM     income
-                                                            GROUP BY MONTHNAME(Income_Date)
-                                                            ORDER BY Income_Date";
+                                                            MONTHNAME(c.Commission_Date) AS Commission_Date, 
+                                                            SUM(c.Net_Commission) AS Net_Commission,
+                                                            Basic_Commission,
+                                                            Deduction,
+                                                            Bonus
+                                                            FROM     comission c, employee e, profile p
+                                                            WHERE c.Employee_Code = e.Profile_Id 
+                                                            AND c.Employee_Code = p.Profile_Id
+                                                            AND e.Employee_Code ='$id'
+                                                            GROUP BY MONTHNAME(c.Commission_Date)
+                                                            ORDER BY c.Commission_Date";
                                                             $income_month = mysqli_query($dbc,$sql);
 
                                                             // Count the number of returned rows:
@@ -438,29 +459,24 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                                                 {  
                                                             ?>
                                                             <tr>
-                                                                <td class="text-muted"><?php echo $row["month"]; ?></td>
+                                                                <td class="text-muted">
+                                                                    <?php echo $row["Commission_Date"]; ?></td>
 
                                                                 <td class="text-muted">
                                                                     RM
-                                                                    <?php echo number_format($row["Total_Expenses"],2); ?>
-
-                                                                    <?php
-                                                                        $number = $row['Net_Income']; // enter any number of your choice here
-                                                                        if ($number > 0) // condition for positive numbers
-                                                                        {
-                                                                            echo  " <td align='center' class='text-success'><i class='ti-arrow-up'></i> Positive Income</td>";
-                                                                        } else if ($number < 0) // condition for negative number
-                                                                        {
-                                                                            echo " <td align='center' class='text-danger'><i class='ti-arrow-down'></i> Negative Income</td>";
-                                                                        } else
-                                                                        {
-                                                                            echo " <td align='center' class='text-warning'>Balance Income</td>";
-                                                                        } 
-                                                                    ?>
+                                                                    <?php echo number_format($row["Basic_Commission"],2); ?>
+                                                                </td>
+                                                                <td class="text-muted">
+                                                                    <p>Deduction <b class="text-danger">- RM
+                                                                            <?php echo number_format($row["Deduction"],2); ?></b>
+                                                                    </p>
+                                                                    <p>Bonus <b class="text-success">+ RM
+                                                                            <?php echo number_format($row["Bonus"],2); ?></b>
+                                                                    </p>
                                                                 </td>
                                                                 <td>
                                                                     <h5 class="font-weight-bold mb-0" align="right">
-                                                                        RM <?php echo $row["Net_Income"]; ?>
+                                                                        RM <?php echo $row["Net_Commission"]; ?>
                                                                     </h5>
                                                                 </td>
                                                             </tr>
@@ -472,14 +488,14 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                                     </div>
                                                 </div>
 
-                                                <!-- Pie Chart Graph Sales Month Report -->
+                                                <!-- Pie Chart Graph Deduction Commission Month Report -->
                                                 <div class="col-md-6 mt-3">
-                                                    <p align="center" class="mb-2 mb-xl-0"><b>Total Income of Every
-                                                            Month</b>
+                                                    <p align="center" class="mb-2 mb-xl-0"><b>Total Deduction Commission
+                                                            of <?php echo" {$_SESSION["Employee_Code"]} "?></b>
                                                     </p>
                                                     <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
 
-                                                    <canvas id="piechartIncome"></canvas>
+                                                    <canvas id="piechartCommission"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -752,20 +768,21 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                 <p class="card-title text-white">Total Expenses </p>
                                 <div class="row">
                                     <div class="col-8 text-white">
-                                        <?php
-                                        // Define the Number of Income query:
-                                        $sql = "SELECT  SUM(Total_Expenses) FROM income";
-                                        $income = $dbc->query($sql);
-                                        //display data on web page
+                                    <?php
+                                        // Define the Number of Category query:
+                                        $query = "SELECT * FROM event
+                                        ORDER BY id ASC";
+                                        $event = mysqli_query($dbc, $query);
+                                        
+                                        // Count the number of returned rows:
+                                        $event_num = mysqli_num_rows($event);
+                                        
                                         ?>
-                                        <h3><?php 
-                                            while($row = mysqli_fetch_array($income)){
-                                            echo "RM ". $row['SUM(Total_Expenses)']; 
-                                            }?> / year
+                                        <h3><?php echo "$event_num" ?> Events
                                         </h3>
-                                        <p class="text-white font-weight-500 mb-0">The <b>Total Expenses</b> of sessions
+                                        <p class="text-white font-weight-500 mb-0">The <b>Total Events</b> of sessions
                                             within
-                                            the date range. It is calculated as the sum for Total Expenses over in this
+                                            the date range. It is calculated as the sum for Total Events over in this
                                             year. </p>
                                     </div>
                                     <div class="col-4 background-icon">
@@ -971,18 +988,18 @@ $Employee_Code = $_SESSION['Profile_Id'];
             }
         }
 
-        // SCRIPT FOR PIE CHART 2 - INVOICES 2
+        // SCRIPT FOR PIE CHART 2 - DEDUCTION COMMISSION
         $(document).ready(function() {
             pieChart2();
         });
 
         function pieChart2() {
             {
-                $.post("../Database/Chart/Income.php",
+                $.post("../Database/Chart/Deduction.php",
                     function(data) {
                         console.log(data);
-                        var Income_Date = [];
-                        var Net_Income = [];
+                        var month = [];
+                        var Deduction = [];
                         var barColors = [
                             "rgba(75,73,172, 1.0)",
                             "rgba(75,73,172, 0.8)",
@@ -993,25 +1010,25 @@ $Employee_Code = $_SESSION['Profile_Id'];
 
 
                         for (var i in data) {
-                            Income_Date.push(data[i].Income_Date);
-                            Net_Income.push(data[i].Net_Income);
+                            month.push(data[i].month);
+                            Deduction.push(data[i].Deduction);
                         }
 
                         var chartdata = {
-                            labels: Income_Date,
+                            labels: month,
                             datasets: [{
-                                label: 'Total Net Income RM',
+                                label: 'Total Deduction RM',
                                 backgroundColor: barColors,
                                 borderColor: '#4B49AC',
                                 hoverBackgroundColor: '#CCCCCC',
                                 hoverBorderColor: '#666666',
-                                data: Net_Income,
+                                data: Deduction,
                                 x: 100
                             }]
                         };
 
 
-                        var graphTarget = $("#piechartIncome");
+                        var graphTarget = $("#piechartCommission");
 
                         var barGraph = new Chart(graphTarget, {
                             type: 'doughnut',
