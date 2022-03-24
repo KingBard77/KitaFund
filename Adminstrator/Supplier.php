@@ -46,6 +46,8 @@ function clean_text($string)
 
 if(isset($_POST["submit"]))
 {
+    $errors = array(); // Initialize an error array.
+
     $Supplier_Name = $_POST['Supplier_Name'];
     $Supplier_Email = $_POST['Supplier_Email'];
     $Subject = $_POST['Subject'];
@@ -58,6 +60,8 @@ if(isset($_POST["submit"]))
 
     $path = '../Uploads/' . $_FILES["file"]["name"];
     move_uploaded_file($_FILES["file"]["tmp_name"], $path);
+
+    
     $message = '
         <h3 align="left">Supplier Details</h3>
             <table border="0" width="80%" cellpadding="5" cellspacing="5">
@@ -141,13 +145,13 @@ if(isset($_POST["submit"]))
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Supplier Name</label>
                                         <div class="col-sm-9">
-                                            <select type="text" name="Supplier_Name" class="form-control">
+                                            <select type="text" name="Supplier_Name" class="form-control" required>
                                                 <option value="">---- Select Supplier Name ----</option>
                                                 <option value="Season's Enterprise">Season's Enterprise</option>
                                                 <option value="Rahman Bandar Universiti">Rahman Bandar Universiti
                                                 </option>
                                                 <option value="Al Khaleed Sdn Bhd">Al Khaleed Sdn Bhd</option>
-                                                <option value="Hajah Salmah Runcit">Hajah Salmah Retail</option>
+                                                <option value="Melbourne Retail">Melbourne Retail</option>
                                             </select>
                                         </div>
                                     </div>
@@ -156,7 +160,7 @@ if(isset($_POST["submit"]))
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Supplier Email</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="Supplier_Email" class="form-control">
+                                            <input type="text" name="Supplier_Email" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +168,7 @@ if(isset($_POST["submit"]))
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Subject</label>
                                         <div class="col-sm-9">
-                                            <select type="text" name="Subject" class="form-control">
+                                            <select type="text" name="Subject" class="form-control" required>
                                                 <option value="">---- Select Subject----</option>
                                                 <option value="Raw Material Ordering">Raw Material Ordering</option>
                                                 <option value="Dry Material Ordering">Dry Material Ordering</option>
@@ -179,7 +183,7 @@ if(isset($_POST["submit"]))
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Attachment</label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="file" class="form-control">
+                                            <input type="file" name="file" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +192,8 @@ if(isset($_POST["submit"]))
                                         <label class="col-sm-3 col-form-label">Message</label>
                                         <div class="col-sm-9">
                                             <textarea name="Message" class="form-control" cols="60" rows="6"
-                                                placeholder="Write something here about the purchase Eg:- I pick up the product at 3.00 pm "></textarea>
+                                                placeholder="Write something here about the purchase Eg:- I pick up the product at 3.00 pm "
+                                                required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -200,6 +205,222 @@ if(isset($_POST["submit"]))
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12 grid-margin stretch-card'>
+                <div class='card'>
+                    <div class='card-body'>
+                        <div class="email-wrapper wrapper">
+                            <div class="row align-items-stretch">
+                                <!-- SECTION 1 -->
+                                <div class="mail-sidebar d-none d-lg-block col-md-2 pt-3 bg-white">
+                                    <div class="menu-bar">
+                                        <ul class="menu-items">
+                                            <li class="compose mb-3"><button
+                                                    class="btn btn-primary btn-block">Compose</button></li>
+                                            <li class="active"><a href="#"><i class="ti-email"></i> Inbox</a><span
+                                                    class="badge badge-pill badge-success"><?php echo "$supplier_num" ?>
+                                                </span></li>
+                                            <li><a href="#"><i class="ti-share"></i> Sent</a></li>
+                                            <li><a href="#"><i class="ti-file"></i> Draft</a><span
+                                                    class="badge badge-pill badge-warning">4</span></li>
+                                            <li><a href="#"><i class="ti-upload"></i> Outbox</a><span
+                                                    class="badge badge-pill badge-danger">3</span></li>
+                                            <li><a href="#"><i class="ti-star"></i> Starred</a></li>
+                                            <li><a href="#"><i class="ti-trash"></i> Trash</a></li>
+                                        </ul>
+                                        <div class="wrapper">
+                                            <div
+                                                class="online-status d-flex justify-content-between align-items-center">
+                                                <p class="chat">Supplier List</p> <span
+                                                    class="status offline online"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="profile-list">
+                                            <li class="profile-list-item"> <a href="#"> <span class="pro-pic"><img
+                                                            src="../Images/Supplier/Rahman.png" alt=""></span>
+                                                    <div class="user">
+                                                        <p class="u-name">Rahman Bandar Universiti</p>
+                                                        <p class="u-designation">Seri Iskandar</p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="profile-list-item"> <a href="#"> <span class="pro-pic"><img
+                                                            src="../Images/Supplier/AlKhaleed.png" alt=""></span>
+                                                    <div class="user">
+                                                        <p class="u-name">Al Khaleed Sdn Bhd</p>
+                                                        <p class="u-designation">Ipoh</p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="profile-list-item"> <a href="#"> <span class="pro-pic"><img
+                                                            src="../Images/Supplier/PCK.png" alt=""></span>
+                                                    <div class="user">
+                                                        <p class="u-name">Season's Enterprise</p>
+                                                        <p class="u-designation">Seri Iskandar</p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="profile-list-item"> <a href="#"> <span class="pro-pic"><img
+                                                            src="../Images/Supplier/KRM.png" alt=""></span>
+                                                    <div class="user">
+                                                        <p class="u-name">Melbourne Retail</p>
+                                                        <p class="u-designation">Batu Gajah</p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- SECTION 2 -->
+                                <div class="mail-list-container col-md-3 pt-4 pb-4 border-right bg-white">
+                                    <div class="border-bottom pb-4 mb-3 px-3">
+                                        <div class="form-group">
+                                            <input class="form-control w-100" type="search" placeholder="Search mail"
+                                                id="Mail-rearch">
+                                        </div>
+                                    </div>
+                                    <?php
+                                    // Define the query:
+                                    $query = "SELECT *
+                                    FROM supplier
+                                    ORDER BY Supplier_Id ASC";
+                                    $supplier = @mysqli_query($dbc, $query);
+
+                                    // Count the number of returned rows:
+                                    $supplier_num = mysqli_num_rows($supplier);
+                                    if(mysqli_num_rows($supplier) > 0)  
+                                    {  
+                                        while($row = mysqli_fetch_array($supplier))  
+                                        {  
+                                    ?>
+                                    <div class="mail-list">
+
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input"> </label>
+                                        </div>
+                                        <div class="content">
+                                            <p class="sender-name"><?php echo $row["Supplier_Name"]; ?></p>
+                                            <div class="details">
+                                                <i class="ti-star favorite"></i>
+                                            </div>
+                                            <p class="message_text"><?php echo $row["Message"]; ?>.</p>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <button href="#Body-Email"?id=<?php echo $row["Supplier_Id"]; ?>
+                                                class="btn btn-outline-primary btn-sm" style="float: right;"
+                                                data-toggle="collapse">View</button>
+                                        </div>
+                                    </div>
+                                    <?php  
+                                        }  
+                                    }  
+                                    ?>
+                                </div>
+
+                                <!-- SECTION 3 -->
+                                <div class="mail-view d-none d-md-block col-md-9 col-lg-7 bg-white">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-4 mt-4">
+                                            <div class="btn-toolbar">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary"><i
+                                                            class="ti-share-alt text-primary me-1"></i> Reply</button>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary"><i
+                                                            class="ti-share-alt text-primary me-1"></i>Reply
+                                                        All</button>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary"><i
+                                                            class="ti-share text-primary me-1"></i>Forward</button>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary"><i
+                                                            class="ti-clip text-primary me-1"></i>Attach</button>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary"><i
+                                                            class="ti-trash text-primary me-1"></i>Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div id="Body-Email" class="collapse in">
+                                        <?php
+                                        // Retrieve the user's information:
+                                        $query = "SELECT *
+                                        FROM supplier
+                                        WHERE Supplier_Id = $id";
+                                        $supplier = mysqli_query($dbc, $query);
+
+                                        if (mysqli_num_rows($supplier) == 1) { // Valid user ID, show the form.
+
+                                            // Get the user's information:
+                                            $row = mysqli_fetch_array($supplier, MYSQLI_NUM); //MYSQLI_ASSOC
+                                        ?>
+                                        <div class="message-body">
+                                            <div class="sender-details">
+                                                <img class="img-sm rounded-circle me-3"
+                                                    src="../Images/BurgerByte_Logo.png" alt="">
+                                                <div class="details">
+                                                    <p class="msg-subject">
+                                                        <?php echo $row[3];?>
+                                                    </p>
+                                                    <p class="sender-email">
+                                                        <?php echo $row[1];?>
+                                                        <a href="#"><?php echo $row[2];?></a>
+                                                        &nbsp;<i class="ti-user"></i>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="message-content">
+                                                <p><?php echo $row[4];?></p>
+                                                <p><br><br>Regards,<br>BurgerByte.Co</p>
+                                                <p>* Click an attachment below to see the details:</p>
+                                            </div>
+                                            <div class="attachments-sections">
+                                                <ul>
+                                                    <li>
+                                                        <div class="thumb"><i class="ti-file"></i></div>
+                                                        <div class="details">
+                                                            <p class="file-name">Seminar Reports.pdf</p>
+                                                            <div class="buttons">
+                                                                <p class="file-size">678Kb</p>
+                                                                <a href="#" class="view">View</a>
+                                                                <a href="#" class="download">Download</a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="thumb"><i class="ti-image"></i></div>
+                                                        <div class="details">
+                                                            <p class="file-name">Product Design.jpg</p>
+                                                            <div class="buttons">
+                                                                <p class="file-size">1.96Mb</p>
+                                                                <a href="#" class="view">View</a>
+                                                                <a href="#" class="download">Download</a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    } else { // Not a valid user ID.
+                                        echo 'NO DATA';
+                                    }
+                                    
+                                    mysqli_close($dbc);
+                                ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

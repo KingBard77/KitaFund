@@ -16,8 +16,24 @@ if ((isset($_GET['id'])) && (is_numeric($_GET['id']))) { // From view_users.php
 } elseif ((isset($_POST['id'])) && (is_numeric($_POST['id']))) { // Form submission.
     $id = $_POST['id'];
 } else { // No valid ID, kill the script.
-    echo '<p class="error">This page has been accessed in error.</p>';
-    include 'includes/footer.html';
+    echo '
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card-body">
+                        <div class="alert alert-danger" role="alert">
+                        <p class="alert-heading"><h1>Employee View</h1></p>
+                        <p><b>Error</b></p>
+                        <hr>
+                        <p class="mb-0">This page has been accessed in error <br />
+                        <b>Owner Profolio</b> are currently <b>NOT</b> registered.</p>
+                    </div>
+                <a class="btn btn-light" href="Employee.php"><i class="ti-home mr-2"></i>Back to Employee</a>                        
+            </div>
+        </div>
+    </div>';
+    include '../partials/Footer.html';
     exit();
 }
 
