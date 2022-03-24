@@ -172,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         <tr>
                                                             <th>STOCK LIST</th>
                                                             <th>SELLING PRICE (RM)</th>
-                                                            <th class="text-center">SUBTOTAL</th>
+                                                            <th class="text-center">QUANTITY</th>
                                                             <th class="text-center">TOTAL (RM)</th>
                                                         </tr>
                                                     </thead>
@@ -577,6 +577,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                                        Every day each of stall will be going to get <b> RM 30.00 </b> as business start -up money. </p>
                                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                         <button class="btn btn-light">Cancel</button>
                                     </div>

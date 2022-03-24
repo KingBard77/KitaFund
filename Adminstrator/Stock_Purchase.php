@@ -29,7 +29,8 @@ if ($stock_num > 0) { // If it ran OK, display the records.
                         <div class="container text-center pt-5">
                             <h4 class="mb-3 mt-5">Stock Inventories Order (<span><?php echo "$stock_num" ?></span>
                                 stocks)</h4>
-                            <p class="w-75 mx-auto mb-5">Add to Cart - Make a <b>Stock Inventories Ordering</b> before end the business
+                            <p class="w-75 mx-auto mb-5">Add to Cart - Make a <b>Stock Inventories Ordering</b> before
+                                end the business
                                 operation.
                                 <!--========== BUTTON CART STOCK ==========-->
                                 <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
@@ -66,8 +67,8 @@ if ($stock_num > 0) { // If it ran OK, display the records.
                                     <td align="left">
                                         <!--========== HIDDEN STOCK IMAGE ==========-->
                                         <input type="hidden" name="hidden_image"
-                                                id="Stock_Image<?php echo $row["Stock_Id"]; ?>"
-                                                value="<?php echo $row["Stock_Image"]; ?>" />
+                                            id="Stock_Image<?php echo $row["Stock_Id"]; ?>"
+                                            value="<?php echo $row["Stock_Image"]; ?>" />
 
                                         <!--========== STOCK NAME ==========-->
                                         <h5><?php echo $row["Stock_Name"]; ?></h5>
@@ -92,17 +93,22 @@ if ($stock_num > 0) { // If it ran OK, display the records.
                                         </div>
                                     </td>
                                     <td align="center">
-                                        <h1 class="font-weight-normal mb-4">
+                                        <div>
                                             <!--========== STOCK PRICE ==========-->
                                             <p class="mb-0"><span><strong>RM
                                                         <?php echo $row["Buying_Price"]; ?> / 1 pieces</strong></span>
                                             </p>
 
+                                            <!--========== STOCK DESCRIPTION ==========-->
+                                            <small id="passwordHelpBlock" class="form-text text-muted text-center">(
+                                                        <?php echo $row["Description"] ; ?> pieces / 1 bag )
+                                            </small >
+
                                             <!--========== HIDDEN STOCK PRICE ==========-->
                                             <input type="hidden" name="hidden_price"
                                                 id="Buying_Price<?php echo $row["Stock_Id"]; ?>"
                                                 value="<?php echo $row["Buying_Price"]; ?>" />
-                                        </h1>
+                                        </div>
                                     </td>
                                     <td>
                                         <!--========== SUBMIT BUTTON ==========-->
@@ -213,87 +219,87 @@ if ($stock_num > 0) { // If it ran OK, display the records.
             </div>
         </div>
 
-    <script>
-    // SCRIPT FOR ADD-TO-CART
-    $(document).ready(function(data) {
-        $('.add_to_cart').click(function() {
-            var stock_id = $(this).attr("id");
-            var stock_name = $('#Stock_Name' + stock_id).val();
-            var stock_image = $('#Stock_Image' + stock_id).val();
-            var buying_price = $('#Buying_Price' + stock_id).val();
-            var stock_quantity = $('#quantity' + stock_id).val();
-            var action = "add";
-            if (stock_quantity > 0) {
-                $.ajax({
-                    url: "../Database/Stock/Inventory/Action.php",
-                    method: "POST",
-                    dataType: "json",
-                    data: {
-                        stock_id: stock_id,
-                        stock_name: stock_name,
-                        stock_image: stock_image,
-                        buying_price: buying_price,
-                        stock_quantity: stock_quantity,
-                        action: action
-                    },
-                    success: function(data) {
-                        $('#order_table').html(data.order_table);
-                        $('.badge').text(data.cart_item);
-                        alert("Stock has been Added into Cart");
-                    }
-                });
-            } else {
-                alert("Please Enter Number of Quantity")
-            }
+        <script>
+        // SCRIPT FOR ADD-TO-CART
+        $(document).ready(function(data) {
+            $('.add_to_cart').click(function() {
+                var stock_id = $(this).attr("id");
+                var stock_name = $('#Stock_Name' + stock_id).val();
+                var stock_image = $('#Stock_Image' + stock_id).val();
+                var buying_price = $('#Buying_Price' + stock_id).val();
+                var stock_quantity = $('#quantity' + stock_id).val();
+                var action = "add";
+                if (stock_quantity > 0) {
+                    $.ajax({
+                        url: "../Database/Stock/Inventory/Action.php",
+                        method: "POST",
+                        dataType: "json",
+                        data: {
+                            stock_id: stock_id,
+                            stock_name: stock_name,
+                            stock_image: stock_image,
+                            buying_price: buying_price,
+                            stock_quantity: stock_quantity,
+                            action: action
+                        },
+                        success: function(data) {
+                            $('#order_table').html(data.order_table);
+                            $('.badge').text(data.cart_item);
+                            alert("Stock has been Added into Cart");
+                        }
+                    });
+                } else {
+                    alert("Please Enter Number of Quantity")
+                }
+            });
+
+            // SCRIPT FOR DELETE
+            $(document).on('click', '.delete', function() {
+                var stock_id = $(this).attr("id");
+                var action = "remove";
+                if (confirm("Are you sure you want to remove this stock?")) {
+                    $.ajax({
+                        url: "../Database/Stock/Inventory/Action.php",
+                        method: "POST",
+                        dataType: "json",
+                        data: {
+                            stock_id: stock_id,
+                            action: action
+                        },
+                        success: function(data) {
+                            $('#order_table').html(data.order_table);
+                            $('.badge').text(data.cart_item);
+                        }
+                    });
+                } else {
+                    return false;
+                }
+            });
+
+            // SCRIPT FOR UPDATE QUANTITY
+            $(document).on('keyup', '.quantity', function() {
+                var stock_id = $(this).data("stock_id");
+                var quantity = $(this).val();
+                var action = "quantity_change";
+                if (quantity != '') {
+                    $.ajax({
+                        url: "../Database/Stock/Inventory/Action.php",
+                        method: "POST",
+                        dataType: "json",
+                        data: {
+                            stock_id: stock_id,
+                            quantity: quantity,
+                            action: action
+                        },
+                        success: function(data) {
+                            $('#order_table').html(data.order_table);
+                        }
+                    });
+                }
+            });
+
         });
+        </script>
 
-        // SCRIPT FOR DELETE
-        $(document).on('click', '.delete', function() {
-            var stock_id = $(this).attr("id");
-            var action = "remove";
-            if (confirm("Are you sure you want to remove this stock?")) {
-                $.ajax({
-                    url: "../Database/Stock/Inventory/Action.php",
-                    method: "POST",
-                    dataType: "json",
-                    data: {
-                        stock_id: stock_id,
-                        action: action
-                    },
-                    success: function(data) {
-                        $('#order_table').html(data.order_table);
-                        $('.badge').text(data.cart_item);
-                    }
-                });
-            } else {
-                return false;
-            }
-        });
-
-        // SCRIPT FOR UPDATE QUANTITY
-        $(document).on('keyup', '.quantity', function() {
-            var stock_id = $(this).data("stock_id");
-            var quantity = $(this).val();
-            var action = "quantity_change";
-            if (quantity != '') {
-                $.ajax({
-                    url: "../Database/Stock/Inventory/Action.php",
-                    method: "POST",
-                    dataType: "json",
-                    data: {
-                        stock_id: stock_id,
-                        quantity: quantity,
-                        action: action
-                    },
-                    success: function(data) {
-                        $('#order_table').html(data.order_table);
-                    }
-                });
-            }
-        });
-
-    });
-    </script>
-
-    <!--========== INCLUDE FOOTER ==========-->
-    <?php include '../partials/Footer.html';?>
+        <!--========== INCLUDE FOOTER ==========-->
+        <?php include '../partials/Footer.html';?>

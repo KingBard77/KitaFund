@@ -92,25 +92,25 @@ if(isset($_POST["submit"]))
     $mail = new PHPMailer(true);
 
     //Server settings
-    $mail->IsSMTP();        //Sets Mailer to send message using SMTP
-    $mail->Host       = 'smtp.gmail.com';  //Sets the SMTP hosts of your Email hosting, this for Godaddy
-    $mail->Port       = 465;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    $mail->SMTPAuth = true;       //Sets SMTP authentication. Utilizes the Username and Password variables
-    $mail->Username   = 'BurgerByte1998@gmail.com';                     //SMTP username
-    $mail->Password   = 'Adminstrator_1998';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->IsSMTP();                                    //Sets Mailer to send message using SMTP
+    $mail->Host       = 'smtp.gmail.com';               //Sets the SMTP hosts of your Email hosting, this for Godaddy
+    $mail->Port       = 465;                            //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->SMTPAuth = true;                             //Sets SMTP authentication. Utilizes the Username and Password variables
+    $mail->Username   = 'BurgerByte1998@gmail.com';     //SMTP username
+    $mail->Password   = 'Adminstrator_1998';            //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    //Enable implicit TLS encryption
 
     //Recipients
     $mail->setFrom('BurgerByte1998@gmail.com', 'Badrul');
-    $mail->addAddress('BurgerByte1998@gmail.com', 'Ali');     //Add a recipient
+    $mail->addAddress('BurgerByte1998@gmail.com', 'Ali');       //Add a recipient
 
     //Content
-    $mail->IsHTML(true);       //Sets message type to HTML
-    $mail->AddAttachment($path);     //Adds an attachment from a path on the filesystem
-    $mail->Subject = 'Stock Pruchase from BurgerByte.Co';    //Sets the Subject of the message
-    $mail->Body = $message;       //An HTML or plain text message body
+    $mail->IsHTML(true);                                        //Sets message type to HTML
+    $mail->AddAttachment($path);                                //Adds an attachment from a path on the filesystem
+    $mail->Subject = 'Stock Pruchase from BurgerByte.Co';       //Sets the Subject of the message
+    $mail->Body = $message;                                     //An HTML or plain text message body
 
-    if($mail->Send())        //Send an Email. Return true on success or false on error
+    if($mail->Send())                                           //Send an Email. Return true on success or false on error
     {
         $message = '<div class="alert alert-success">Application Successfully Submitted</div>';
         unlink($path);
@@ -130,7 +130,7 @@ if(isset($_POST["submit"]))
                 <div class='card'>
                     <div class='card-body'>
                         <p class='card-title'>Manage Supplier</p>
-                        <h4>There are currently <?php echo "$supplier_num" ?> <b>Suppliers </b>
+                        <h4>There are currently <b><?php echo "$supplier_num" ?> Suppliers </b>
                             Registration for</h4>
                         <p class='card-description'>
                             Supplier List <code>Manage</code>
@@ -231,9 +231,11 @@ if(isset($_POST["submit"]))
                                             </li>
                                             <li><a href="#"><i class="ti-share"></i> Sent</a></li>
                                             <li><a href="#"><i class="ti-file"></i> Draft</a><span
-                                                    class="badge badge-pill badge-warning">4</span></li>
+                                                    class="badge badge-pill badge-warning"><?php echo "$supplier_num" ?></span>
+                                            </li>
                                             <li><a href="#"><i class="ti-upload"></i> Outbox</a><span
-                                                    class="badge badge-pill badge-danger">3</span></li>
+                                                    class="badge badge-pill badge-danger"><?php echo "$supplier_num" ?></span>
+                                            </li>
                                             <li><a href="#"><i class="ti-star"></i> Starred</a></li>
                                             <li><a href="#"><i class="ti-trash"></i> Trash</a></li>
                                         </ul>
@@ -304,10 +306,11 @@ if(isset($_POST["submit"]))
                                             while($row = mysqli_fetch_array($supplier))  
                                             {  
                                         ?>
-                                        <a href="#Body-Email?=<?php echo $row["Supplier_Id"]; ?>" data-toggle="collapse">
+                                        <div onclick="location.href='Supplier.php?id=<?php echo $row['Supplier_Id']; ?>';"
+                                            style="cursor: pointer;" id="#Body-Email">
                                             <div class="mail-list">
                                                 <div class="form-check"> <label class="form-check-label"> <input
-                                                            type="checkbox" class="form-check-input" checked> </label>
+                                                            type="checkbox" class="form-check-input"> </label>
                                                 </div>
                                                 <div class="content">
                                                     <p class="sender-name">
@@ -322,7 +325,7 @@ if(isset($_POST["submit"]))
                                                     <i class="ti-star favorite"></i>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </div>
                                         <hr>
                                         <?php  
                                             }  
@@ -355,9 +358,9 @@ if(isset($_POST["submit"]))
                                         </div>
                                     </div>
 
-                                    <div id="Body-Email" class="collapse in">
+                                    <div id="Body-Email">
                                         <?php
-                                        $Supplier_Id = $_GET['id'];
+                                        $Supplier_Id = $_REQUEST['id'];
                                         // Retrieve the user's information:
                                         $query = "SELECT *
                                         FROM supplier
@@ -371,14 +374,15 @@ if(isset($_POST["submit"]))
                                         ?>
                                         <div class="message-body">
                                             <div class="sender-details">
-                                                <img class="img-sm rounded-circle me-3"
-                                                    src="../Images/BurgerByte_Logo.png" alt="">
+                                                <img class="img-sm rounded-circle me-3" src="../Images/Logo.png" alt="">
+                                                &nbsp;
+                                                &nbsp;
                                                 <div class="details">
                                                     <p class="msg-subject">
                                                         <?php echo $row[3];?>
                                                     </p>
                                                     <p class="sender-email">
-                                                        <?php echo $row[1];?>
+                                                        <?php echo $row[1];?> |
                                                         <a href="#"><?php echo $row[2];?></a>
                                                         &nbsp;<i class="ti-user"></i>
                                                     </p>
@@ -387,7 +391,8 @@ if(isset($_POST["submit"]))
                                             <div class="message-content">
                                                 <p><?php echo $row[4];?></p>
                                                 <p><br><br>Regards,<br>BurgerByte.Co</p>
-                                                <p>* Click an attachment below to see the details:</p>
+                                                <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>*
+                                                    Click an attachment below to see the details:</p>
                                             </div>
                                             <div class="attachments-sections">
                                                 <ul>
@@ -430,6 +435,17 @@ if(isset($_POST["submit"]))
                 </div>
             </div>
         </div>
-        
+
+        <script>
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+        </script>
+
         <!--========== INCLUDE FOOTER ==========-->
         <?php include '../partials/Footer.html';?>
