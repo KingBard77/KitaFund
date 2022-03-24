@@ -123,8 +123,8 @@ if(isset($_POST["submit"]))
 
 ?>
 
-<div class='main-panel'>
-    <div class='content-wrapper'>
+<div class="main-panel">
+    <div class="content-wrapper">
         <div class='row'>
             <div class='col-md-12 grid-margin stretch-card'>
                 <div class='card'>
@@ -136,8 +136,7 @@ if(isset($_POST["submit"]))
                             Supplier List <code>Manage</code>
                             <?php print_r($message); ?>
 
-                            <button href="#Bar" class="btn btn-primary mr-2" style="float: right;"
-                                data-toggle="collapse">Send an Email</button><br /><br /><br />
+                            <!-- SEND AN EMAIL -->
                         <div id="Bar" class="collapse in">
                             <form class="forms-sample" action="Supplier.php" method="post"
                                 enctype="multipart/form-data">
@@ -160,7 +159,8 @@ if(isset($_POST["submit"]))
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Supplier Email</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="Supplier_Email" class="form-control" required>
+                                            <input type="text" name="Supplier_Email" class="form-control"
+                                                placeholder="Supplier Email Eg:-Azman@BurgerByte" required>
                                         </div>
                                     </div>
                                 </div>
@@ -217,15 +217,18 @@ if(isset($_POST["submit"]))
                     <div class='card-body'>
                         <div class="email-wrapper wrapper">
                             <div class="row align-items-stretch">
-                                <!-- SECTION 1 -->
                                 <div class="mail-sidebar d-none d-lg-block col-md-2 pt-3 bg-white">
+                                    <!-- SECTION 1 -->
                                     <div class="menu-bar">
                                         <ul class="menu-items">
-                                            <li class="compose mb-3"><button
-                                                    class="btn btn-primary btn-block">Compose</button></li>
+                                            <li class="compose mb-3">
+                                                <button href="#Bar" style="float: right;" data-toggle="collapse"
+                                                    class="btn btn-primary btn-block">Compose
+                                                </button>
+                                            </li>
                                             <li class="active"><a href="#"><i class="ti-email"></i> Inbox</a><span
-                                                    class="badge badge-pill badge-success"><?php echo "$supplier_num" ?>
-                                                </span></li>
+                                                    class="badge badge-pill badge-success"><?php echo "$supplier_num" ?></span>
+                                            </li>
                                             <li><a href="#"><i class="ti-share"></i> Sent</a></li>
                                             <li><a href="#"><i class="ti-file"></i> Draft</a><span
                                                     class="badge badge-pill badge-warning">4</span></li>
@@ -286,44 +289,46 @@ if(isset($_POST["submit"]))
                                                 id="Mail-rearch">
                                         </div>
                                     </div>
-                                    <?php
-                                    // Define the query:
-                                    $query = "SELECT *
-                                    FROM supplier
-                                    ORDER BY Supplier_Id ASC";
-                                    $supplier = @mysqli_query($dbc, $query);
+                                    <div class="menu-bar">
+                                        <?php
+                                        // Define the query:
+                                        $query = "SELECT *
+                                        FROM supplier
+                                        ORDER BY Supplier_Id ASC";
+                                        $supplier = @mysqli_query($dbc, $query);
 
-                                    // Count the number of returned rows:
-                                    $supplier_num = mysqli_num_rows($supplier);
-                                    if(mysqli_num_rows($supplier) > 0)  
-                                    {  
-                                        while($row = mysqli_fetch_array($supplier))  
+                                        // Count the number of returned rows:
+                                        $supplier_num = mysqli_num_rows($supplier);
+                                        if(mysqli_num_rows($supplier) > 0)  
                                         {  
-                                    ?>
-                                    <div class="mail-list">
-
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"> </label>
-                                        </div>
-                                        <div class="content">
-                                            <p class="sender-name"><?php echo $row["Supplier_Name"]; ?></p>
-                                            <div class="details">
-                                                <i class="ti-star favorite"></i>
+                                            while($row = mysqli_fetch_array($supplier))  
+                                            {  
+                                        ?>
+                                        <a href="#Body-Email?=<?php echo $row["Supplier_Id"]; ?>" data-toggle="collapse">
+                                            <div class="mail-list">
+                                                <div class="form-check"> <label class="form-check-label"> <input
+                                                            type="checkbox" class="form-check-input" checked> </label>
+                                                </div>
+                                                <div class="content">
+                                                    <p class="sender-name">
+                                                        <?php echo $row["Supplier_Name"]; ?>
+                                                    </p>
+                                                    <p class="message_text">
+                                                        <?php echo $row["Message"]; ?>.
+                                                    </p>
+                                                </div>
+                                                <!--<a href="Supplier_View.php?id= <?php echo $row["Supplier_Id"]; ?>">See more</a>-->
+                                                <div class="details">
+                                                    <i class="ti-star favorite"></i>
+                                                </div>
                                             </div>
-                                            <p class="message_text"><?php echo $row["Message"]; ?>.</p>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <button href="#Body-Email"?id=<?php echo $row["Supplier_Id"]; ?>
-                                                class="btn btn-outline-primary btn-sm" style="float: right;"
-                                                data-toggle="collapse">View</button>
-                                        </div>
-                                    </div>
-                                    <?php  
+                                        </a>
+                                        <hr>
+                                        <?php  
+                                            }  
                                         }  
-                                    }  
-                                    ?>
+                                        ?>
+                                    </div>
                                 </div>
 
                                 <!-- SECTION 3 -->
@@ -350,13 +355,13 @@ if(isset($_POST["submit"]))
                                         </div>
                                     </div>
 
-
                                     <div id="Body-Email" class="collapse in">
                                         <?php
+                                        $Supplier_Id = $_GET['id'];
                                         // Retrieve the user's information:
                                         $query = "SELECT *
                                         FROM supplier
-                                        WHERE Supplier_Id = $id";
+                                        WHERE Supplier_Id = $Supplier_Id ";
                                         $supplier = mysqli_query($dbc, $query);
 
                                         if (mysqli_num_rows($supplier) == 1) { // Valid user ID, show the form.
@@ -411,14 +416,13 @@ if(isset($_POST["submit"]))
                                                 </ul>
                                             </div>
                                         </div>
+                                        <?php
+                                        } else { // Not a valid user ID.
+                                            echo 'NO DATA';
+                                        }
+                                        
+                                        mysqli_close($dbc);?>
                                     </div>
-                                    <?php
-                                    } else { // Not a valid user ID.
-                                        echo 'NO DATA';
-                                    }
-                                    
-                                    mysqli_close($dbc);
-                                ?>
                                 </div>
                             </div>
                         </div>
@@ -426,5 +430,6 @@ if(isset($_POST["submit"]))
                 </div>
             </div>
         </div>
-
+        
+        <!--========== INCLUDE FOOTER ==========-->
         <?php include '../partials/Footer.html';?>
