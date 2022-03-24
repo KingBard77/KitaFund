@@ -18,13 +18,13 @@ if($_REQUEST['action'] == 'fetch_income'){
     }
 
     ## Call Query 
-    $columns = 'Income_Id, Total_Expenses, Net_Income, Income_Date ';
+    $columns = 'Income_Id, Net_Expenses, Net_Income, Income_Date ';
     $table = ' income ';
     $where = " WHERE Income_Id!='' ".$date_range;
 
     $columns_order = array(
         0 => 'Income_Id',
-        1 => 'Total_Expenses',
+        1 => 'Net_Expenses',
         2 => 'Net_Income',
         3 => 'Income_Date'
     );
@@ -37,7 +37,7 @@ if($_REQUEST['action'] == 'fetch_income'){
 
     ## Search 
     if( !empty($requestData['search']['value']) ) {
-        $sql.=" AND ( Total_Expenses LIKE '%".$requestData['search']['value']."%' ";
+        $sql.=" AND ( Net_Expenses LIKE '%".$requestData['search']['value']."%' ";
         $sql.=" OR Net_Income LIKE '%".$requestData['search']['value']."%'";
         $sql.=" OR Income_Date LIKE '%".$requestData['search']['value']."%' )";
     }
@@ -62,7 +62,7 @@ if($_REQUEST['action'] == 'fetch_income'){
         $nestedData = array();
 
         $nestedData['Income_Id'] = $count;
-        $nestedData['Total_Expenses']   = 'RM '.$row["Total_Expenses"];
+        $nestedData['Net_Expenses']   = 'RM '.$row["Net_Expenses"];
         $nestedData['Net_Income']       = 'RM '.$row["Net_Income"];
 
         $time = strtotime($row["Income_Date"]);

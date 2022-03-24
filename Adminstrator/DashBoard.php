@@ -421,7 +421,7 @@ $employee_num = mysqli_num_rows($employee);
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <table class="table table-borderless report-table">
                                                             <th>Month</th>
-                                                            <th>Expenses</th>
+                                                            <th>Net Expenses</th>
                                                             <th class="text-center">Comments</th>
                                                             <th class="text-right">Total Income</th>
                                                             <?php
@@ -429,7 +429,7 @@ $employee_num = mysqli_num_rows($employee);
                                                             $sql = "SELECT 
                                                             MONTHNAME(Income_Date) AS month, 
                                                             SUM(Net_Income) AS Net_Income,
-                                                            SUM(Total_Expenses) AS Total_Expenses
+                                                            SUM(Net_Expenses) AS Net_Expenses
                                                             FROM     income
                                                             GROUP BY MONTHNAME(Income_Date)
                                                             ORDER BY Income_Date";
@@ -447,7 +447,7 @@ $employee_num = mysqli_num_rows($employee);
 
                                                                 <td class="text-muted">
                                                                     RM
-                                                                    <?php echo number_format($row["Total_Expenses"],2); ?>
+                                                                    <?php echo number_format($row["Net_Expenses"],2); ?>
 
                                                                     <?php
                                                                         $number = $row['Net_Income']; // enter any number of your choice here
@@ -779,26 +779,26 @@ $employee_num = mysqli_num_rows($employee);
                         </div>
                     </div>
 
-                    <!-- Total Expenses -->
+                    <!-- Net Expenses -->
                     <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
                         <div class="card data-icon-card-primary">
                             <div class="card-body">
-                                <p class="card-title text-white">Total Expenses </p>
+                                <p class="card-title text-white">Net Expenses </p>
                                 <div class="row">
                                     <div class="col-8 text-white">
                                         <?php
                                         // Define the Number of Income query:
-                                        $sql = "SELECT  SUM(Total_Expenses) FROM income";
+                                        $sql = "SELECT  SUM(Net_Expenses) FROM income";
                                         $income = $dbc->query($sql);
                                         //display data on web page
                                         ?>
                                         <h3><?php 
                                             while($row = mysqli_fetch_array($income)){
-                                            echo "RM ". $row['SUM(Total_Expenses)']; 
+                                            echo "RM ". $row['SUM(Net_Expenses)']; 
                                             }?> / year
                                         </h3>
-                                        <p class="text-white font-weight-500 mb-0">The <b>Total Expenses</b> of sessions within
-                                            the date range. It is calculated as the sum for Total Expenses over in this
+                                        <p class="text-white font-weight-500 mb-0">The <b>Net Expenses</b> of sessions within
+                                            the date range. It is calculated as the sum for Net Expenses over in this
                                             year. </p>
                                     </div>
                                     <div class="col-4 background-icon">

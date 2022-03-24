@@ -171,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         Name</label>
                                     <div class="col-sm-9">
                                         <select name="Stock_Id" id="Stock_Name" class="form-control"
-                                            onchange="FetchState(this.value)" required>
+                                            onchange="FetchStock(this.value)" required>
                                             <option value="">---- Select Stock Stock Name ----</option>
                                             <?php
                                             if ($result->num_rows > 0 ) {
@@ -383,7 +383,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
 
         // SCRIPT FOR FETCH STOCK SELLING PRICE
-        function FetchState(id) {
+        function FetchStock(id) {
             $('#Selling_Price').html('');
             $.ajax({
                 type: 'post',

@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = array(); // Initialize an error array.
 
     // Check for Stock Name:
-    if (empty($_POST['Total_Expenses'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Total Expenses.</b>';
+    if (empty($_POST['Net_Expenses'])) {
+        $errors[] = '<b style="color:black;">You forgot to enter your Net Expenses.</b>';
     } else {
-        $Total_Expenses = trim($_POST['Total_Expenses']);
+        $Net_Expenses = trim($_POST['Net_Expenses']);
     }
 
     if (empty($_POST['Net_Income'])) {
@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($errors)) { // If everything's OK.
         // Make the query
-        $query = "INSERT INTO income (Total_Expenses,  Net_Income)
-        VALUES ('$Total_Expenses',  '$Net_Income')";
+        $query = "INSERT INTO income (Net_Expenses,  Net_Income)
+        VALUES ('$Net_Expenses',  '$Net_Income')";
         $result = mysqli_query($dbc, $query); // Run the query.
         if ($result) { // If it ran OK.
             // Print a message:
@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         <tr>
                                                             <th>INVOICE DATE </th>
                                                             <th>TOTAL SALES (RM)</th>
-                                                            <th>TOTAL EXPENSES (RM)</th>
+                                                            <th>NET EXPENSES (RM)</th>
                                                             <th class="text-center">NET INCOME (RM)</th>
                                                         </tr>
                                                     </thead>
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                             <input type="date" id="Invoice_Date"
                                                                 value="<?php echo date('Y-m-d'); ?>" name="Invoice_Date"
                                                                 class="form-control form-control-sm"
-                                                                onchange="FetchTotalSales(this.value)" />
+                                                                onchange="FetchTotalInvoice(this.value) ; FetchNetExpenses(this.value)"  />
                                                         </td>
                                                         <td>
                                                         <input type="number" id="Total_Sales" name="Total_Sales" step="0.01"
@@ -167,8 +167,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                 class="form-control form-control-sm" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" id="Total_Expenses" name="Total_Expenses" step="0.01"
-                                                                placeholder="Enter Total Expenses Eg:- RM 1.20"
+                                                            <input type="number" id="Net_Expenses" name="Net_Expenses" step="0.01"
+                                                                placeholder="Enter Net Expenses Eg:- RM 1.20"
                                                                 class="form-control form-control-sm" />
                                                         </td>
                                                         <td>
@@ -233,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <table class="display expandable-table" id="records" style="width:100%">
                                                 <thead>
                                                     <th>#</th>
-                                                    <th>TOTAL EXPENSES (RM)</th>
+                                                    <th>NET EXPENSES (RM)</th>
                                                     <th>NET INCOME (RM)</th>
                                                     <th class="text-center">INCOME DATE</th>
                                                     <th></th>
@@ -368,7 +368,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         "data": "Income_Id"
                     },
                     {
-                        "data": "Total_Expenses"
+                        "data": "Net_Expenses"
                     },
                     {
                         "data": "Net_Income"
@@ -389,17 +389,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //var tr = $(this).closest('tr');
             var Income_Date = $('#IncomeDatehField').val();
             var Net_Income = $('#NetIncomeField').val();
-            var Total_Expenses = $('#TotalExpensesField').val();
+            var Net_Expenses = $('#NetExpensesField').val();
             var trid = $('#trid').val();
             var id = $('#id').val();
-            if (Total_Expenses != '' && Net_Income != '' && Income_Date != '') {
+            if (Net_Expenses != '' && Net_Income != '' && Income_Date != '') {
                 $.ajax({
                     url: "../Database/Sales/Income_Calculation/update_income.php",
                     type: "post",
                     data: {
                         Income_Date: Income_Date,
                         Net_Income: Net_Income,
-                        Total_Expenses: Total_Expenses,
+                        Net_Expenses: Net_Expenses,
                         id: id
                     },
                     success: function(data) {
@@ -412,7 +412,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 id +
                                 '" class="btn btn-outline-danger btn-sm deleteBtn">Delete</a></td>';
                             var row = table.row("[id='" + trid + "']");
-                            row.row("[id='" + trid + "']").data([id, Total_Expenses,
+                            row.row("[id='" + trid + "']").data([id, Net_Expenses,
                                 Net_Income, Net_Income, 
                                 button
                             ]);
@@ -443,7 +443,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 type: 'post',
                 success: function(data) {
                     var json = JSON.parse(data);
-                    $('#TotalExpensesField').val(json.Total_Expenses);
+                    $('#NetExpensesField').val(json.Net_Expenses);
                     $('#NetIncomeField').val(json.Net_Income);
                     $('#IncomeDateField').val(json.Income_Date);
                     $('#id').val(id);
@@ -524,18 +524,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // SCRIPT FOR FETCH TOTAL SALES
-        function FetchTotalSales(date) {
+        function FetchTotalInvoice(date) {
             // alert(date);   
             $.ajax({
                 type: 'post',
-                url: '../Database/Sales/Income_Calculation/total_date_income.php',
+                url: '../Database/Sales/Income_Calculation/fetch_total_invoice.php',
                 dataType: "json",
                 data: {
                     date: date
                 },
                 success: function(data) {
                     if (data.success) {
-                        $('#Total_Sales').val(data.total);
+                        $('#Total_Sales').val(data.Total_Sales);
+                        // Sub_Total
+                    }
+                }
+
+            })
+        }
+
+        // SCRIPT FOR FETCH NET EXPENSES
+        function FetchNetExpenses(date) {
+            // alert(date);   
+            $.ajax({
+                type: 'post',
+                url: '../Database/Sales/Income_Calculation/fetch_total_expenses.php',
+                dataType: "json",
+                data: {
+                    date: date
+                },
+                success: function(data) {
+                    if (data.success) {
+                        $('#Net_Expenses').val(data.Net_Expenses);
                         // Sub_Total
                     }
                 }
@@ -546,16 +566,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // SCRIPT FOR INCOME CALCULATION
         $(document).ready(function() {
             // Get value on keyup funtion
-            $(" #Total_Expenses, #Total_Sales")
+            $(" #Net_Expenses, #Total_Sales")
                 .keyup(function() {
 
                     var Net_Income = 0;
 
-                    var Total_Expenses = Number($("#Total_Expenses").val());
+                    var Net_Expenses = Number($("#Net_Expenses").val());
                     var Total_Sales = Number($("#Total_Sales").val());
 
                     //Calculation Net Income
-                    var Net_Income = Total_Sales - Total_Expenses;
+                    var Net_Income = Total_Sales - Net_Expenses;
 
                     $('#Net_Income').val(Net_Income);
 
@@ -584,14 +604,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Total Expenses</label>
+                                <label class="col-sm-3 col-form-label">Net Expenses</label>
                                 <div class="col-md-9">
                                 <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
-                                        <input type="number" class="form-control" id="TotalExpensesField" 
-                                        placeholder="Enter Total Expenses Eg:- RM 1.20" name="Total_Expenses" step="0.01">
+                                        <input type="number" class="form-control" id="NetExpensesField" 
+                                        placeholder="Enter Net Expenses Eg:- RM 1.20" name="Net_Expenses" step="0.01">
                                     </div>
                                 </div>
                             </div>

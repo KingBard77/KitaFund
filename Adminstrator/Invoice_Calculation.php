@@ -991,7 +991,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // alert(date);   
             $.ajax({
                 type: 'post',
-                url: '../Database/Sales/Invoice_Calculation/total_date_invoice.php',
+                url: '../Database/Sales/Invoice_Calculation/fetch_subtotal.php',
                 dataType: "json",
                 data: {
                     date: date
