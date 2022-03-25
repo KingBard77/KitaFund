@@ -343,19 +343,7 @@ $employee_num = mysqli_num_rows($employee);
                                                                 <td class="text-muted"><?php echo $row["month"]; ?></td>
 
                                                                 <td class="text-muted">
-                                                                    <?php
-                                                                        $Total_Shot = $row['Total_Shot']; // enter any number of your choice here
-                                                                        if ($Total_Shot > 0) // condition for positive numbers
-                                                                        {
-                                                                            echo  " <div class='text-success'>RM ".$row['Total_Shot']."</div>";
-                                                                        } else if ($Total_Shot < 0) // condition for negative number
-                                                                        {
-                                                                            echo " <div class='text-danger'>RM ".$row['Total_Shot']."</div>";
-                                                                        } else
-                                                                        {
-                                                                            echo " <div class='text-warning'>RM ".$row['Total_Shot']."</div>";
-                                                                        } 
-                                                                    ?>
+                                                                        RM <?php echo $row["Total_Shot"];?>
                                                                 </td>
                                                                 <td>
                                                                     <?php

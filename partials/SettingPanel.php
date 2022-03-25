@@ -117,11 +117,11 @@ $employee_num = mysqli_num_rows($employee);
                 <b><?php echo "$event_num" ?> Events</b>
             </h4>
             <?php
-                 if(mysqli_num_rows($event) > 0)  
-                 {  
-                     while($row = mysqli_fetch_array($event))  
-                     {  
-                         ?>
+            if(mysqli_num_rows($event) > 0)  
+            {  
+            while($row = mysqli_fetch_array($event))  
+                {  
+            ?>
             <div class="events pt-4 px-3">
                 <div class="form-check form-check-primary">
                     <label align="left" class="form-check-label">
@@ -136,9 +136,9 @@ $employee_num = mysqli_num_rows($employee);
                 </div>
             </div>
             <?php  
-                        }  
-                    }  
-                    ?>
+                }  
+            }  
+            ?>
         </div>
         <!-- To do section tab ends -->
         <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">

@@ -141,6 +141,7 @@ body {
         <div class="row">
             <div class="col-md-2">
                 <div class="fc-external-events">
+                <h4 align="left" class="card-title">Latest Event</h4>
                 <?php
                     // Define the query:
                     $query = "SELECT * FROM event

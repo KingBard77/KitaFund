@@ -137,6 +137,7 @@ body {
         <div class="row">
             <div class="col-md-2">
                 <div class="fc-external-events">
+                <h4 align="left" class="card-title">Latest Event</h4>
                 <?php
                     // Define the query:
                     $query = "SELECT * FROM event
@@ -151,15 +152,15 @@ body {
                         {  
                     ?>
                     <div class='fc-event'>
-                        <p align="left"><b>Event:</b> <?php echo $row["title"]; ?></p>
+                        <p align="left"> <?php echo $row["title"]; ?></p>
 
                         <?php $start_event = strtotime ($row['start']);?>
-                        <p align="left" class="small-text"><b>Start: </b><?php echo date('d M, Y', $start_event)?></p>
+                        <p align="left" class="message_text"><b>Start: </b><?php echo date('d M, Y', $start_event)?></p>
 
                         <?php $end_event = strtotime ($row['end']);?>
-                        <p align="left" class="small-text"><b>End: </b><?php echo date('d M, Y', $end_event)?></p>
+                        <p align="left" class="message_text"><b>End: </b><?php echo date('d M, Y', $end_event)?></p>
                         
-                        <p align="left"class="text-muted mb-0">* All BurgerByte Staff</p>
+                        <p align="left"class="text-muted mb-0"><i class="ti-time"></i>  BurgerByte Staff</p>
                     </div>
                     <?php  
                         }  

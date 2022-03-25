@@ -18,8 +18,8 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Stock Calculation</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Invoice Calculation</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="Stock_Calculation.php">Stock Calculation</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="Invoice_Calculation.php">Invoice Calculation</a></li>
                 </ul>
             </div>
         </li>
