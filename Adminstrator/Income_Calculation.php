@@ -246,7 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <thead>
                                                     <th>#</th>
                                                     <th>NET EXPENSES (RM)</th>
-                                                    <th>NET INCOME (RM)</th>
+                                                    <th class="text-center">NET INCOME (RM)</th>
                                                     <th class="text-center">INCOME DATE</th>
                                                     <th></th>
                                                 </thead>

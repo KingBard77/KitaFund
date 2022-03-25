@@ -19,7 +19,8 @@ if($_REQUEST['action'] == 'fetch_invoice'){
 
 
     ## Call Query 
-    $columns = 'Invoice_Id, Total, Overhead, Total_Cash, Total_Sales, Invoice_Message, Invoice_Date ';
+    $columns = 'Invoice_Id, Total, Overhead, Total_Cash, Total_Sales, Invoice_Message, Invoice_Date,
+    (Total - Total_Sales) AS Total_Shot ';
     $table = ' invoice ';
     $where = " WHERE Invoice_Id!='' ".$date_range;
 
@@ -29,8 +30,9 @@ if($_REQUEST['action'] == 'fetch_invoice'){
         2 => 'Overhead',
         3 => 'Total_Cash',
         4 => 'Total_Sales',
-        5 => 'Invoice_Message',
-        6 => 'Invoice_Date'
+        5 => 'Total_Shot',
+        6 => 'Invoice_Message',
+        7 => 'Invoice_Date'
     );
 
     $sql = "SELECT ".$columns." FROM ".$table." ".$where;
@@ -44,7 +46,8 @@ if($_REQUEST['action'] == 'fetch_invoice'){
         $sql.=" AND ( Total LIKE '%".$requestData['search']['value']."%' ";
         $sql.=" OR Overhead LIKE '%".$requestData['search']['value']."%'";
         $sql.=" OR Total_Cash LIKE '%".$requestData['search']['value']."%'";
-        $sql.=" OR Total_Sales LIKE '".$requestData['search']['value']."'";
+        $sql.=" OR Total_Sales LIKE '%".$requestData['search']['value']."%'";
+        $sql.=" OR Total_Shot LIKE '%".$requestData['search']['value']."%'";
         $sql.=" OR Invoice_Message LIKE '".$requestData['search']['value']."'";
         $sql.=" OR Invoice_Date LIKE '%".$requestData['search']['value']."%' )";
     }
@@ -68,12 +71,27 @@ if($_REQUEST['action'] == 'fetch_invoice'){
         $count++;
         $nestedData = array();
 
-        $nestedData['Invoice_Id'] = $count;
+        $nestedData['Invoice_Id']       = $count;
         $nestedData['Total']            = 'RM '.$row["Total"];
         $nestedData['Overhead']         = 'RM '.$row["Overhead"];
         $nestedData['Total_Cash']       = 'RM '.$row["Total_Cash"];
         $nestedData['Invoice_Message']  = $row["Invoice_Message"];
         $nestedData['Total_Sales']      = 'RM '.$row["Total_Sales"];
+
+        $total_shot =''; 
+        if ($row["Total_Shot"] > 0)
+        {
+            $total_shot =  " <div class='text-success'>
+                                <i class='ti-arrow-up'> </i>";
+        } else if ($row["Total_Shot"] < 0)
+        {
+            $total_shot =  " <div class='text-danger'>
+                                <i class='ti-arrow-down'> </i>";
+        } else
+        {
+            $total_shot = " <div class='text-warning'>";
+        } 
+        $nestedData['Total_Shot']       =  ''.$total_shot. '<b>RM ' .$row["Total_Shot"]. '</b></div>';
 
         $time = strtotime($row["Invoice_Date"]);
         $nestedData['Invoice_Date'] = '<div class="col text-center">'.date(' d F, Y', $time).'</div>';

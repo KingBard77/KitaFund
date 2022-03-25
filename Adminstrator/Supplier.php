@@ -42,8 +42,6 @@ function clean_text($string)
  return $string;
 }
 
-
-
 if(isset($_POST["submit"]))
 {
     $errors = array(); // Initialize an error array.
@@ -62,7 +60,6 @@ if(isset($_POST["submit"]))
 
     $query= mysqli_query($dbc,$sql);
 
-    
     $message = '
         <h3 align="left">Supplier Details</h3>
             <table border="0" width="80%" cellpadding="5" cellspacing="5">
@@ -85,7 +82,8 @@ if(isset($_POST["submit"]))
                 <tr>
                     <td colspan="2">* Click an attachment below to see the details: </td>
                 </tr>
-            </table>';
+            </table>
+        ';
  
 
 
@@ -111,7 +109,7 @@ if(isset($_POST["submit"]))
     $mail->Subject = 'Stock Pruchase from BurgerByte.Co';       //Sets the Subject of the message
     $mail->Body = $message;                                     //An HTML or plain text message body
 
-    if($mail->Send())                                           //Send an Email. Return true on success or false on error
+    if($mail->Send())        //Send an Email. Return true on success or false on error
     {
         $message = '<div class="alert alert-success">Application Successfully Submitted</div>';
         unlink($path);
@@ -124,8 +122,8 @@ if(isset($_POST["submit"]))
 
 ?>
 
-<div class="main-panel">
-    <div class="content-wrapper">
+<div class='main-panel'>
+    <div class='content-wrapper'>
         <div class='row'>
             <div class='col-md-12 grid-margin stretch-card'>
                 <div class='card'>
@@ -139,7 +137,7 @@ if(isset($_POST["submit"]))
 
                             <!-- SEND AN EMAIL -->
                         <div id="Bar" class="collapse in">
-                            <form class="forms-sample" action="Supplier.php" method="post"
+                            <form class="forms-sample" action="Supplier.php?id=1" method="post"
                                 enctype="multipart/form-data">
                                 <div class="col-md-12">
                                     <div class="form-group row">
@@ -407,12 +405,11 @@ if(isset($_POST["submit"]))
                                                             <p class="file-name"><?php echo $row[5] ?>
                                                             <div class="buttons">
                                                                 <p class="file-size">678Kb</p>
-                                                                <a class="view"
-                                                                        href="../Uploads/<?php echo $row[5] ?>"
-                                                                        target="_blank">View</a></a>
+                                                                <a class="view" href="../Uploads/<?php echo $row[5] ?>"
+                                                                    target="_blank">View</a></a>
                                                                 <a class="download"
-                                                                        href="../Uploads/<?php echo $row[5] ?>"
-                                                                        target="_blank">Download</a></a>
+                                                                    href="../Uploads/<?php echo $row[5] ?>"
+                                                                    target="_blank">Download</a></a>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -421,7 +418,7 @@ if(isset($_POST["submit"]))
                                         </div>
                                         <?php
                                         } else { // Not a valid user ID.
-                                            echo 'NO DATA';
+                                            echo 'No data to display';
                                         }
                                         
                                         mysqli_close($dbc);?>
@@ -434,5 +431,4 @@ if(isset($_POST["submit"]))
             </div>
         </div>
 
-        <!--========== INCLUDE FOOTER ==========-->
         <?php include '../partials/Footer.html';?>
