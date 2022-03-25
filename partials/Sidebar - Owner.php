@@ -124,7 +124,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="Supplier.php">
+            <a class="nav-link" href="Supplier.php?id=8">
                 <i class="icon-mail menu-icon"></i>
                 <span class="menu-title">Reporting</span>
             </a>

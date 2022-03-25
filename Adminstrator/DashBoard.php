@@ -159,8 +159,10 @@ $employee_num = mysqli_num_rows($employee);
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title">BurgerByte Details</p>
-                        <p class="font-weight-500">The is a <b>line graph</b> of the <b>Selling Price</b> for BurgerByte Company in every stock. 
-                            It is the period time in a year to show <b>Selling Price</b> for every stock in BurgerByte Company, page or app, etc.</p>
+                        <p class="font-weight-500">The is a <b>line graph</b> of the <b>Selling Price</b> for BurgerByte
+                            Company in every stock.
+                            It is the period time in a year to show <b>Selling Price</b> for every stock in BurgerByte
+                            Company, page or app, etc.</p>
                         <div class="d-flex flex-wrap mb-5">
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Stock</p>
@@ -171,9 +173,9 @@ $employee_num = mysqli_num_rows($employee);
                                  // Count the number of returned rows:
                                  $stock_num = mysqli_num_rows($stock);
                                  ?>
-                                 <h3 class="text-primary fs-30 font-weight-medium">
-                                     <?php echo "$stock_num"?>
-                                 </h3>
+                                <h3 class="text-primary fs-30 font-weight-medium">
+                                    <?php echo "$stock_num"?>
+                                </h3>
                             </div>
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Sales</p>
@@ -226,7 +228,7 @@ $employee_num = mysqli_num_rows($employee);
                         </p>
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
                         <canvas id="lineChart"></canvas>
-                        
+
                     </div>
                 </div>
             </div>
@@ -239,15 +241,17 @@ $employee_num = mysqli_num_rows($employee);
                             <p class="card-title">Sales Report</p>
                             <a href="#" class="text-info">View all</a>
                         </div>
-                        <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Total Sales</b> for BurgerByte Company in every month. 
-                        It is the period time in a year to show <b>Total Sales</b>  for every month in BurgerByte Company, page or app, etc.
+                        <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Total Sales</b> for BurgerByte
+                            Company in every month.
+                            It is the period time in a year to show <b>Total Sales</b> for every month in BurgerByte
+                            Company, page or app, etc.
                         </p>
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
                         <!-- Bar Graph Sales Report -->
                         <p align="center" class="mb-2 mb-xl-0"><b>Total Sales of Every Month</b>
                         </p>
-                        <br/>
+                        <br />
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
                         <canvas id="graphCanvas"></canvas>
                     </div>
@@ -291,9 +295,11 @@ $employee_num = mysqli_num_rows($employee);
                                                     }?>
                                                 </h1>
                                                 <h3 class="font-weight-500 mb-xl-4 text-primary">Total Invoices</h3>
-                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Invoices</b> for every
+                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Invoices</b> for
+                                                    every
                                                     month in this year
-                                                    based on <b class="text-success"><?php echo "$stock_num" ?> Stock.</b>
+                                                    based on <b class="text-success"><?php echo "$stock_num" ?>
+                                                        Stock.</b>
                                                     This part lists the detailed sum sales for all stock in every month
                                                     into a <b>Pie Chart</b>.
                                                     <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
@@ -401,7 +407,8 @@ $employee_num = mysqli_num_rows($employee);
                                                     }?>
                                                 </h1>
                                                 <h3 class="font-weight-500 mb-xl-4 text-primary">Total Income</h3>
-                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Income</b> for every
+                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Income</b> for
+                                                    every
                                                     month in this year
                                                     based on each of sales.
                                                     This part lists the detailed net income for all sales in every month
@@ -650,7 +657,7 @@ $employee_num = mysqli_num_rows($employee);
                                     <tr>
                                         <th class="pl-0  pb-2 border-bottom">Stock Name</th>
                                         <th class="border-bottom pb-2 text-center">Categories</th>
-                                        <th class="border-bottom pb-2 text-center">Stock In</th>
+                                        <th class="border-bottom pb-2 text-center">Availability</th>
                                     </tr>
                                 </thead>
                                 <?php
@@ -679,7 +686,7 @@ $employee_num = mysqli_num_rows($employee);
                                         </td>
                                         <td class="text-muted">
                                             <div class="col text-center">
-                                                <?php echo $row["Quantity_In"]; ?> / pieces
+                                                <?php echo $row["Quantity_In"]; ?> pieces
                                             </div>
                                         </td>
                                     </tr>
@@ -727,8 +734,9 @@ $employee_num = mysqli_num_rows($employee);
                                         <p class="mb-0">Commissions</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="progress progress-md flex-grow-1 mr-4">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 10%"
-                                                    aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 10%" aria-valuenow="35" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
                                             </div>
                                             <?php
                                             $query = "SELECT *
@@ -747,8 +755,9 @@ $employee_num = mysqli_num_rows($employee);
                                         <p class="mb-0">Medical Leaves</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="progress progress-md flex-grow-1 mr-4">
-                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 15%"
-                                                    aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 15%" aria-valuenow="48" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
                                             </div>
                                             <?php
                                             // Define the query:
@@ -765,13 +774,35 @@ $employee_num = mysqli_num_rows($employee);
                                         </div>
                                     </div>
                                     <div class="mt-3">
+                                        <p class="mb-0">Category</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="progress progress-md flex-grow-1 mr-4">
+                                                <div class="progress-bar bg-primary " role="progressbar"
+                                                    style="width: 75%" aria-valuenow="25" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <?php
+                                            // Define the Number of Category query:
+                                            $query = "SELECT * FROM category
+                                            ORDER BY Category_Id ASC";
+                                            $category = mysqli_query($dbc, $query);
+                                            
+                                            // Count the number of returned rows:
+                                            $category_num = mysqli_num_rows($category);
+                                            
+                                            ?>
+                                            <p class="mb-0"><b><?php echo "$category_num"?> Registrations</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
                                         <p class="mb-0">Stock</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="progress progress-md flex-grow-1 mr-4">
-                                                <div class="progress-bar bg-warning " role="progressbar" style="width: 90%"
-                                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-warning " role="progressbar"
+                                                    style="width: 90%" aria-valuenow="25" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
                                             </div>
-                                            <p class="mb-0"><b><?php echo "$category_num"?> Registrations</b></p>
+                                            <p class="mb-0"><b><?php echo "$stock_num"?> Registrations</b></p>
                                         </div>
                                     </div>
                                 </div>
@@ -797,7 +828,8 @@ $employee_num = mysqli_num_rows($employee);
                                             echo "RM ". $row['SUM(Net_Expenses)']; 
                                             }?> / year
                                         </h3>
-                                        <p class="text-white font-weight-500 mb-0">The <b>Net Expenses</b> of sessions within
+                                        <p class="text-white font-weight-500 mb-0">The <b>Net Expenses</b> of sessions
+                                            within
                                             the date range. It is calculated as the sum for Net Expenses over in this
                                             year. </p>
                                     </div>

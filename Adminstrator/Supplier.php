@@ -52,14 +52,15 @@ if(isset($_POST["submit"]))
     $Supplier_Email = $_POST['Supplier_Email'];
     $Subject = $_POST['Subject'];
     $Message = $_POST['Message'];
+    $path = $_FILES['Attachment'];
 
-    $sql = "INSERT INTO `supplier` ( `Supplier_Name`,`Supplier_Email`, `Subject`, `Message`)
-    values ('$Supplier_Name',  '$Supplier_Email', '$Subject', '$Message')";
+    $path = '../Uploads/' . $_FILES["Attachment"]["name"];
+    move_uploaded_file($_FILES["Attachment"]["tmp_name"], $path);
+
+    $sql = "INSERT INTO `supplier` ( `Supplier_Name`,`Supplier_Email`, `Subject`, `Message`, `Attachment`)
+    values ('$Supplier_Name',  '$Supplier_Email', '$Subject', '$Message', '$path')";
 
     $query= mysqli_query($dbc,$sql);
-
-    $path = '../Uploads/' . $_FILES["file"]["name"];
-    move_uploaded_file($_FILES["file"]["tmp_name"], $path);
 
     
     $message = '
@@ -95,7 +96,7 @@ if(isset($_POST["submit"]))
     $mail->IsSMTP();                                    //Sets Mailer to send message using SMTP
     $mail->Host       = 'smtp.gmail.com';               //Sets the SMTP hosts of your Email hosting, this for Godaddy
     $mail->Port       = 465;                            //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    $mail->SMTPAuth = true;                             //Sets SMTP authentication. Utilizes the Username and Password variables
+    $mail->SMTPAuth   = true;                           //Sets SMTP authentication. Utilizes the Username and Password variables
     $mail->Username   = 'BurgerByte1998@gmail.com';     //SMTP username
     $mail->Password   = 'Adminstrator_1998';            //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    //Enable implicit TLS encryption
@@ -183,7 +184,7 @@ if(isset($_POST["submit"]))
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Attachment</label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="file" class="form-control" required>
+                                            <input type="file" name="Attachment" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -343,16 +344,16 @@ if(isset($_POST["submit"]))
                                                     <button type="button" class="btn btn-sm btn-outline-secondary"><i
                                                             class="ti-share-alt text-primary me-1"></i> Reply</button>
                                                     <button type="button" class="btn btn-sm btn-outline-secondary"><i
-                                                            class="ti-share-alt text-primary me-1"></i>Reply
+                                                            class="ti-share-alt text-primary me-1"></i> Reply
                                                         All</button>
                                                     <button type="button" class="btn btn-sm btn-outline-secondary"><i
-                                                            class="ti-share text-primary me-1"></i>Forward</button>
+                                                            class="ti-share text-primary me-1"></i> Forward</button>
                                                 </div>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-sm btn-outline-secondary"><i
-                                                            class="ti-clip text-primary me-1"></i>Attach</button>
+                                                            class="ti-clip text-primary me-1"></i> Attach</button>
                                                     <button type="button" class="btn btn-sm btn-outline-secondary"><i
-                                                            class="ti-trash text-primary me-1"></i>Delete</button>
+                                                            class="ti-trash text-primary me-1"></i> Delete</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -403,22 +404,15 @@ if(isset($_POST["submit"]))
                                                     <li>
                                                         <div class="thumb"><i class="ti-file"></i></div>
                                                         <div class="details">
-                                                            <p class="file-name">Seminar Reports.pdf</p>
+                                                            <p class="file-name"><?php echo $row[5] ?>
                                                             <div class="buttons">
                                                                 <p class="file-size">678Kb</p>
-                                                                <a href="#" class="view">View</a>
-                                                                <a href="#" class="download">Download</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="thumb"><i class="ti-image"></i></div>
-                                                        <div class="details">
-                                                            <p class="file-name">Product Design.jpg</p>
-                                                            <div class="buttons">
-                                                                <p class="file-size">1.96Mb</p>
-                                                                <a href="#" class="view">View</a>
-                                                                <a href="#" class="download">Download</a>
+                                                                <a class="view"
+                                                                        href="../Uploads/<?php echo $row[5] ?>"
+                                                                        target="_blank">View</a></a>
+                                                                <a class="download"
+                                                                        href="../Uploads/<?php echo $row[5] ?>"
+                                                                        target="_blank">Download</a></a>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -439,17 +433,6 @@ if(isset($_POST["submit"]))
                 </div>
             </div>
         </div>
-
-        <script>
-        function myFunction() {
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-        </script>
 
         <!--========== INCLUDE FOOTER ==========-->
         <?php include '../partials/Footer.html';?>
