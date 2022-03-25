@@ -329,7 +329,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <tfoot>
                                                     <tr>
                                                         <th colspan="6"></th>
-                                                        <th style="text-align:center">TOTAL:</th>
+                                                        <th style="text-align:center">TOTAL :</th>
                                                         <th colspan="3"></th>
                                                     </tr>
                                                 </tfoot>

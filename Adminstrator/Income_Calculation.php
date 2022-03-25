@@ -40,10 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $Net_Income = trim($_POST['Net_Income']);
     }
 
+    if (empty($_POST['Income_Date'])) {
+        $errors[] = '<b style="color:black;">You forgot to enter your Income Date.</b>';
+    } else {
+        $Income_Date = trim($_POST['Income_Date']);
+    }
+
     if (empty($errors)) { // If everything's OK.
         // Make the query
-        $query = "INSERT INTO income (Net_Expenses,  Net_Income)
-        VALUES ('$Net_Expenses',  '$Net_Income')";
+        $query = "INSERT INTO income (Net_Expenses,  Net_Income, Income_Date)
+        VALUES ('$Net_Expenses',  '$Net_Income',  '$Income_Date')";
         $result = mysqli_query($dbc, $query); // Run the query.
         if ($result) { // If it ran OK.
             // Print a message:
@@ -149,6 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                             <th>TOTAL SALES (RM)</th>
                                                             <th>NET EXPENSES (RM)</th>
                                                             <th class="text-center">NET INCOME (RM)</th>
+                                                            <th class="text-center">INCOME DATE</th>
                                                         </tr>
                                                     </thead>
                                                 </thead>
@@ -173,6 +180,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         </td>
                                                         <td>
                                                             <input type="number" id="Net_Income" name="Net_Income" step="0.01"
+                                                                class="form-control form-control-sm" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="date" id="Income_Date"
+                                                                value="<?php echo date('Y-m-d'); ?>" name="Income_Date"
                                                                 class="form-control form-control-sm" />
                                                         </td>
                                                     </tr>

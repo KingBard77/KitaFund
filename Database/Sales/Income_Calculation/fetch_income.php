@@ -63,7 +63,20 @@ if($_REQUEST['action'] == 'fetch_income'){
 
         $nestedData['Income_Id'] = $count;
         $nestedData['Net_Expenses']   = 'RM '.$row["Net_Expenses"];
-        $nestedData['Net_Income']       = 'RM '.$row["Net_Income"];
+
+
+        $number =''; 
+        if ($row["Net_Income"] > 0)
+        {
+            $number =  " <div class='text-success'><i class='ti-arrow-up'> </i>";
+        } else if ($row["Net_Income"] < 0) // condition for negative number
+        {
+            $number =  " <div class='text-danger'><i class='ti-arrow-down'> </i>";
+        } else
+        {
+            $number = " <div class='text-warning'>";
+        } 
+        $nestedData['Net_Income']       = ''.$number. '<b>RM ' .$row["Net_Income"]. '</b></div>';
 
         $time = strtotime($row["Income_Date"]);
         $nestedData['Income_Date'] = '<div class="col text-center">'.date(' d F, Y', $time).'</div>';

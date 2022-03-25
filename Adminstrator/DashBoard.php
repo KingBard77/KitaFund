@@ -317,7 +317,8 @@ $employee_num = mysqli_num_rows($employee);
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <table class="table table-borderless report-table">
                                                             <th>Month</th>
-                                                            <th>Shot</th>
+                                                            <th>Profit / Shot (<b class='text-success'>+</b>/<b
+                                                                    class='text-danger'>-</b>)</th>
                                                             <th class="text-center">Comments</th>
                                                             <th class="text-right">Total Sales</th>
                                                             <?php
@@ -342,20 +343,32 @@ $employee_num = mysqli_num_rows($employee);
                                                                 <td class="text-muted"><?php echo $row["month"]; ?></td>
 
                                                                 <td class="text-muted">
-                                                                    RM
-                                                                    <?php echo number_format($row["Total_Shot"],2); ?>
-
                                                                     <?php
-                                                                        $number = $row['Total_Shot']; // enter any number of your choice here
-                                                                        if ($number > 0) // condition for positive numbers
+                                                                        $Total_Shot = $row['Total_Shot']; // enter any number of your choice here
+                                                                        if ($Total_Shot > 0) // condition for positive numbers
                                                                         {
-                                                                            echo  " <td align='center' class='text-success'><i class='ti-arrow-up'></i> Positive Sales</td>";
-                                                                        } else if ($number < 0) // condition for negative number
+                                                                            echo  " <div class='text-success'>RM ".$row['Total_Shot']."</div>";
+                                                                        } else if ($Total_Shot < 0) // condition for negative number
                                                                         {
-                                                                            echo " <td align='center' class='text-danger'><i class='ti-arrow-down'></i> Negative Sales</td>";
+                                                                            echo " <div class='text-danger'>RM ".$row['Total_Shot']."</div>";
                                                                         } else
                                                                         {
-                                                                            echo " <td align='center' class='text-warning'>Balance Sales</td>";
+                                                                            echo " <div class='text-warning'>RM ".$row['Total_Shot']."</div>";
+                                                                        } 
+                                                                    ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php
+                                                                        $Comments = $row['Total_Shot']; // enter any number of your choice here
+                                                                        if ($Comments > 0) // condition for positive numbers
+                                                                        {
+                                                                            echo  " <div align='center' class='text-success'><i class='ti-arrow-up'></i> Positive Sales</div>";
+                                                                        } else if ($Comments < 0) // condition for negative number
+                                                                        {
+                                                                            echo " <div align='center' class='text-danger'><i class='ti-arrow-down'></i> Negative Sales</div>";
+                                                                        } else
+                                                                        {
+                                                                            echo " <div align='center' class='text-warning'>Balance Sales</div>";
                                                                         } 
                                                                     ?>
                                                                 </td>
@@ -455,18 +468,20 @@ $employee_num = mysqli_num_rows($employee);
                                                                 <td class="text-muted">
                                                                     RM
                                                                     <?php echo number_format($row["Net_Expenses"],2); ?>
+                                                                </td>
 
+                                                                <td>
                                                                     <?php
                                                                         $number = $row['Net_Income']; // enter any number of your choice here
                                                                         if ($number > 0) // condition for positive numbers
                                                                         {
-                                                                            echo  " <td align='center' class='text-success'><i class='ti-arrow-up'></i> Positive Income</td>";
+                                                                            echo  " <div align='center' class='text-success'><i class='ti-arrow-up'></i> Positive Income</div>";
                                                                         } else if ($number < 0) // condition for negative number
                                                                         {
-                                                                            echo " <td align='center' class='text-danger'><i class='ti-arrow-down'></i> Negative Income</td>";
+                                                                            echo " <div align='center' class='text-danger'><i class='ti-arrow-down'></i> Negative Income</div>";
                                                                         } else
                                                                         {
-                                                                            echo " <td align='center' class='text-warning'>Balance Income</td>";
+                                                                            echo " <div align='center' class='text-warning'>Balance Income</div>";
                                                                         } 
                                                                     ?>
                                                                 </td>
@@ -650,7 +665,7 @@ $employee_num = mysqli_num_rows($employee);
             <div class="col-md-4 stretch-card grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-title mb-0">Category</p>
+                        <p class="card-title mb-0">Stock In</p>
                         <div class="table-responsive">
                             <table class="table table-borderless">
                                 <thead>
@@ -871,7 +886,8 @@ $employee_num = mysqli_num_rows($employee);
                                         <p class="text-info mb-1"><?php echo $row["First_Name"]; ?></p>
                                         <p class="mb-0"><b><?php echo $row["Employee_Code"]; ?></b></p>
                                         <small><?php echo $row["Phone"]; ?></small> |
-                                        <small><?php echo $row["Email"]; ?></small>
+                                        <small><a
+                                                href="mailto:'.strtolower<?php echo $row["Email"]; ?>"><?php echo $row["Email"]; ?></a></small>
                                     </div>
                                 </div>
                             </li>
