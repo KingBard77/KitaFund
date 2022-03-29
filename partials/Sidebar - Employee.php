@@ -19,7 +19,8 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="Stock_Calculation.php">Stock Calculation</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="Invoice_Calculation.php">Invoice Calculation</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="Invoice_Calculation.php">Invoice Calculation</a>
+                    </li>
                 </ul>
             </div>
         </li>
@@ -96,6 +97,20 @@
                 <i class="icon-watch menu-icon"></i>
                 <span class="menu-title">Calendar</span>
             </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="faq">
+                <i class="icon-paper menu-icon"></i>
+                <span class="menu-title">FAQ</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="faq">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="Tutorial.php"> How to Cook</a>
+                    <li class="nav-item"> <a class="nav-link" href="Ordering_Employee.php"> SOP</a>
+                </ul>
+            </div>
         </li>
     </ul>
 </nav>

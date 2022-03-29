@@ -40,10 +40,10 @@ if ($stock_num > 0) { // If it ran OK, display the records.
                                     <a data-toggle="tab">
                                         <span class="badge">
                                             <?php if(isset($_SESSION["shopping_cart"])) { 
-                                    echo count($_SESSION["shopping_cart"]); 
-                                    } else { 
-                                        echo '0';
-                                    }?>
+                                                echo count($_SESSION["shopping_cart"]); 
+                                                } else { 
+                                                    echo '0';
+                                            }?>
                                         </span>
                                     </a>
                                 </button>

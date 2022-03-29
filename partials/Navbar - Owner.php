@@ -17,7 +17,7 @@ $id = $_SESSION['Profile_Id'];
 
 if (isset($_SESSION['Profile_Id'])) { //successfully login
 
-$query = "SELECT p.Profile_Id, p.Image_Name
+$query = "SELECT p.Profile_Id, p.Image_Name, o.Owner_Code
 FROM owner o, profile p
 WHERE p.Profile_Id = $id 
 AND o.Profile_Id = p.Profile_Id";
