@@ -1,5 +1,5 @@
 <?php
-require_once "../Database/connection.php";
+require_once "../connection.php";
 
 $title = isset($_POST['title']) ? $_POST['title'] : "";
 $start = isset($_POST['start']) ? $_POST['start'] : "";

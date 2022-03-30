@@ -1,5 +1,5 @@
 <?php
-require_once "../Database/connection.php";
+require_once "../connection.php";
 
 $id = $_POST['id'];
 $sqlDelete = "DELETE FROM event WHERE id=".$id;

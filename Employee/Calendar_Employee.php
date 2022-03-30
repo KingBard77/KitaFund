@@ -15,20 +15,16 @@ $event_num = mysqli_num_rows($event);
 
 ?>
 
-<!-- Plugin css for this page -->
-<link rel="stylesheet" href="../Calendar/fullcalendar/fullcalendar.min.css" />
-<script src="../Calendar/fullcalendar/lib/jquery.min.js"></script>
-<script src="../Calendar/fullcalendar/lib/moment.min.js"></script>
-<script src="../Calendar/fullcalendar/fullcalendar.min.js"></script>
-
+<!-- plugin css for this page -->
 <link rel="stylesheet" href="../vendors/fullcalendar/fullcalendar.min.css">
 <!-- End plugin css for this page -->
+
 
 <script>
 $(document).ready(function() {
     var calendar = $('#calendar').fullCalendar({
         editable: true,
-        events: "../Calendar/fetch-event.php",
+        events: "../Database/Calendar/fetch-event.php",
         displayEventTime: false,
         eventRender: function(event, element, view) {
             if (event.allDay === 'true') {
@@ -47,7 +43,7 @@ $(document).ready(function() {
                 var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
 
                 $.ajax({
-                    url: '../Calendar/add-event.php',
+                    url: '../Database/Calendar/add-event.php',
                     data: 'title=' + title + '&start=' + start + '&end=' + end,
                     type: "POST",
                     success: function(data) {
@@ -71,7 +67,7 @@ $(document).ready(function() {
             var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
             var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
             $.ajax({
-                url: '../Calendar/edit-event.php',
+                url: '../Database/Calendar/edit-event.php',
                 data: 'title=' + event.title + '&start=' + start + '&end=' + end +
                     '&id=' + event.id,
                 type: "POST",
@@ -85,7 +81,7 @@ $(document).ready(function() {
             if (deleteMsg) {
                 $.ajax({
                     type: "POST",
-                    url: "../Calendar/delete-event.php",
+                    url: "../Database/Calendar/delete-event.php",
                     data: "&id=" + event.id,
                     success: function(response) {
                         if (parseInt(response) > 0) {
@@ -109,16 +105,6 @@ function displayMessage(message) {
 </script>
 
 <style>
-body {
-    text-align: center;
-    font-size: 12px;
-}
-
-#calendar {
-    width: 1240px;
-    margin: 0 auto;
-}
-
 .response {
     height: 60px;
 }
@@ -128,6 +114,8 @@ body {
     padding: 10px 60px;
     border: #c3e6c3 1px solid;
     display: inline-block;
+    text-align: center;
+    font-size: 12px;
 }
 
 #container {
@@ -141,8 +129,8 @@ body {
         <div class="row">
             <div class="col-md-2">
                 <div class="fc-external-events">
-                <h4 align="left" class="card-title">Latest Event</h4>
-                <?php
+                    <h4 align="left" class="card-title">Latest Event</h4>
+                    <?php
                     // Define the query:
                     $query = "SELECT * FROM event
                     ORDER BY id ASC";
@@ -163,8 +151,8 @@ body {
 
                         <?php $end_event = strtotime ($row['end']);?>
                         <p align="left" class="small-text"><b>End: </b><?php echo date('d M, Y', $end_event)?></p>
-                        
-                        <p align="left"class="text-muted mb-0">* All BurgerByte Staff</p>
+
+                        <p align="left" class="text-muted mb-0">* All BurgerByte Staff</p>
                     </div>
                     <?php  
                         }  
@@ -174,25 +162,25 @@ body {
                 <div class="mt-4">
                     <p align="left">Filter board</p>
                     <div class="form-check form-check-primary">
-                        <label align ="left" class="form-check-label">
+                        <label align="left" class="form-check-label">
                             <input type="checkbox" class="form-check-input" checked>
                             Daily Project Board
                         </label>
                     </div>
                     <div class="form-check form-check-danger">
-                        <label align ="left" class="form-check-label">
+                        <label align="left" class="form-check-label">
                             <input type="checkbox" class="form-check-input" checked>
                             Long Project Board
                         </label>
                     </div>
                     <div class="form-check form-check-info">
-                        <label align ="left" class="form-check-label">
+                        <label align="left" class="form-check-label">
                             <input type="checkbox" class="form-check-input" checked>
                             Summary Board
                         </label>
                     </div>
                     <div class="form-check form-check-success">
-                        <label align ="left" class="form-check-label">
+                        <label align="left" class="form-check-label">
                             <input type="checkbox" class="form-check-input" checked>
                             Important Planner Board
                         </label>
@@ -207,14 +195,23 @@ body {
                             There are currently <b><?php echo "$event_num" ?> Events </b>
                             Registration</p>
 
-                        <div class="response"></div>
+                        <div class="response" align="center"></div>
                         <div id="container">
-                            <div id='calendar'></div>
+                            <div id='calendar' class="full-calendar"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Plugin js for this page -->
+        <script src="../vendors/moment/moment.min.js"></script>
+        <script src="../vendors/fullcalendar/fullcalendar.min.js"></script>
+        <!-- End plugin js for this page -->
+
+        <!-- Custom js for this page-->
+        <script src="../js/calendar.js"></script>
+        <!-- End custom js for this page-->
 
         <!--========== INCLUDE FOOTER ==========-->
         <?php include '../partials/Footer.html';?>

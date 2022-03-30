@@ -1,5 +1,5 @@
 <?php
-    require_once "../Database/connection.php";
+    require_once "../connection.php";
 
     $json = array();
     $sqlQuery = "SELECT * FROM event ORDER BY id";
