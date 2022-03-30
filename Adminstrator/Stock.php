@@ -248,19 +248,19 @@ $stock_num = mysqli_num_rows($stock);
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="input-group mb-3">
-                                            <select class="form-control" id="Category_Name" name="Category_Name"
+                                            <select class="form-control" id="Stock_Name" name="Stock_Name"
                                                 style="height: 40px;">
                                                 <option value="">---- Select Stock Category Filtering ----</option>
                                                 <?php
-                                                    $sql = "SELECT * FROM category";
+                                                    $sql = "SELECT * FROM stock";
                                                     $all_categories = mysqli_query($dbc, $sql);
                                                 ?>
                                                 <?php 
                                                     while ($category = mysqli_fetch_array(
                                                     $all_categories,MYSQLI_ASSOC)):; 
                                                 ?>
-                                                <option value="<?php echo $category["Category_Name"];?>">
-                                                    <?php echo $category["Category_Name"];?>
+                                                <option value="<?php echo $category["Stock_Name"];?>">
+                                                    <?php echo $category["Stock_Name"];?>
                                                 </option>
                                                 <?php 
                                                     endwhile; 
@@ -341,7 +341,7 @@ $stock_num = mysqli_num_rows($stock);
         <!-- SCRIPT FOR FETCH RECORD STOCK -->
         <script type="text/javascript">
         load_data(); // first load
-        function load_data(initial_date, final_date, Category_Name) {
+        function load_data(initial_date, final_date, Stock_Name) {
             var ajax_url = "../Database/Stock/Stock/fetch_stock.php";
 
             $('#records').DataTable({
@@ -430,7 +430,7 @@ $stock_num = mysqli_num_rows($stock);
                         "action": "fetch_stock",
                         "initial_date": initial_date,
                         "final_date": final_date,
-                        "Category_Name": Category_Name
+                        "Stock_Name": Stock_Name
                     },
                     "dataSrc": "records"
                 },
@@ -585,11 +585,11 @@ $stock_num = mysqli_num_rows($stock);
         $("#filter").click(function() {
             var initial_date = $("#initial_date").val();
             var final_date = $("#final_date").val();
-            var Category_Name = $("#Category_Name").val();
+            var Stock_Name = $("#Stock_Name").val();
 
             if (initial_date == '' && final_date == '') {
                 $('#records').DataTable().destroy();
-                load_data("", "", Category_Name); // filter immortalize only
+                load_data("", "", Stock_Name); // filter immortalize only
             } else {
                 var date1 = new Date(initial_date);
                 var date2 = new Date(final_date);

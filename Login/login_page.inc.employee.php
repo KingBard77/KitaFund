@@ -27,8 +27,8 @@
             <div class="content-wrapper d-flex align-items-center auth px-0">
                 <div class="row w-100 mx-0">
                     <div class="col-lg-4 mx-auto">
-                    <!-- ERROR MESSAGE -->
-                    <?php
+                        <!-- ERROR MESSAGE -->
+                        <?php
                     if (isset($errors) && !empty($errors)) {
                         echo '
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -55,12 +55,26 @@
                             <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form class="pt-3" method="POST" action="Login_Employee.php">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1"
-                                        placeholder="Employee Code" name="Employee_Code">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                                <i class="ti-user text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-lg border-left-0"
+                                            placeholder="Employee Code" name="Employee_Code">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="Password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Password" name="Password">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                                <i class="ti-lock text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <input type="Password" class="form-control form-control-lg border-left-0"
+                                            placeholder="Password" name="Password">
+                                    </div>
                                 </div>
                                 <div class="mt-3">
                                     <input type="submit"

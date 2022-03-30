@@ -10,7 +10,7 @@ if ($_REQUEST['action'] == 'fetch_stock') {
     ## Custom Filtering
     $initial_date = $_REQUEST['initial_date'];
     $final_date = $_REQUEST['final_date'];
-    $Category_Name = $_REQUEST['Category_Name'];
+    $Stock_Name = $_REQUEST['Stock_Name'];
 
     if (!empty($initial_date) && !empty($final_date)) {
         $date_range = " AND Stock_Date BETWEEN '" . $initial_date . "' AND '" . $final_date . "' ";
@@ -18,15 +18,15 @@ if ($_REQUEST['action'] == 'fetch_stock') {
         $date_range = "";
     }
 
-    if ($Category_Name != '') {
-        $Category_Name = " AND Category_Name = '$Category_Name' ";
+    if ($Stock_Name != '') {
+        $Stock_Name = " AND Stock_Name = '$Stock_Name' ";
     }
 
     ## Call Query
     $columns = 's.Stock_Id, s.Stock_Name, s.Quantity_In, s.Buying_Price, s.Selling_Price, s.Stock_Date,
 	c.Category_Name ';
     $table = ' stock s JOIN category c ON s.Category_id = c.Category_id ';
-    $where = " WHERE s.Stock_Name!='' " . $date_range . $Category_Name;
+    $where = " WHERE s.Stock_Name!='' " . $date_range . $Stock_Name;
 
     $columns_order = array(
         0 => 'Stock_Id',

@@ -501,13 +501,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // SCRIPT FOR FILTER BUTTON
         $("#filter").click(function() {
-            var initial_date = $("#initial_date").val();
-            var final_date = $("#final_date").val();
-            var Leave_Status = $("#Leave_Status").val();
+            var initial_date = $("#start_date").val();
+            var final_date = $("#end_date").val();
 
             if (initial_date == '' && final_date == '') {
                 $('#records').DataTable().destroy();
-                load_data("", "", Leave_Status); // filter immortalize only
+                load_data("", ""); // filter immortalize only
             } else {
                 var date1 = new Date(initial_date);
                 var date2 = new Date(final_date);
@@ -524,7 +523,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     } else {
                         $("#error_log").html("");
                         $('#records').DataTable().destroy();
-                        load_data(initial_date, final_date, Leave_Status);
+                        load_data(initial_date, final_date);
                     }
                 }
             }
