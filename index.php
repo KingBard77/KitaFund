@@ -4,133 +4,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BurgerByte</title>
-    <!-- Custom CSS Link -->
-    <link rel="stylesheet" href="css/index/style2.css">
-    <!-- FontAwesome CSS Link -->
+    <title>
+        Fashion
+    </title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap"
+        rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/index/style.css">
-    <!-- Bootstrap CSS Link-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-    <link rel="shortcut icon" href="Images/Icon.png" />
 </head>
-<style>
-
-</style>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-md py-5">
-            <a class="navbar-brand" href="#">
-                <h4>BURGERBYTE</h4>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto menu">
-                    <li class="nav-item active ml-3">
-                        <a class="nav-link text-white font-weight-bold" href="#">Burger</a>
-                    </li>
-                    <li class="nav-item ml-3">
-                        <a class="nav-link text-white font-weight-bold" href="#">Crispy</a>
-                    </li>
-                    <li class="nav-item ml-3">
-                        <a class="nav-link text-white font-weight-bold" href="#">Oblong</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto top-links">
-                    <li class="nav-item mr-3 font-weight-lighter">
-                        <a class="nav-link text-white" href="#"><i class="fas fa-search"></i></a>
-                    </li>
-                    <li class="nav-item mr-3 font-weight-lighter">
-                        <a class="nav-link text-white" href="Adminstrator/Login_Owner.php"><i
-                                class="far fa-user"></i></a>
-                    </li>
-                    <li class="nav-item font-weight-lighter">
-                        <a class="nav-link text-white" href="#"><i class="fas fa-calendar"></i></a>
-                    </li>
-                </ul>
+    <div class="container" style="background-image: url(./Images/Index/Background.jpg);">
+        <div class="nav">
+            <div class="menu" onclick="openNav()">
+                <div class="hamburger"></div>
             </div>
-        </nav>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 text-center mx-auto carousel-section">
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="item">
-                                    <h1 class="text-center text-white font-weight-bold img">Burger</h1>
-                                    <img src="images/Index/carousel1.png" class="d-block w-75 img1" alt="burger">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="item">
-                                    <h1 class="text-center text-white font-weight-bold img">Crispy</h1>
-                                    <img src="images/Index/carousel2.png" class="d-block img2" alt="burger">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="item">
-                                    <h1 class="text-center text-white font-weight-bold img">Oblong</h1>
-                                    <img src="images/Index/carousel3.png" class="d-block img3" alt="burger">
-                                </div>
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
-                            data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
-                            data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+            <div class="logo">
+                BURGER.<span style="color: #e29f01;">BYTE</span>
+            </div>
+            <div class="cart">
+                <a class="nav-link text-white" href="Adminstrator/Login_Owner.php">
+                    <i class='bx bx-user'></i>
+                </a>
+            </div>
+        </div>
+        <div id="myNav" class="nav-overlay">
+            <div class="nav-overlay-content">
+                <a href="#">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Clients</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <div class="sci">
+            <i class='bx bxl-facebook-circle'></i>
+            <i class='bx bxl-instagram-alt'></i>
+            <i class='bx bxl-youtube'></i>
+            <i class='bx bxl-twitter'></i>
+        </div>
+        <div class="fashion">
+            BURGER.<span style="color: #e29f01;">BYTE</span>
+        </div>
+        <div class="copyright">
+            Copyright © 2022. BurgerByte <a href="" target="_blank">
+                All rights reserved.</a>
+        </div>
+        <div class="slide-control">
+            <i class='bx bxs-right-arrow'></i>
+        </div>
+        <div class="overlay"></div>
+        <div class="col-5" style="z-index: 97;">
+            <div class="info">
+                <!-- info 1 -->
+                <div class="product-info">
+                    <h1>
+                        CREA<span style="color: #e29f01;">TIVE</span>
+                    </h1>
+                    <h1>
+                        <span style="color: #e29f01;">DE</span>SIGN
+                    </h1>
+                    <span>
+                        Collection 2020
+                    </span>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt maiores corrupti vel ut
+                        veritatis minus excepturi odio? Earum at, nihil non eaque consequuntur repudiandae tenetur
+                        cumque tempora nulla! Commodi, distinctio! Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Autem inventore
+                    </p>
+                    <button>
+                        Shop now
+                    </button>
+                </div>
+                <!-- end info 1 -->
+                <!-- info 2 -->
+                <div class="product-info">
+                    <h1>
+                        <span style="color: #e29f01;">passion</span>nate
+                    </h1>
+                    <h1>
+                        pur<span style="color: #e29f01;">suit</span>
+                    </h1>
+                    <span>
+                        Collection 2020
+                    </span>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt maiores corrupti vel ut
+                        veritatis minus excepturi odio? Earum at, nihil non eaque consequuntur repudiandae tenetur
+                        cumque tempora nulla! Commodi, distinctio! Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Autem inventore explicabo dolores natus amet fugiat excepturi
+                        incidunt laboriosam numquam saepe. Eius, repudiandae. Animi molestiae corrupti iusto beatae
+                        aperiam ab doloremque.
+                    </p>
+                    <button>
+                        Shop now
+                    </button>
+                </div>
+                <!-- end info 2 -->
+                <!-- info 3 -->
+                <div class="product-info">
+                    <h1>
+                        <span style="color: #e29f01;">BE</span>
+                    </h1>
+                    <h1>
+                        <span style="color: #e29f01;">You</span>rself
+                    </h1>
+                    <span>
+                        Collection 2020
+                    </span>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt maiores corrupti vel ut
+                        veritatis minus excepturi odio? Earum at, nihil non eaque consequuntur repudiandae tenetur
+                        cumque tempora nulla! Commodi, distinctio! Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Autem inventore explicabo dolores natus amet fugiat excepturi
+                        incidunt laboriosam numquam saepe. Eius, repudiandae. Animi molestiae corrupti iusto beatae
+                        aperiam ab doloremque.
+                    </p>
+                    <button>
+                        Shop now
+                    </button>
+                </div>
+                <!-- end info 3 -->
+                <!-- info 4 -->
+                <div class="product-info">
+                    <h1>
+                        <span style="color: #e29f01;">GO</span>LD
+                    </h1>
+                    <h1>
+                        STY<span style="color: #e29f01;">LE</span>
+                    </h1>
+                    <span>
+                        Collection 2020
+                    </span>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt maiores corrupti vel ut
+                        veritatis minus excepturi odio? Earum at, nihil non eaque consequuntur repudiandae tenetur
+                        cumque tempora nulla! Commodi, distinctio! Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Autem inventore explicabo dolores natus amet fugiat excepturi
+                        incidunt laboriosam numquam saepe. Eius, repudiandae. Animi molestiae corrupti iusto beatae
+                        aperiam ab doloremque.
+                    </p>
+                    <button>
+                        Shop now
+                    </button>
+                </div>
+                <!-- end info 4 -->
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="slider">
+                <div class="slide">
+                    <div class="img-holder" style="background-image: url(./Images/Index/carousel1.png);"></div>
+                </div>
+                <div class="slide">
+                    <div class="img-holder" style="background-image: url(./Images/Index/carousel2.png)">
                     </div>
+                </div>
+                <div class="slide">
+                    <div class="img-holder" style="background-image: url(./Images/Index/carousel3.png)"></div>
+                </div>
+                <div class="slide">
+                    <div class="img-holder" style="background-image: url(./Images/Index/carousel4.png)"></div>
                 </div>
             </div>
         </div>
-        <div class="container maintext d-flex">
-            <div class="row d-flex align-items-end w-100">
-                <div class="col-lg-9 col-md-6 col-sm-12 social">
-                    <div class="social-icons">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fab fa-instagram"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 ml-auto p-0">
-                    <div class="text text-right">
-                        <h3 class="text-uppercase">OUR CLASSIC FOOD</h3>
-                        <p class="mt-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ex eaque, in eveniet
-                            recusandae nesciunt minima exercitationem!
-                        </p>
-                        <p>Share<i class="fas fa-share-alt"></i></p>
-                        <p><span>EN |</span> SP | FR</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--JQuery, Popper Js, Bootstrap 4 Js -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </div>
 
-        <!--Fontawesome js link -->
-        <script src="css/index/all.js"></script>
+    <script src="css/index/main.js"></script>
 </body>
 
 </html>
