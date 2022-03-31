@@ -23,6 +23,7 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="Images/Icon.png">
 
+    <script src="https://code.iconify.design/2/2.2.0/iconify.min.js"></script>
 </head>
 
 <body>
@@ -35,17 +36,14 @@
                 BURGER.<span style="color: #e29f01;">BYTE</span>
             </div>
             <div class="cart">
-                <a class="nav-link text-white" href="Adminstrator/Login_Owner.php">
-                    <i class='bx bx-user'></i>
+                <a class="nav-link text-white" href="index.php">
+                    <span class="iconify" data-icon="majesticons:burger-line"></span>
                 </a>
             </div>
         </div>
         <div id="myNav" class="nav-overlay">
             <div class="nav-overlay-content">
-                <a href="#">Shop</a>
-                <a href="#">About</a>
                 <a href="#">Services</a>
-                <a href="#">Clients</a>
                 <a href="#">Contact</a>
             </div>
         </div>
@@ -107,7 +105,7 @@
                     </p>
                     <button>
                         <a href="Adminstrator/Login_Owner.php" style="text-decoration: none" target="_blank">
-                            Owner Login
+                            <span style="color: #e29f01;">Login</span>
                         </a>
                     </button>
                 </div>
@@ -130,7 +128,7 @@
                     </p>
                     <button>
                         <a href="Employee/Login_Employee.php" style="text-decoration: none" target="_blank">
-                            Employee Login
+                            <span style="color: #e29f01;">Login</span>
                         </a>
                     </button>
                 </div>
@@ -138,10 +136,10 @@
                 <!-- info 4 -->
                 <div class="product-info">
                     <h1>
-                        <span style="color: #e29f01;">GO</span>LD
+                        <span style="color: #e29f01;">ABO</span>UT
                     </h1>
                     <h1>
-                        STY<span style="color: #e29f01;">LE</span>
+                        U<span style="color: #e29f01;">S</span>
                     </h1>
                     <span>
                         Collection 2020
@@ -155,9 +153,6 @@
                         benefits in preventing excess stock, wrong calculation of total sales, and multiple salaries per
                         day.
                     </p>
-                    <button><a href="Login_Onwer.php"></a>
-                        Shop now
-                    </button>
                 </div>
                 <!-- end info 4 -->
             </div>
