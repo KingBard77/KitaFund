@@ -55,7 +55,7 @@ if (mysqli_num_rows($result) == 1) { // Valid user ID, show the form.
     <!-- inject:css -->
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../Images/Icon.png" />
+    <link rel="shortcut icon" href="../Images/Icon.png">
 </head>
 
 <body>

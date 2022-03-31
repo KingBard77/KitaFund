@@ -5,14 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Fashion
+        BurgerByte
     </title>
+
+    <!-- Plugin fonts for this page -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap"
         rel="stylesheet">
+    <!-- End plugin fonts for this page -->
+
+    <!-- Plugin css for this page -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/index/style.css">
+    <!-- End plugin css for this page -->
+
+    <!-- endinject -->
+    <link rel="shortcut icon" href="Images/Icon.png">
+
 </head>
 
 <body>
@@ -61,70 +71,67 @@
                 <!-- info 1 -->
                 <div class="product-info">
                     <h1>
-                        CREA<span style="color: #e29f01;">TIVE</span>
+                        INVEN<span style="color: #e29f01;">TORY</span>
                     </h1>
                     <h1>
-                        <span style="color: #e29f01;">DE</span>SIGN
+                        <span style="color: #e29f01;">SYS</span>TEM
                     </h1>
                     <span>
-                        Collection 2020
+                        Collection 2022
                     </span>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt maiores corrupti vel ut
-                        veritatis minus excepturi odio? Earum at, nihil non eaque consequuntur repudiandae tenetur
-                        cumque tempora nulla! Commodi, distinctio! Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Autem inventore
+                        BurgerByte is one of the businesses that operate on Food Street at Seri Iskandar, Perak.
+                        BurgerByte serves different types of menu Burger such as Meat, Chicken, Beef, and others,
+                        including Crispy Chicken Burger with top demand.
+                        This system is
+                        focusing on both user Owners & Employees to manage the daily business activities to maintain
+                        future growth.
                     </p>
-                    <button>
-                        Shop now
-                    </button>
                 </div>
                 <!-- end info 1 -->
                 <!-- info 2 -->
                 <div class="product-info">
                     <h1>
-                        <span style="color: #e29f01;">passion</span>nate
+                        <span style="color: #e29f01;">OWN</span>ER
                     </h1>
                     <h1>
-                        pur<span style="color: #e29f01;">suit</span>
+                        SI<span style="color: #e29f01;">DE</span>
                     </h1>
                     <span>
-                        Collection 2020
+                        Owner Side
                     </span>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt maiores corrupti vel ut
-                        veritatis minus excepturi odio? Earum at, nihil non eaque consequuntur repudiandae tenetur
-                        cumque tempora nulla! Commodi, distinctio! Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Autem inventore explicabo dolores natus amet fugiat excepturi
-                        incidunt laboriosam numquam saepe. Eius, repudiandae. Animi molestiae corrupti iusto beatae
-                        aperiam ab doloremque.
+                        Only one owner login is supported at this time. This means if you're are an owner you have
+                        priority to access the BurgerByte Inventory Management System. You will need to enter a Username
+                        and Password to log in to the system.
                     </p>
                     <button>
-                        Shop now
+                        <a href="Adminstrator/Login_Owner.php" style="text-decoration: none" target="_blank">
+                            Owner Login
+                        </a>
                     </button>
                 </div>
                 <!-- end info 2 -->
                 <!-- info 3 -->
                 <div class="product-info">
                     <h1>
-                        <span style="color: #e29f01;">BE</span>
+                        <span style="color: #e29f01;">EMPL</span>OYEE
                     </h1>
                     <h1>
-                        <span style="color: #e29f01;">You</span>rself
+                        <span style="color: #e29f01;">SI</span>DE
                     </h1>
                     <span>
-                        Collection 2020
+                        Employee Side
                     </span>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt maiores corrupti vel ut
-                        veritatis minus excepturi odio? Earum at, nihil non eaque consequuntur repudiandae tenetur
-                        cumque tempora nulla! Commodi, distinctio! Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Autem inventore explicabo dolores natus amet fugiat excepturi
-                        incidunt laboriosam numquam saepe. Eius, repudiandae. Animi molestiae corrupti iusto beatae
-                        aperiam ab doloremque.
+                        Multiple employee logins are supported at this time. This means if you're are an employee you
+                        have priority to access the BurgerByte Inventory Management System.
+                        You will need to enter an Employee Code and Password to log in to the system.
                     </p>
                     <button>
-                        Shop now
+                        <a href="Employee/Login_Employee.php" style="text-decoration: none" target="_blank">
+                            Employee Login
+                        </a>
                     </button>
                 </div>
                 <!-- end info 3 -->
@@ -140,14 +147,15 @@
                         Collection 2020
                     </span>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt maiores corrupti vel ut
-                        veritatis minus excepturi odio? Earum at, nihil non eaque consequuntur repudiandae tenetur
-                        cumque tempora nulla! Commodi, distinctio! Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Autem inventore explicabo dolores natus amet fugiat excepturi
-                        incidunt laboriosam numquam saepe. Eius, repudiandae. Animi molestiae corrupti iusto beatae
-                        aperiam ab doloremque.
+                        Do you love a juicy burger? Even though hamburgers are a staple on the menu of most fast-food
+                        restaurants, an occasional single-patty burger can be part of a nutritious diet.
+                        Currently, everyday employee must submit the list of ordering raw materials required, calculate
+                        the total daily sales, and then submit it to the owner in the paper.
+                        In the future, the system is focused on employees and owners, which could give the business many
+                        benefits in preventing excess stock, wrong calculation of total sales, and multiple salaries per
+                        day.
                     </p>
-                    <button>
+                    <button><a href="Login_Onwer.php"></a>
                         Shop now
                     </button>
                 </div>
@@ -173,7 +181,9 @@
         </div>
     </div>
 
+    <!-- Custom js for this page-->
     <script src="css/index/main.js"></script>
+    <!-- End custom js for this page-->
 </body>
 
 </html>
