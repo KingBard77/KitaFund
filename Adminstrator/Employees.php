@@ -165,8 +165,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </select>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <div class="col-sm-12" align="right">
+                                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                    <button class="btn btn-light">Cancel</button>
+                                </div>
                             </form>
                         </div>
                     </div>

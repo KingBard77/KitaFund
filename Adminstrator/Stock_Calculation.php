@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Daily Stock Sales Calculation</h4>
+                        <h4 class="card-title">Daily Stock Subtotal Calculation</h4>
                         <p class="card-description">
                             Insert New Stock Calculation
                         </p>
@@ -215,7 +215,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Quantity</label>
                                     <div class="col-sm-9">
                                         <input type="number" class="form-control" step="0.01" id="Quantity_Balance"
-                                            placeholder="Insert Balance - Stock Quantity Eg:-25" name="Quantity_Balance">
+                                            placeholder="Insert Balance - Stock Quantity Eg:-25"
+                                            name="Quantity_Balance">
                                     </div>
                                 </div>
 
@@ -228,12 +229,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text bg-primary text-white">RM</span>
                                             </div>
-                                            <!--<select name="Selling_Price" id="Selling_Price" class="form-control"
-                                                onchange="FetchCity(this.value)" required>
-                                                <option>---- Select Selling Price ----</option>
-                                            </select>-->
                                             <input type="text" class="form-control" step="0.01" id="Selling_Price"
-                                            placeholder="Enter Stock Selling Price Price Eg:- RM 1.20" name="Selling_Price">
+                                                placeholder="Enter Stock Selling Price Price Eg:- RM 1.20"
+                                                name="Selling_Price">
                                         </div>
                                     </div>
                                 </div>
@@ -258,15 +256,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Sales
                                         Date</label>
                                     <div class="col-sm-9">
-                                        <input type="date" class="form-control" 
-                                        value="<?php echo date('Y-m-d'); ?>" name="Sales_Date">
+                                        <input type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>"
+                                            name="Sales_Date">
                                     </div>
                                 </div>
-
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <div class="col-sm-12" align="right">
+                                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                    <button type="reset" class="btn btn-light" name="reset">Reset</button>
+                                </div>
                             </form>
                         </div>
+                        <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                            To retrieve the In-Stock and Selling Price for each stock on a certain day, please select an
+                            <b>Stock
+                                Name.</b></p>
                     </div>
                 </div>
             </div>
@@ -276,9 +279,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class='col-lg-12 grid-margin stretch-card'>
                 <div class='card'>
                     <div class='card-body'>
-                        <h4 class='card-title'>Daily Stock Sales Calculation</h4>
+                        <h4 class='card-title'>Daily Stock Subtotal Calculation</h4>
                         <p class='card-description'>
-                            Total Daily Sales of each Daily Stock
+                            Total Daily Subtotal of each Stock
                         </p>
                         <p class='card-description'>
                         <p>There are currently <?php echo" <b> $sales_num </b>";?>Subtotal Sales of each Stock</p>
@@ -315,14 +318,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>STOCK NAME</th>
-                                                        <th class="text-center">IN STOCK</th>
-                                                        <th class="text-center">OPEN</th>
-                                                        <th class="text-center">CLOSE</th>
-                                                        <th class="text-center">QUANITITY</th>
-                                                        <th>SELLING PRICE (RM)</th>
-                                                        <th>SUBTOTAL (RM) </th>
-                                                        <th class="text-center">SALES DATE </th>
+                                                        <th>Stock Name</th>
+                                                        <th class="text-center">In Stock</th>
+                                                        <th class="text-center">Open</th>
+                                                        <th class="text-center">Close</th>
+                                                        <th class="text-center">Quantity</th>
+                                                        <th>Selling Price (RM)</th>
+                                                        <th>SubTotal (RM) </th>
+                                                        <th class="text-center">Sales Date</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
@@ -393,7 +396,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     Stock_Id: id
                 },
                 success: function(data) {
-                    if(data.success){
+                    if (data.success) {
                         $('#Selling_Price').val(data.selling_price);
                         $('#Quantity_In').val(data.quantity_in);
                         // alert('abc');

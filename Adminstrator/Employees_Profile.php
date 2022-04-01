@@ -293,8 +293,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">Last
                                             Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" placeholder="Employee Last Name Eg:-Azman"
-                                                name="Last_Name">
+                                            <input type="text" class="form-control"
+                                                placeholder="Employee Last Name Eg:-Azman" name="Last_Name">
                                         </div>
                                     </div>
                                 </div>
@@ -316,8 +316,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Password</label>
                                         <div class="col-sm-9">
-                                            <input type="password" class="form-control" placeholder="Employee Password Eg:-251251"
-                                                name="Password">
+                                            <input type="password" class="form-control"
+                                                placeholder="Employee Password Eg:-251251" name="Password">
                                         </div>
                                     </div>
                                 </div>
@@ -551,9 +551,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </div>
                                 </div>
                             </div>
-
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <button class="btn btn-light">Cancel</button>
+                            <div class="col-sm-12" align="right">
+                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="reset" class="btn btn-light" name="reset">Reset</button>
+                            </div>
                         </form>
                     </div>
                 </div>

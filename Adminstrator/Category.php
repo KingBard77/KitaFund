@@ -123,11 +123,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <form action="Category.php" method="post">
                             <div class="form-group">
                                 <label for="exampleInputName1">Category</label>
-                                <input type="text" class="form-control" placeholder="Your Category Stock"
+                                <input type="text" class="form-control" placeholder="Enter Category Name Eg:-Buns"
                                     name="Category_Name">
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2" name="submit">Add Category</button>
-                            <button type="reset" class="btn btn-light">Reset</button>
+                            <div class="col-sm-12" align="right">
+                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="reset" class="btn btn-light" name="reset">Reset</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -145,12 +147,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </p>
 
                         <div class="table-responsive">
-                            <table class="table table-hover" id="records" style="width:100%">
+                            <table class="display expandable-table" id="records" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Categories</th>
-                                        <th class="text-center">Actions</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -384,7 +386,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 return null;
             }
         })
-        
+
         // SCRIPT FOR REFRESH BUTTON
         function refreshPage() {
             window.location.reload();
@@ -408,8 +410,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="mb-3 row">
                                 <label for="nameField" class="col-md-3 form-label">Category Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="CategoryNameField" 
-                                    placeholder="Enter Category Name Eg:-Sausage" name="Category_Name">
+                                    <input type="text" class="form-control" id="CategoryNameField"
+                                        placeholder="Enter Category Name Eg:-Sausage" name="Category_Name">
                                 </div>
                             </div>
                             <div class="text-center">

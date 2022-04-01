@@ -339,7 +339,8 @@ echo '';?>
                                                                     <span class="input-group-text">@</span>
                                                                 </div>
                                                                 <input type="text" class="form-control" name="Username"
-                                                                placeholder="Employee Username Eg:-Azman" value="<?php echo $row[3]; ?> " />
+                                                                    placeholder="Employee Username Eg:-Azman"
+                                                                    value="<?php echo $row[3]; ?> " />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -354,7 +355,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">First Name</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="First_Name"
-                                                            placeholder="Employee First Name Eg:-Muhammad" value="<?php echo $row[4]; ?> " />
+                                                                placeholder="Employee First Name Eg:-Muhammad"
+                                                                value="<?php echo $row[4]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -364,7 +366,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Last Name</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="Last_Name"
-                                                            placeholder="Employee Last Name Eg:-Azman" value="<?php echo $row[5]; ?> " />
+                                                                placeholder="Employee Last Name Eg:-Azman"
+                                                                value="<?php echo $row[5]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -377,7 +380,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Email</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="Email"
-                                                            placeholder="Employee Email Eg:-Azman@BurgerByte" value="<?php echo $row[6]; ?> " />
+                                                                placeholder="Employee Email Eg:-Azman@BurgerByte"
+                                                                value="<?php echo $row[6]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -387,7 +391,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Password</label>
                                                         <div class="col-sm-9">
                                                             <input type="password" class="form-control" name="Password"
-                                                            placeholder="Employee Password Eg:-251251" value="<?php echo $row[7]; ?> " />
+                                                                placeholder="Employee Password Eg:-251251"
+                                                                value="<?php echo $row[7]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -400,7 +405,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Phone Number</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="Phone"
-                                                            placeholder="Employee Number Phone Eg:-019-5139569" value="<?php echo $row[8]; ?> " />
+                                                                placeholder="Employee Number Phone Eg:-019-5139569"
+                                                                value="<?php echo $row[8]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -444,8 +450,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Street Address </label>
                                                         <div class="col-sm-12">
                                                             <input type="text" class="form-control" name="Address"
-                                                            placeholder="Employee Street Address Eg:-Persiaran Kusmawangi, Taman Wangi Selalu"    
-                                                            value="<?php echo $row[10]; ?> " />
+                                                                placeholder="Employee Street Address Eg:-Persiaran Kusmawangi, Taman Wangi Selalu"
+                                                                value="<?php echo $row[10]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -478,8 +484,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Postcode</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="Postal_Code"
-                                                            placeholder="Employee Postal Code Eg:-32400"    
-                                                            value="<?php echo $row[13]; ?> " />
+                                                                placeholder="Employee Postal Code Eg:-32400"
+                                                                value="<?php echo $row[13]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -492,8 +498,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">City</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="City"
-                                                            placeholder="Employee City Eg:-Perak"    
-                                                            value="<?php echo $row[11]; ?> " />
+                                                                placeholder="Employee City Eg:-Perak"
+                                                                value="<?php echo $row[11]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -503,8 +509,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Country</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="Country"
-                                                            placeholder="Employee Country Eg:-Malaysia"
-                                                            value="<?php echo $row[14]; ?> " />
+                                                                placeholder="Employee Country Eg:-Malaysia"
+                                                                value="<?php echo $row[14]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -571,8 +577,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Identity No</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="Identity_No"
-                                                            placeholder="Employee Identity Number Eg:-987501015522"
-                                                            value="<?php echo $row[18]; ?> " />
+                                                                placeholder="Employee Identity Number Eg:-987501015522"
+                                                                value="<?php echo $row[18]; ?> " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -627,8 +633,10 @@ echo '';?>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                            <button class="btn btn-light">Cancel</button>
+                                            <div class="col-sm-12" align="right">
+                                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                                <button type="reset" class="btn btn-light" name="reset">Reset</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

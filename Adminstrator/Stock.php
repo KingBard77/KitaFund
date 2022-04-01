@@ -156,8 +156,8 @@ $stock_num = mysqli_num_rows($stock);
                                     <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Stock
                                         Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" placeholder="Enter Stock Name"
-                                            name="Stock_Name">
+                                        <input type="text" class="form-control"
+                                            placeholder="Enter Stock Name Eg:-Burger Buns" name="Stock_Name">
                                     </div>
                                 </div>
 
@@ -221,11 +221,17 @@ $stock_num = mysqli_num_rows($stock);
                                         </div>
                                     </div>
                                 </div>
-
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <div class="col-sm-12" align="right">
+                                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                    <button type="reset" class="btn btn-light" name="reset">Reset</button>
+                                </div>
                             </form>
                         </div>
+                        <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                            Please define Stock Name that related towards
+                            <b>Category
+                                Name.</b>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -634,8 +640,8 @@ $stock_num = mysqli_num_rows($stock);
                             <div class="mb-3 row">
                                 <label for="nameField" class="col-md-3 form-label">Stock Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="StockNameField" 
-                                    placeholder="Enter Stock Name" name="Stock_Name">
+                                    <input type="text" class="form-control" id="StockNameField"
+                                        placeholder="Enter Stock Name" name="Stock_Name">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -663,7 +669,7 @@ $stock_num = mysqli_num_rows($stock);
                                 <label for="nameField" class="col-md-3 form-label">Quantity In</label>
                                 <div class="col-md-9">
                                     <input type="number" class="form-control" id="QuantityInField" name="Quantity_In"
-                                    placeholder="Insert In - Stock Quantity Eg:-25">
+                                        placeholder="Insert In - Stock Quantity Eg:-25">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -674,7 +680,7 @@ $stock_num = mysqli_num_rows($stock);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="BuyingPriceField" step="0.01"
-                                        placeholder="Enter Buying Price Eg:- RM 1.20" name="Buying_Price">
+                                            placeholder="Enter Buying Price Eg:- RM 1.20" name="Buying_Price">
                                     </div>
                                 </div>
                             </div>
@@ -686,7 +692,7 @@ $stock_num = mysqli_num_rows($stock);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="SellingPriceField" step="0.01"
-                                        placeholder="Enter Selling Price Eg:- RM 1.20"name="Selling_Price">
+                                            placeholder="Enter Selling Price Eg:- RM 1.20" name="Selling_Price">
                                     </div>
                                 </div>
                             </div>

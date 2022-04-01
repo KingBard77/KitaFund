@@ -164,8 +164,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <form action="Invoice_Calculation.php" method="POST" class="">
                                 <div class="row mt-3">
                                     <div class="col-md-12">
-                                    <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
-                                        To retrieve the SubTotal for all stock on a certain day, please select an <b>Invoice Date.</b></p>
+                                        <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                                            To retrieve the SubTotal for all stock on a certain day, please select an
+                                            <b>Invoice Date.</b>
+                                        </p>
                                         <!-- Table -->
                                         <div class="table-responsive">
                                             <table class="table table-hover" style="width:100%" style="width:100%">
@@ -235,7 +237,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="number" id="Sub_Total1" placeholder="Retrieve SubTotal from Quantity * RM 1.70"
+                                                                <input type="number" id="Sub_Total1"
+                                                                    placeholder="Retrieve SubTotal from Quantity * RM 1.70"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -260,7 +263,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="number" id="Sub_Total2" placeholder="Retrieve SubTotal from Quantity * RM 2.70"
+                                                                <input type="number" id="Sub_Total2"
+                                                                    placeholder="Retrieve SubTotal from Quantity * RM 2.70"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -275,7 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                 pieces</label></td>
                                                         <td align="center">
                                                             <div class="col-sm-9">
-                                                                <input type="number" id="qty3" 
+                                                                <input type="number" id="qty3"
                                                                     placeholder="Insert Reject Quantity Eg:- 5"
                                                                     class="form-control form-control-sm" />
                                                             </div>
@@ -286,7 +290,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="number" id="Sub_Total3" placeholder="Retrieve SubTotal from Quantity * RM 1.80"
+                                                                <input type="number" id="Sub_Total3"
+                                                                    placeholder="Retrieve SubTotal from Quantity * RM 1.80"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -311,7 +316,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="number" id="Sub_Total4" placeholder="Retrieve SubTotal from Quantity * RM 3.60"
+                                                                <input type="number" id="Sub_Total4"
+                                                                    placeholder="Retrieve SubTotal from Quantity * RM 3.60"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -335,7 +341,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="number" id="Sub_Total5" placeholder="Retrieve SubTotal from Quantity * RM 2.60"
+                                                                <input type="number" id="Sub_Total5"
+                                                                    placeholder="Retrieve SubTotal from Quantity * RM 2.60"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -359,7 +366,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="number" id="Sub_Total6" placeholder="Retrieve SubTotal from Quantity * RM 1.20"
+                                                                <input type="number" id="Sub_Total6"
+                                                                    placeholder="Retrieve SubTotal from Quantity * RM 1.20"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -384,7 +392,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="number" id="Sub_Total7" placeholder="Retrieve SubTotal from Quantity * RM 1.40"
+                                                                <input type="number" id="Sub_Total7"
+                                                                    placeholder="Retrieve SubTotal from Quantity * RM 1.40"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -410,7 +419,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="text" id="Sub_Total8" step="0.01" placeholder="Retrieve SubTotal from Staff Food"
+                                                                <input type="text" id="Sub_Total8" step="0.01"
+                                                                    placeholder="Retrieve SubTotal from Staff Food"
                                                                     placeholder="" class="form-control form-control-sm"
                                                                     disabled />
                                                             </div>
@@ -422,7 +432,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
                                                         <td align="right"><label class="col-sm-3 col-form-label">Sub
-                                                                Total 2 
+                                                                Total 2
                                                                 <b class='text-danger'>(-)</b></label></td>
                                                         <td align="center">
                                                             <div class="input-group">
@@ -430,7 +440,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="text" id="Total_2" placeholder="Retrieve SubTotal 2"
+                                                                <input type="text" id="Total_2"
+                                                                    placeholder="Retrieve SubTotal 2"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -448,7 +459,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="text" id="Total_3" placeholder="Retrieve Total from SubTotal 1 - SubTotal 2"
+                                                                <input type="text" id="Total_3"
+                                                                    placeholder="Retrieve Total from SubTotal 1 - SubTotal 2"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -478,7 +490,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                     <tr>
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
-                                                        <td align="right"><label class="col-sm-3 col-form-label">E - Wallet <b class='text-success'>(+)</b></label></td>
+                                                        <td align="right"><label class="col-sm-3 col-form-label">E -
+                                                                Wallet <b class='text-success'>(+)</b></label></td>
                                                         <td align="center">
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
@@ -571,7 +584,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <span
                                                                         class="input-group-text bg-primary text-white">RM</span>
                                                                 </div>
-                                                                <input type="number" id="GrandTotal" step="0.01" placeholder="Retrieve Profit / Shot from Total Sales - Total"
+                                                                <input type="number" id="GrandTotal" step="0.01"
+                                                                    placeholder="Retrieve Profit / Shot from Total Sales - Total"
                                                                     class="form-control form-control-sm" disabled />
                                                             </div>
                                                         </td>
@@ -579,14 +593,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
-                                        Every day each of stall will be going to get <b> RM 30.00 </b> as business start -up money. </p>
-                                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                        <button class="btn btn-light">Cancel</button>
+                                        <div class="col-sm-12" align="right">
+                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                            <button type="reset" class="btn btn-light" name="reset">Reset</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                        <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                            Every day each of stall will be going to get <b> RM 30.00 </b> as business start - up money.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -790,7 +807,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     },
                     {
                         "data": "Total_Sales"
-                    },                    
+                    },
                     {
                         "data": "Total_Shot"
                     },
@@ -1083,8 +1100,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
 
         var validate = function(e) {
-          var t = e.value;
-          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+            var t = e.value;
+            e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
         }
         </script>
 

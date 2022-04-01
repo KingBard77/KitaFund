@@ -151,11 +151,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <thead>
                                                     <thead>
                                                         <tr>
-                                                            <th>INVOICE DATE </th>
+                                                            <th>INCOME DATE </th>
                                                             <th>TOTAL SALES (RM)</th>
                                                             <th>NET EXPENSES (RM)</th>
                                                             <th class="text-center">NET INCOME (RM)</th>
-                                                            <th class="text-center">INCOME DATE</th>
                                                         </tr>
                                                     </thead>
                                                 </thead>
@@ -163,42 +162,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                     <!--========== INCOME ==========-->
                                                     <tr>
                                                         <td>
-                                                            <input type="date" id="Invoice_Date"
-                                                                value="<?php echo date('Y-m-d'); ?>" name="Invoice_Date"
+                                                            <input type="date" id="Income_Date"
+                                                                value="<?php echo date('Y-m-d'); ?>" name="Income_Date"
                                                                 class="form-control form-control-sm"
-                                                                onchange="FetchTotalInvoice(this.value) ; FetchNetExpenses(this.value)"  />
+                                                                onchange="FetchTotalInvoice(this.value) ; FetchNetExpenses(this.value)" />
                                                         </td>
                                                         <td>
-                                                        <input type="number" id="Total_Sales" name="Total_Sales" step="0.01"
-                                                            placeholder="Enter Total Sales Eg:- RM 1.20"
+                                                            <input type="number" id="Total_Sales" name="Total_Sales"
+                                                                step="0.01" placeholder="Enter Total Sales Eg:- RM 1.20"
                                                                 class="form-control form-control-sm" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" id="Net_Expenses" name="Net_Expenses" step="0.01"
+                                                            <input type="number" id="Net_Expenses" name="Net_Expenses"
+                                                                step="0.01"
                                                                 placeholder="Enter Net Expenses Eg:- RM 1.20"
                                                                 class="form-control form-control-sm" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" id="Net_Income" name="Net_Income" step="0.01"
-                                                                class="form-control form-control-sm" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="date" id="Income_Date"
-                                                                value="<?php echo date('Y-m-d'); ?>" name="Income_Date"
-                                                                class="form-control form-control-sm" />
+                                                            <input type="number" id="Net_Income" name="Net_Income"
+                                                                step="0.01" class="form-control form-control-sm" />
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-12" align="right">
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                            <button class="btn btn-light">Cancel</button>
+                                            <button type="reset" class="btn btn-light" name="reset">Reset</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                        <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                            To retrieve the Total Sales and Net Expenses for each sales on a certain day, please select
+                            an
+                            <b>Income
+                                Date.</b>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -218,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <div class="row">
                             <div class="col-md-12">
-                            <div class="row">
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="input-group mb-3">
                                             <input type="date" class="form-control" id="start_date"
@@ -245,9 +246,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <table class="display expandable-table" id="records" style="width:100%">
                                                 <thead>
                                                     <th>#</th>
-                                                    <th>NET EXPENSES (RM)</th>
-                                                    <th class="text-center">NET INCOME (RM)</th>
-                                                    <th class="text-center">INCOME DATE</th>
+                                                    <th>Net Expenses (RM)</th>
+                                                    <th class="text-center">Net Income (RM)</th>
+                                                    <th class="text-center">Income Date</th>
                                                     <th></th>
                                                 </thead>
                                             </table>
@@ -425,7 +426,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 '" class="btn btn-outline-danger btn-sm deleteBtn">Delete</a></td>';
                             var row = table.row("[id='" + trid + "']");
                             row.row("[id='" + trid + "']").data([id, Net_Expenses,
-                                Net_Income, Net_Income, 
+                                Net_Income, Net_Income,
                                 button
                             ]);
                             $('#exampleModal').modal('hide');
@@ -617,23 +618,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Net Expenses</label>
                                 <div class="col-md-9">
-                                <div class="input-group">
+                                    <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
-                                        <input type="number" class="form-control" id="NetExpensesField" 
-                                        placeholder="Enter Net Expenses Eg:- RM 1.20" name="Net_Expenses" step="0.01">
+                                        <input type="number" class="form-control" id="NetExpensesField"
+                                            placeholder="Enter Net Expenses Eg:- RM 1.20" name="Net_Expenses"
+                                            step="0.01">
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Net Income</label>
                                 <div class="col-md-9">
-                                <div class="input-group">
+                                    <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
-                                        <input type="number" class="form-control" id="NetIncomeField" name="Net_Income" step="0.01">
+                                        <input type="number" class="form-control" id="NetIncomeField" name="Net_Income"
+                                            step="0.01">
                                     </div>
                                 </div>
                             </div>
