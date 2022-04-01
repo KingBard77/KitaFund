@@ -647,8 +647,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="col-md-12">
                                         <!-- Table -->
                                         <div class="table-responsive">
-                                            <table class="display expandable-table" id="records" style="width:100%"
-                                                style="width:100%">
+                                            <table class="display expandable-table" id="records" style="width:100%">
                                                 <thead>
                                                     <th class="text-center">#</th>
                                                     <th>Total (RM)</th>

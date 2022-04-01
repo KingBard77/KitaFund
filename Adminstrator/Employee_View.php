@@ -79,7 +79,8 @@ if (mysqli_num_rows($employee) == 1) { // Valid user ID, show the form.
                                             </select>
                                         </div>
                                     </div>
-                                    <p class="w-75 mx-auto mb-3"><b>Hello!</b> My Name is <b><?php echo $row[3];?></b>. This is my
+                                    <p class="w-75 mx-auto mb-3"><b>Hello!</b> My Name is <b><?php echo $row[3];?></b>.
+                                        This is my
                                         profile page.
                                         You can see the progress I've made with your work and manage your projects or
                                         assigned tasks </p>
@@ -389,9 +390,11 @@ if (mysqli_num_rows($employee) == 1) { // Valid user ID, show the form.
                                                 </div>
                                             </div>
                                         </div>
-                                        <button onclick="window.print()" class="btn btn-primary mr-2"><i
-                                                class="ti-printer me-1"></i> Print</a></button>
-                                        <button onclick="goBack()" class="btn btn-light">Back</button>
+                                        <div class="col-sm-12" align="right">
+                                            <button onclick="window.print()" class="btn btn-primary mr-2"><i
+                                                    class="ti-printer me-1"></i> Print</a></button>
+                                            <button onclick="goBack()" class="btn btn-light">Back</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

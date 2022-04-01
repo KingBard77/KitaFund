@@ -378,8 +378,8 @@ $all_employee = mysqli_query($dbc, $sql);
             var Bank_Name = $('#AddBankNameField').val();
             var Commission_Status = $('#AddCommissionStatusField').val();
             var Commission_Message = $('#AddCommissionMessageField').val();
-            if (Employee_Code != '' && Account_No != '' && Bank_Name != '' 
-                && Commission_Message != '' &&Commission_Status != '') {
+            if (Employee_Code != '' && Account_No != '' && Bank_Name != '' &&
+                Commission_Message != '' && Commission_Status != '') {
                 $.ajax({
                     url: "../Database/Record/Commission/add_commission.php",
                     type: "post",
@@ -554,8 +554,13 @@ $all_employee = mysqli_query($dbc, $sql);
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Bank Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="BankNameField" placeholder="MayBank"
-                                        name="Bank_Name">
+                                    <select class="form-control" name="Bank_Name" id="BankNameField">
+                                        <option value="">- Please Select Bank Name -</option>
+                                        <option value=">Bank Islam">Bank Islam</option>
+                                        <option value="RHB Bank Berhad">RHB Bank Berhad</option>
+                                        <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                        <option value="Maybank">Maybank</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -605,8 +610,13 @@ $all_employee = mysqli_query($dbc, $sql);
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Bank Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="MayBank" id="AddBankNameField"
-                                        name="Bank_Name">
+                                    <select class="form-control" name="Bank_Name" id="AddBankNameField">
+                                        <option value="">- Please Select Bank Name -</option>
+                                        <option value=">Bank Islam">Bank Islam</option>
+                                        <option value="RHB Bank Berhad">RHB Bank Berhad</option>
+                                        <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                        <option value="Maybank">Maybank</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -622,7 +632,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                     <input type="textarea" class="form-control" placeholder="Save your money wisely"
                                         id="AddCommissionMessageField" name="Commission_Message">
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="text-center">
                                 <div class="wrapper text-center">
                                     <button class="btn btn-primary btn-icon-text"><i

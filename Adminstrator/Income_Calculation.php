@@ -180,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         </td>
                                                         <td>
                                                             <input type="number" id="Net_Income" name="Net_Income"
+                                                                placeholder="Enter Net Income Eg:- RM 1.20"
                                                                 step="0.01" class="form-control form-control-sm" />
                                                         </td>
                                                     </tr>

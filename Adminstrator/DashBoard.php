@@ -343,7 +343,7 @@ $employee_num = mysqli_num_rows($employee);
                                                                 <td class="text-muted"><?php echo $row["month"]; ?></td>
 
                                                                 <td class="text-muted">
-                                                                        RM <?php echo $row["Total_Shot"];?>
+                                                                    RM <?php echo $row["Total_Shot"];?>
                                                                 </td>
                                                                 <td>
                                                                     <?php
@@ -514,70 +514,75 @@ $employee_num = mysqli_num_rows($employee);
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title mb-0">Purchase Stock</p>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th>Owner Code</th>
-                                        <th class="text-center">Purchase Date</th>
-                                        <th class="text-center">Purchase Status</th>
-                                        <th class="text-center"></th>
-                                    </tr>
-                                </thead>
-                                <?php
-                                // Define the query:
-                                $query = "SELECT *
-                                FROM purchase
-                                INNER JOIN profile  
-                                ON profile.Profile_Id = purchase.Owner_Code  
-                                iNNER JOIN owner
-                                ON owner.Profile_Id = purchase.Owner_Code 
-                                ORDER BY  Purchase_Id ASC";
-                                $purchase = mysqli_query($dbc, $query);
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="pl-0  pb-2 border-bottom">Owner Code</th>
+                                                <th class="border-bottom pb-2 text-center">Purchase Date</th>
+                                                <th class="border-bottom pb-2 text-center">Purchase Status</th>
+                                                <th class="border-bottom pb-2 text-center"></th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        // Define the query:
+                                        $query = "SELECT *
+                                        FROM purchase
+                                        INNER JOIN profile  
+                                        ON profile.Profile_Id = purchase.Owner_Code  
+                                        iNNER JOIN owner
+                                        ON owner.Profile_Id = purchase.Owner_Code 
+                                        ORDER BY  Purchase_Id ASC";
+                                        $purchase = mysqli_query($dbc, $query);
 
-                                // Count the number of returned rows:
-                                $purchase_num = mysqli_num_rows($purchase);
-                                if(mysqli_num_rows($purchase) > 0)  
-                                {  
-                                    while($row = mysqli_fetch_array($purchase))  
-                                    { 
-                                ?>
-                                <tbody>
-                                    <tr>
-                                        <td><?php echo $row["Owner_Code"]; ?></td>
+                                        // Count the number of returned rows:
+                                        $purchase_num = mysqli_num_rows($purchase);
+                                        if(mysqli_num_rows($purchase) > 0)  
+                                        {  
+                                            while($row = mysqli_fetch_array($purchase))  
+                                            { 
+                                        ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?php echo $row["Owner_Code"]; ?></td>
 
-                                        <?php $time = strtotime($row["Purchase_Date"]);?>
-                                        <td>
-                                            <div class="col text-center">
-                                                <?php echo date(' d F, Y', $time) ?>
-                                            </div>
-                                        </td>
+                                                <?php $time = strtotime($row["Purchase_Date"]);?>
+                                                <td>
+                                                    <div class="col text-center">
+                                                        <?php echo date(' d F, Y', $time) ?>
+                                                    </div>
+                                                </td>
 
-                                        <td class="font-weight-medium">
-                                            <?php
-                                            $Status = '';
-                                            if($row["Purchase_Status"] == 'Pending'){
-                                                $Status ='<label class="badge badge-warning">Pending</label>';
-                                            }
-                                            if($row["Purchase_Status"] == 'Purchase'){
-                                                $Status ='<label class="badge badge-success">Purchase</label>';
-                                            }
-                                            ?>
-                                            <div class="text-center"><?php echo $Status ?></div>
-                                        </td>
-                                        <td>
-                                            <div class="col text-center">
-                                                <a href="Purchase.php" class="btn btn-outline-info btn-sm editbtn"><i
-                                                        class="bi bi-three-dots-vertical"></i>More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php  
-                                    }  
-                                }  
-                                ?>
-                                </tbody>
-                            </table>
+                                                <td class="font-weight-medium">
+                                                    <?php
+                                                    $Status = '';
+                                                    if($row["Purchase_Status"] == 'Pending'){
+                                                        $Status ='<label class="badge badge-warning">Pending</label>';
+                                                    }
+                                                    if($row["Purchase_Status"] == 'Purchase'){
+                                                        $Status ='<label class="badge badge-success">Purchase</label>';
+                                                    }
+                                                    ?>
+                                                    <div class="text-center"><?php echo $Status ?></div>
+                                                </td>
+                                                <td>
+                                                    <div class="col text-center">
+                                                        <a href="Purchase.php"
+                                                            class="btn btn-outline-info btn-sm editbtn"><i
+                                                                class="bi bi-three-dots-vertical"></i>More</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <?php  
+                                            }  
+                                        }  
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -654,51 +659,55 @@ $employee_num = mysqli_num_rows($employee);
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title mb-0">Stock In</p>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th class="pl-0  pb-2 border-bottom">Stock Name</th>
-                                        <th class="border-bottom pb-2 text-center">Categories</th>
-                                        <th class="border-bottom pb-2 text-center">Availability</th>
-                                    </tr>
-                                </thead>
-                                <?php
-                                // Define the query:
-                                $query = "Select *
-                                FROM stock s JOIN category c ON s.Category_id = c.Category_id 
-                                ORDER BY Stock_Id ASC";
-                                $category = mysqli_query($dbc, $query);
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="pl-0  pb-2 border-bottom">Stock Name</th>
+                                                <th class="border-bottom pb-2 text-center">Categories</th>
+                                                <th class="border-bottom pb-2 text-center">Availability</th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        // Define the query:
+                                        $query = "Select *
+                                        FROM stock s JOIN category c ON s.Category_id = c.Category_id 
+                                        ORDER BY Stock_Id ASC";
+                                        $category = mysqli_query($dbc, $query);
 
-                                // Count the number of returned rows:
-                                $category_num = mysqli_num_rows($category);
-                                if(mysqli_num_rows($category) > 0)  
-                                {  
-                                    while($row = mysqli_fetch_array($category))  
-                                    {  
-                                ?>
-                                <tbody>
-                                    <tr>
-                                        <td class="pl-0"><?php echo $row["Stock_Name"]; ?></td>
-                                        <td>
-                                            <p class="mb-0">
-                                            <div class="col text-center"><span class="font-weight-bold mr-2">
-                                                    <?php echo $row["Category_Name"]; ?></span>
-                                            </div>
-                                            </p>
-                                        </td>
-                                        <td class="text-muted">
-                                            <div class="col text-center">
-                                                <?php echo $row["Quantity_In"]; ?> pieces
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <?php  
-                                    }  
-                                }  
-                                ?>
-                            </table>
+                                        // Count the number of returned rows:
+                                        $category_num = mysqli_num_rows($category);
+                                        if(mysqli_num_rows($category) > 0)  
+                                        {  
+                                            while($row = mysqli_fetch_array($category))  
+                                            {  
+                                        ?>
+                                        <tbody>
+                                            <tr>
+                                                <td class="pl-0"><?php echo $row["Stock_Name"]; ?></td>
+                                                <td>
+                                                    <p class="mb-0">
+                                                    <div class="col text-center"><span class="font-weight-bold mr-2">
+                                                            <?php echo $row["Category_Name"]; ?></span>
+                                                    </div>
+                                                    </p>
+                                                </td>
+                                                <td class="text-muted">
+                                                    <div class="col text-center">
+                                                        <?php echo $row["Quantity_In"]; ?> pieces
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <?php  
+                                            }  
+                                        }  
+                                        ?>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -873,7 +882,7 @@ $employee_num = mysqli_num_rows($employee);
                                     <div>
                                         <p class="text-info mb-1"><?php echo $row["First_Name"]; ?></p>
                                         <p class="mb-0"><b><?php echo $row["Employee_Code"]; ?></b></p>
-                                        <small><?php echo $row["Phone"]; ?></small> |
+                                        <small><a href="https://wa.me/<?php echo $row['Phone'];?>" target="_blank"><?php echo $row["Phone"]; ?></a></small> |
                                         <small><a
                                                 href="mailto:'.strtolower<?php echo $row["Email"]; ?>"><?php echo $row["Email"]; ?></a></small>
                                     </div>

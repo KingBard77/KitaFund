@@ -83,12 +83,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <a class="btn btn-light" href="Employees.php"><i class="ti-home mr-2"></i>Back to Employee Page</a>                        
                         </div>
-                    </div>';
+                    </div>
+                </div>';
         } // End of if ($r) IF.
 
         mysqli_close($dbc); // Close the database connection.
         // Include the footer and quit the script:
-        include 'partials/Footer.html';
+        include '../partials/Footer.html';
         exit();
     } else { // Report the errors.
         echo '

@@ -101,8 +101,6 @@ $all_employee = mysqli_query($dbc, $sql);
                                                             <th></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -510,7 +508,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="BasicCommissionField" step="0.01"
-                                        placeholder="Enter Basic Paid Eg:-RM1.20"name="Basic_Commission">
+                                            placeholder="Enter Basic Paid Eg:-RM1.20" name="Basic_Commission">
                                     </div>
                                 </div>
                             </div>
@@ -522,7 +520,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" class="form-control" step="0.01"
-                                        placeholder="Enter Total Earn Eg:-RM1.20"id="EarningTotalField">
+                                            placeholder="Enter Total Earn Eg:-RM1.20" id="EarningTotalField">
                                     </div>
                                 </div>
                             </div>
@@ -534,7 +532,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" class="form-control" step="0.01"
-                                        placeholder="Enter Claiming Eg:-RM1.20" id="ClaimingField">
+                                            placeholder="Enter Claiming Eg:-RM1.20" id="ClaimingField">
                                     </div>
                                 </div>
                             </div>
@@ -546,7 +544,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="DeductionField" name="Deduction"
-                                        placeholder="Enter Deduction Eg:-RM1.20"step="0.01">
+                                            placeholder="Enter Deduction Eg:-RM1.20" step="0.01">
                                     </div>
                                 </div>
                             </div>
@@ -558,7 +556,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="BonusField" name="Bonus"
-                                        placeholder="Enter Bonus Eg:-RM1.20"step="0.01">
+                                            placeholder="Enter Bonus Eg:-RM1.20" step="0.01">
                                     </div>
                                 </div>
                             </div>
@@ -570,7 +568,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="NetCommissionField" step="0.01"
-                                        placeholder="Enter Net Total Eg:-RM1.20"name="Net_Commission">
+                                            placeholder="Enter Net Total Eg:-RM1.20" name="Net_Commission">
                                     </div>
                                 </div>
                             </div>
@@ -578,21 +576,26 @@ $all_employee = mysqli_query($dbc, $sql);
                                 <label class="col-sm-3 col-form-label">Account No</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="AccountNoField" name="Account_No"
-                                    placeholder="0000-0000-0000-0000">
+                                        placeholder="0000-0000-0000-0000">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Bank Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="BankNameField" 
-                                    placeholder="MayBank" name="Bank_Name">
+                                    <select class="form-control" name="Bank_Name" id="BankNameField">
+                                        <option value="">- Please Select Bank Name -</option>
+                                        <option value=">Bank Islam">Bank Islam</option>
+                                        <option value="RHB Bank Berhad">RHB Bank Berhad</option>
+                                        <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                        <option value="Maybank">Maybank</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Message</label>
                                 <div class="col-md-9">
                                     <input type="textarea" class="form-control" id="CommissionMessageField"
-                                    placeholder="Save your money wisely" name="Commission_Message">
+                                        placeholder="Save your money wisely" name="Commission_Message">
                                 </div>
                             </div>
                             <div class="text-center">
@@ -660,7 +663,8 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="AddBasicCommissionField"
-                                        placeholder="Enter Basic Paid Eg:-RM1.20"  step="0.01" name="Basic_Commission">
+                                            placeholder="Enter Basic Paid Eg:-RM1.20" step="0.01"
+                                            name="Basic_Commission">
                                     </div>
                                 </div>
                             </div>
@@ -672,7 +676,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="AddEarningTotalField" step="0.01"
-                                        placeholder="Enter Total Earn Eg:-RM1.20"  name="Earning_Total">
+                                            placeholder="Enter Total Earn Eg:-RM1.20" name="Earning_Total">
                                     </div>
                                 </div>
                             </div>
@@ -684,7 +688,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="AddClaimingField" name="Claiming"
-                                        placeholder="Enter Claiming Eg:-RM1.20"  step="0.01">
+                                            placeholder="Enter Claiming Eg:-RM1.20" step="0.01">
                                     </div>
                                 </div>
                             </div>
@@ -696,8 +700,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="AddDeductionField"
-                                            name="Deduction" placeholder="Enter Deduction Eg:-RM1.20" 
-                                            step="0.01">
+                                            name="Deduction" placeholder="Enter Deduction Eg:-RM1.20" step="0.01">
                                     </div>
                                 </div>
                             </div>
@@ -709,7 +712,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="AddBonusField" name="Bonus"
-                                        placeholder="Enter Bonus Eg:-RM1.20" step="0.01">
+                                            placeholder="Enter Bonus Eg:-RM1.20" step="0.01">
                                     </div>
                                 </div>
                             </div>
@@ -721,7 +724,7 @@ $all_employee = mysqli_query($dbc, $sql);
                                             <span class="input-group-text bg-primary text-white">RM</span>
                                         </div>
                                         <input type="number" class="form-control" id="AddNetCommissionField" step="0.01"
-                                        placeholder="Enter Net Total Eg:-RM1.20" name="Net_Commission">
+                                            placeholder="Enter Net Total Eg:-RM1.20" name="Net_Commission">
                                     </div>
                                 </div>
                             </div>
@@ -735,8 +738,13 @@ $all_employee = mysqli_query($dbc, $sql);
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Bank Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="MayBank" id="AddBankNameField"
-                                        name="Bank_Name">
+                                    <select class="form-control" name="Bank_Name" id="AddBankNameField">
+                                        <option value="">- Please Select Bank Name -</option>
+                                        <option value=">Bank Islam">Bank Islam</option>
+                                        <option value="RHB Bank Berhad">RHB Bank Berhad</option>
+                                        <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                        <option value="Maybank">Maybank</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">

@@ -65,7 +65,7 @@ echo ''?>
                             <div class="brand-logo">
                                 <img src="../Images/BurgerByte_Logo.png" alt="logo">
                             </div>
-                            <h4>Hello! let's get started</h4>
+                            <h4>Hello! Owner</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form class="pt-3" method="POST" action="../Adminstrator/Login_Owner.php">
                                 <div class="form-group">
@@ -110,7 +110,7 @@ echo ''?>
                                     </button>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
-                                    Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                                    Please Sign In before access Adminstrator Page</a>
                                 </div>
                             </form>
                         </div>

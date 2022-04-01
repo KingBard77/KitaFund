@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $name = $_FILES['file']['name'];
-    $target_dir = "Images/Employee_Image/";
+    $target_dir = "../Images/Employee_Image/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
 
     // Select file type
