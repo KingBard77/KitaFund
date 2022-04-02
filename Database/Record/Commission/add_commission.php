@@ -25,8 +25,8 @@ $Commission_Message = $_POST['Commission_Message'];
 $Commission_Date = $_POST['Commission_Date'];
 
 
-$sql = "INSERT INTO `comission` (`Account_No`, `Bank_Name`, `Commission_Message`, `Employee_Code`, `Commission_Status` )
-values ('$Account_No' , '$Bank_Name' , '$Commission_Message' , '$Employee_Code' , '$Commission_Status')";
+$sql = "INSERT INTO `comission` (`Commission_Message`, `Employee_Code`, `Commission_Status` )
+values ('$Commission_Message' , '$Employee_Code' , '$Commission_Status')";
 
 
 $query= mysqli_query($dbc,$sql);

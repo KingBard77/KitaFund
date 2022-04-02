@@ -89,7 +89,7 @@ $attendance_num = mysqli_num_rows($attendance);
                                                         <tr>
                                                             <th class="text-center">#</th>
                                                             <th>Employee Code</th>
-                                                            <th>Action Name</th>
+                                                            <th class="text-center">Action Name</th>
                                                             <th class="text-center">Attendance Time</th>
                                                             <th>Attendance Message</th>
                                                             <th></th>

@@ -12,7 +12,7 @@ include '../partials/Sidebar - Employee.php';
 
 // Define the query:
 $query = "SELECT c.Commission_Id, p.Image_Name, e.Employee_Code, c.Commission_Date, c.Basic_Commission, 
-c.Earning_Total, c.Claiming, Deduction, c.Bonus, c.Net_Commission, c.Account_No, c.Bank_Name, c.Commission_Message
+c.Earning_Total, c.Claiming, Deduction, c.Bonus, c.Net_Commission, p.Account_No, p.Bank_Name, c.Commission_Message
 FROM comission c, employee e, profile p
 WHERE c.Employee_Code = e.Profile_Id 
 AND c.Employee_Code = p.Profile_Id
@@ -95,14 +95,12 @@ $all_employee = mysqli_query($dbc, $sql);
                                                             <th>Employee Code</th>
                                                             <th class="text-center">Account No</th>
                                                             <th>Bank Name</th>
-                                                            <th>Commission Status</th>
+                                                            <th class="text-center">Commission Status</th>
                                                             <th>Commission Message </th>
                                                             <th class="text-center">Commission Date</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -548,18 +546,19 @@ $all_employee = mysqli_query($dbc, $sql);
                                 <label class="col-sm-3 col-form-label">Account No</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="AccountNoField" name="Account_No"
-                                        placeholder="0000-0000-0000-0000" minlength="19" maxlength="19">
+                                        placeholder="0000-0000-0000-0000" disabled>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Bank Name</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="Bank_Name" id="BankNameField">
+                                    <select class="form-control" name="Bank_Name" id="BankNameField" disabled>
                                         <option value="">- Please Select Bank Name -</option>
-                                        <option value=">Bank Islam">Bank Islam</option>
+                                        <option value="Bank Islam">Bank Islam</option>
                                         <option value="RHB Bank Berhad">RHB Bank Berhad</option>
                                         <option value="Public Bank Berhad">Public Bank Berhad</option>
                                         <option value="Maybank">Maybank</option>
+                                        <option value="CIMB Bank Berhad">CIMB Bank Berhad</option>
                                     </select>
                                 </div>
                             </div>
@@ -600,25 +599,58 @@ $all_employee = mysqli_query($dbc, $sql);
                                         name="Employee_Code" value="<?php echo $_SESSION['Employee_Code']?>" readonly>
                                 </div>
                             </div>
+                            <?php
+                            // Retrieve the user's information:
+                            $query = "SELECT *
+                            FROM employee e, profile p
+                            WHERE e.Employee_Code = '$id'
+                            AND e.Profile_Id = p.Profile_Id";
+                            $employee = mysqli_query($dbc, $query);
+
+                            if (mysqli_num_rows($employee) == 1) { // Valid user ID, show the form.
+
+                                // Get the user's information:
+                                $row = mysqli_fetch_array($employee, MYSQLI_NUM); //MYSQLI_ASSOC
+                                // Count the number of returned rows:
+                                $employee_num = mysqli_num_rows($employee);
+                                // Create the form:
+                                echo '';?>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Account No</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" placeholder="0000-0000-0000-0000"
-                                        id="AddAccountNoField" name="Account_No">
+                                        id="AddAccountNoField" name="Account_No" value="<?php echo $row[17]; ?> "
+                                        disabled>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Bank Name</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="Bank_Name" id="AddBankNameField">
-                                        <option value="">- Please Select Bank Name -</option>
-                                        <option value=">Bank Islam">Bank Islam</option>
-                                        <option value="RHB Bank Berhad">RHB Bank Berhad</option>
-                                        <option value="Public Bank Berhad">Public Bank Berhad</option>
-                                        <option value="Maybank">Maybank</option>
-                                    </select>
+                                    <input type="text" class="form-control" placeholder="0000-0000-0000-0000"
+                                        name="Bank_Name" id="AddBankNameField" value="<?php echo $row[18]; ?> "
+                                        disabled>
                                 </div>
                             </div>
+                            <?php
+                            } else { // Not a valid user ID.
+                                echo'
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Account No</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" placeholder="0000-0000-0000-0000"
+                                            id="AddAccountNoField" name="Account_No"  value="NO DATA" disabled>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Bank Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" placeholder="0000-0000-0000-0000"
+                                            name="Bank_Name" id="AddBankNameField" value="NO DATA" disabled>
+                                    </div>
+                                </div>';
+                            }
+                            mysqli_close($dbc);
+                            ?>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Status</label>
                                 <div class="col-md-9">

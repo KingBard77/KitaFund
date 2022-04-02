@@ -28,7 +28,7 @@ if($_REQUEST['action'] == 'fetch_commission'){
     ## Call Query 
     $columns = 'p.Profile_Id, e.Employee_Code, c.Commission_Id, c.Commission_Date, c.Commission_Status,
     c.Basic_Commission, c.Earning_Total, c.Claiming, c.Deduction, c.Bonus, c.Net_Commission, 
-    c.Account_No, c.Bank_Name, c.Commission_Message ';
+    p.Account_No, p.Bank_Name, c.Commission_Message ';
     $table = ' employee e JOIN profile p ON e.Profile_Id = p.Profile_Id 
                           JOIN comission c ON c.Employee_Code = e.Profile_Id';
     $where = " WHERE e.Employee_Code ='$emp_code' ".$date_range.$Commission_Status;
@@ -89,7 +89,7 @@ if($_REQUEST['action'] == 'fetch_commission'){
             $Status ='<label class="badge badge-danger">Unpaid</label>';
         }
 
-        $nestedData['Commission_Status'] = $Status;
+        $nestedData['Commission_Status'] = '<div class="col text-center">'.$Status.'</div>';
         $nestedData['Account_No']           = $row["Account_No"];
         $nestedData['Bank_Name']            = $row["Bank_Name"];
         $nestedData['Commission_Message']   = $row["Commission_Message"];

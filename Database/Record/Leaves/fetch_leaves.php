@@ -96,7 +96,7 @@ if($_REQUEST['action'] == 'fetch_leaves'){
         if($row["Leave_Status"] == 'Unapproved'){
             $Status ='<label class="badge badge-danger">Unapproved</label>';
         }
-        $nestedData['Leave_Status'] = $Status;
+        $nestedData['Leave_Status'] = '<div class="col text-center">'.$Status.'</div>';
             
 
         $time = strtotime($row["Apply_Date"]);

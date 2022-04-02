@@ -108,7 +108,7 @@
             <div class="collapse" id="faq">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="Tutorial.php"> How to Cook</a>
-                    <li class="nav-item"> <a class="nav-link" href="Ordering_Employee.php"> SOP</a>
+                    <li class="nav-item"> <a class="nav-link" href=""> SOP</a>
                 </ul>
             </div>
         </li>

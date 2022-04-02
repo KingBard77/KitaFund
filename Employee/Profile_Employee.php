@@ -95,6 +95,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $Country = mysqli_real_escape_string($dbc, trim($_POST['Country']));
     }
+    // Check for a Bank Name:
+    if (empty($_POST['Bank_Name'])) {
+        $errors[] = '<b style="color:black;">You forgot to enter your Bank Name.</b>';
+    } else {
+        $Bank_Name = mysqli_real_escape_string($dbc, trim($_POST['Bank_Name']));
+    }
+    // Check for a Account No:
+    if (empty($_POST['Account_No'])) {
+        $errors[] = '<b style="color:black;">You forgot to enter your Account No.</b>';
+    } else {
+        $Account_No = mysqli_real_escape_string($dbc, trim($_POST['Account_No']));
+    }
     // Check for a Merital Status:
     if (empty($_POST['Merital_Status'])) {
         $errors[] = 'You forgot to enter your Merital Status.';
@@ -147,8 +159,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $query = "UPDATE profile SET
                 Image_Name='$name', Username='$Username', First_Name='$First_Name', Last_Name='$Last_Name', 
                 Email='$Email', Password='$Password', Phone='$Phone', Gender='$Gender', DOB='$DOB', Address='$Address',
-                City='$City', State='$State', Postal_Code='$Postal_Code', Country='$Country', Merital_Status='$Merital_Status',
-                Nationality='$Nationality', Identity_No='$Identity_No', Typhoid='$Typhoid', Vaccination='$Vaccination'
+                City='$City', State='$State', Postal_Code='$Postal_Code', Country='$Country', Bank_Name='$Bank_Name', Account_No='$Account_No', 
+                Merital_Status='$Merital_Status', Nationality='$Nationality', Identity_No='$Identity_No', 
+                Typhoid='$Typhoid', Vaccination='$Vaccination'
                 WHERE Profile_Id=$Employee_Code LIMIT 1";
                 $result = mysqli_query($dbc, $query);
 
@@ -170,7 +183,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <a class="btn btn-light" href="Profile_Employee.php"><i class="ti-home mr-2"></i>Back to Profile Page</a>
                         </div>
-                    </div>';
+                    </div>
+                </div>';
         } else { // If it did not run OK.
             // Public message:
             echo '
@@ -231,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Retrieve the user's information:
 $query = "SELECT p.Profile_Id, p.Image_Name, e.Employee_Code, p.Username, p.First_Name, p.Last_Name, p.Email,
 p.Password, p.Phone, p.Gender, p.Address, p.City, p.State, p.Postal_Code, p.Country, p.DOB, p.Merital_Status,
-p.Nationality, p.Identity_No, p.Typhoid, p.Vaccination, p.Joining_Date
+p.Nationality, p.Identity_No, p.Typhoid, p.Vaccination, p.Joining_Date, p.Bank_Name, p.Account_No
 FROM employee e, profile p
 WHERE e.Employee_Code = '$id'
 AND e.Profile_Id = p.Profile_Id";
@@ -464,6 +478,7 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">State</label>
                                                         <div class="col-sm-9">
                                                             <select class="form-control" name="State">
+                                                                <option value="">---- Please Select State ----</option>
                                                                 <?php
                                                                 $states = array("Perlis", "Selangor", "Perak", "Pulau Pinang", "Melaka", "Johor", "Kedah", "Sabah", "Sarawak", "Kelantan", "Terengganu", "N.Sembilan");
                                                                     foreach ($states as $value) {
@@ -517,6 +532,42 @@ echo '';?>
                                             </div>
 
                                             <div class="row">
+                                                <!--========== Owner Account No ==========-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Account No</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" name="Account_No"
+                                                                placeholder="0000-0000-0000-0000"
+                                                                value="<?php echo $row[23]; ?> " />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--========== Owner Bank Name ==========-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Bank Name</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control" name="Bank_Name">
+                                                                <option value="">---- Please Select Bank Name ----</option>
+                                                                <?php
+                                                                $Bank_Name = array('Bank Islam', 'RHB Bank Berhad', 'Public Bank Berhad', 'Maybank', 'CIMB Bank Berhad');
+                                                                    foreach ($Bank_Name as $value) {
+                                                                        if ($row[22] == $value) { // creating sticky
+                                                                            echo "<option value='" . $row[22] . "' selected>" . $row[22] . "</option>";
+                                                                        } else {
+                                                                            echo "<option value=\"$value\">$value</option>\n";
+                                                                        }
+                                                                    }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
                                                 <!--========== Employee DOB ==========-->
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
@@ -527,12 +578,13 @@ echo '';?>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!--========== Employee  Nationality  ==========-->
+                                                <!--========== Employee Nationality  ==========-->
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label class="col-sm-3 col-form-label">Nationaility</label>
                                                         <div class="col-sm-9">
                                                             <select class="form-control" name="Nationality">
+                                                                <option value="">---- Please Select Nationaility ----</option>
                                                                 <?php
                                                                 $Nationality = array('Nationality', 'Non-Nationality');
                                                                     foreach ($Nationality as $value) {
@@ -557,6 +609,7 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Merital Status</label>
                                                         <div class="col-sm-9">
                                                             <select class="form-control" name="Merital_Status">
+                                                                <option value="">---- Please Select Merital Status ----</option>
                                                                 <?php
                                                                 $Merital_Status = array('Married', 'Single', 'Widowed', 'Dicvorced');
                                                                     foreach ($Merital_Status as $value) {
@@ -591,6 +644,7 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Vaccination</label>
                                                         <div class="col-sm-9">
                                                             <select class="form-control" name="Vaccination">
+                                                            <option value="">---- Please Select Vaccination ----</option>
                                                                 <?php
                                                                 $Vaccination = array('None', 'Partial Vaccination', 'Fully Vaccination');
                                                                     foreach ($Vaccination as $value) {
@@ -646,31 +700,28 @@ echo '';?>
                 </div>
             </div>
         </form>
-
-
-
         <?php
-} else { // Not a valid user ID.
-    echo'
-    <div class="main-panel">
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-md-12 grid-margin stretch-card">
-                    <div class="card-body">
-                        <div class="alert alert-danger" role="alert">
-                        <p class="alert-heading"><h1>My Profile</h1></p>
-                        <p><b>Error</b></p>
-                        <hr>
-                        <p class="mb-0">This page has been accessed in error <br />
-                        <b>Employee Profolio</b> are currently <b>NOT</b> registered.</p>
+        } else { // Not a valid user ID.
+            echo'
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card-body">
+                                <div class="alert alert-danger" role="alert">
+                                <p class="alert-heading"><h1>My Profile</h1></p>
+                                <p><b>Error</b></p>
+                                <hr>
+                                <p class="mb-0">This page has been accessed in error <br />
+                                <b>Employee Profolio</b> are currently <b>NOT</b> registered.</p>
+                            </div>
+                        <a class="btn btn-light" href="Dashboard.php"><i class="ti-home mr-2"></i>Back to Dashboard</a>                        
                     </div>
-                <a class="btn btn-light" href="Dashboard.php"><i class="ti-home mr-2"></i>Back to Dashboard</a>                        
-            </div>
-        </div>';
-}
+                </div>';
+        }
 
-mysqli_close($dbc);
-?>
+        mysqli_close($dbc);
+        ?>
 
         <!--========== INCLUDE FOOTER ==========-->
         <?php include '../partials/Footer.html';?>

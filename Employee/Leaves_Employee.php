@@ -94,7 +94,7 @@ $leave_num = mysqli_num_rows($leave);
                                                         <th class="text-center">From Date</th>
                                                         <th class="text-center">To Date</th>
                                                         <th>Leave Message</th>
-                                                        <th>Leave Status</th>
+                                                        <th class="text-center">Leave Status</th>
                                                         <th class="text-center">Apply Date</th>
                                                         <th></th>
                                                     </thead>
