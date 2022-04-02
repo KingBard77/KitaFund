@@ -11,8 +11,8 @@ include '../partials/SettingPanel.php';
 include '../partials/Sidebar - Owner.php';
 
 // Define the query:
-$query = "SELECT c.Commission_Id, p.Image_Name, e.Employee_Code, c.Commission_Date, c.Basic_Commission, 
-c.Earning_Total, c.Claiming, Deduction, c.Bonus, c.Net_Commission, c.Account_No, c.Bank_Name, c.Commission_Message
+$query = "SELECT c.Commission_Id, p.Image_Name, p.Account_No, p.Bank_Name, e.Employee_Code, c.Commission_Date, c.Basic_Commission, 
+c.Earning_Total, c.Claiming, Deduction, c.Bonus, c.Net_Commission,  c.Commission_Message
 FROM comission c, employee e, profile p
 WHERE c.Employee_Code = e.Profile_Id AND c.Employee_Code = p.Profile_Id
 ORDER BY c.Commission_Id ASC";
@@ -93,9 +93,9 @@ $all_employee = mysqli_query($dbc, $sql);
                                                     id="records" style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <th class="text-center">#</th>
+                                                            <th>#</th>
                                                             <th>Employee Code</th>
-                                                            <th>Commission Status</th>
+                                                            <th class="text-center">Commission Status</th>
                                                             <th>Commission Message </th>
                                                             <th class="text-center">Commission Date</th>
                                                             <th></th>
@@ -255,8 +255,6 @@ $all_employee = mysqli_query($dbc, $sql);
             e.preventDefault();
             //var tr = $(this).closest('tr');
             var Commission_Message = $('#CommissionMessageField').val();
-            var Bank_Name = $('#BankNameField').val();
-            var Account_No = $('#AccountNoField').val();
             var Net_Commission = $('#NetCommissionField').val();
             var Bonus = $('#BonusField').val();
             var Deduction = $('#DeductionField').val();
@@ -271,15 +269,12 @@ $all_employee = mysqli_query($dbc, $sql);
             if (Employee_Code != '' && Commission_Status != '' && Commission_Date != '' && Basic_Commission !=
                 '' &&
                 Earning_Total != '' && Claiming != '' && Deduction != '' && Bonus != '' && Net_Commission !=
-                '' &&
-                Account_No != '' && Bank_Name != '' && Commission_Message != '') {
+                '' && Commission_Message != '') {
                 $.ajax({
                     url: "../Database/Commission/update_commission.php",
                     type: "post",
                     data: {
                         Commission_Message: Commission_Message,
-                        Bank_Name: Bank_Name,
-                        Account_No: Account_No,
                         Net_Commission: Net_Commission,
                         Bonus: Bonus,
                         Deduction: Deduction,
@@ -304,8 +299,7 @@ $all_employee = mysqli_query($dbc, $sql);
                             row.row("[id='" + trid + "']").data([id, Employee_Code,
                                 Commission_Status,
                                 Commission_Date, Basic_Commission, Earning_Total,
-                                Claiming, Deduction, Bonus, Net_Commission, Account_No,
-                                Bank_Name, Commission_Message,
+                                Claiming, Deduction, Bonus, Net_Commission, Commission_Message,
                                 button
                             ]);
                             $('#exampleModal').modal('hide');
@@ -391,13 +385,10 @@ $all_employee = mysqli_query($dbc, $sql);
             var Deduction = $('#AddDeductionField').val();
             var Bonus = $('#AddBonusField').val();
             var Net_Commission = $('#AddNetCommissionField').val();
-            var Account_No = $('#AddAccountNoField').val();
-            var Bank_Name = $('#AddBankNameField').val();
             var Commission_Message = $('#AddCommissionMessageField').val();
             if (Employee_Code != '' && Commission_Status != '' && Basic_Commission != '' && Earning_Total !=
                 '' &&
-                Claiming != '' && Deduction != '' && Bonus != '' && Net_Commission != '' &&
-                Account_No != '' && Bank_Name != '' && Commission_Message != '') {
+                Claiming != '' && Deduction != '' && Bonus != '' && Net_Commission != '' && Commission_Message != '') {
                 $.ajax({
                     url: "../Database/Commission/add_commission.php",
                     type: "post",
@@ -410,8 +401,6 @@ $all_employee = mysqli_query($dbc, $sql);
                         Deduction: Deduction,
                         Bonus: Bonus,
                         Net_Commission: Net_Commission,
-                        Account_No: Account_No,
-                        Bank_Name: Bank_Name,
                         Commission_Message: Commission_Message
                     },
                     success: function(data) {
@@ -465,6 +454,27 @@ $all_employee = mysqli_query($dbc, $sql);
         // SCRIPT FOR REFRESH BUTTON
         function refreshPage() {
             window.location.reload();
+        }
+
+        // SCRIPT FOR FETCH STOCK SELLING PRICE
+        function FetchPayment(id) {
+            $('#AddAccountNoField').html('');
+            $.ajax({
+                type: 'post',
+                url: '../Database/Commission/payment_info.php',
+                dataType: "json",
+                data: {
+                    Profile_Id: id
+                },
+                success: function(data) {
+                    if (data.success) {
+                        $('#AddBankNameField').val(data.bank_name);
+                        $('#AddAccountNoField').val(data.account_no);
+                        // alert('abc');
+                    }
+                }
+
+            })
         }
         </script>
 
@@ -576,18 +586,19 @@ $all_employee = mysqli_query($dbc, $sql);
                                 <label class="col-sm-3 col-form-label">Account No</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="AccountNoField" name="Account_No"
-                                        placeholder="0000-0000-0000-0000">
+                                        placeholder="0000-0000-0000-0000" disabled>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Bank Name</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="Bank_Name" id="BankNameField">
+                                    <select class="form-control" name="Bank_Name" id="BankNameField" disabled>
                                         <option value="">- Please Select Bank Name -</option>
-                                        <option value=">Bank Islam">Bank Islam</option>
+                                        <option value="Bank Islam">Bank Islam</option>
                                         <option value="RHB Bank Berhad">RHB Bank Berhad</option>
                                         <option value="Public Bank Berhad">Public Bank Berhad</option>
                                         <option value="Maybank">Maybank</option>
+                                        <option value="CIMB Bank Berhad">CIMB Bank Berhad</option>
                                     </select>
                                 </div>
                             </div>
@@ -621,13 +632,21 @@ $all_employee = mysqli_query($dbc, $sql);
                         <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon"
                             data-bs-dismiss="modal" aria-label="Close"><i class="ti-home"></i></button>
                     </div>
+                    <div class="text-center">
+                    <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                            To retrieve the Bank Name & Account No for each employee, please select an
+                            <b>Employee
+                                Code.</b></p>
+                        </p>
+                    </div>
                     <div class="modal-body">
                         <form id="addUser" action="">
                             <div class="mb-3 row">
                                 <label for="nameField" class="col-sm-3 col-form-label">Employee Code</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" id="AddEmployeeCodeField" name="Employee_Code">
-                                        <option>---- Select Employee Code ----</option>
+                                    <select class="form-control" id="AddEmployeeCodeField" name="Employee_Code"
+                                        onchange="FetchPayment(this.value)" required>
+                                        <option>- Please Select Employee Code -</option>
                                         <?php
                                             $sql = "SELECT * FROM employee";
                                             $all_employee = mysqli_query($dbc, $sql);
@@ -732,18 +751,19 @@ $all_employee = mysqli_query($dbc, $sql);
                                 <label class="col-sm-3 col-form-label">Account No</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" placeholder="0000-0000-0000-0000"
-                                        id="AddAccountNoField" name="Account_No">
+                                        id="AddAccountNoField" name="Account_No" disabled>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Bank Name</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="Bank_Name" id="AddBankNameField">
+                                    <select class="form-control" name="Bank_Name" id="AddBankNameField" disabled>
                                         <option value="">- Please Select Bank Name -</option>
-                                        <option value=">Bank Islam">Bank Islam</option>
+                                        <option value="Bank Islam">Bank Islam</option>
                                         <option value="RHB Bank Berhad">RHB Bank Berhad</option>
                                         <option value="Public Bank Berhad">Public Bank Berhad</option>
                                         <option value="Maybank">Maybank</option>
+                                        <option value="CIMB Bank Berhad">CIMB Bank Berhad</option>
                                     </select>
                                 </div>
                             </div>
@@ -756,7 +776,7 @@ $all_employee = mysqli_query($dbc, $sql);
                             </div>
                             <div class="text-center">
                                 <div class="wrapper text-center">
-                                    <button class="btn btn-primary btn-icon-text" onClick="refreshPage()"><i
+                                    <button class="btn btn-primary btn-icon-text"><i
                                             class="ti-file btn-icon-prepend"></i>Submit</button>
                                     <button type="button" class="btn btn-inverse-secondary btn-fw"
                                         data-bs-dismiss="modal">Close</button>

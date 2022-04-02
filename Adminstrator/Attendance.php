@@ -86,9 +86,9 @@ $attendance_num = mysqli_num_rows($attendance);
                                                     style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <th class="text-center">#</th>
+                                                            <th>#</th>
                                                             <th>Employee Code</th>
-                                                            <th>Action Name</th>
+                                                            <th class="text-center">Action Name</th>
                                                             <th class="text-center">Attendance Time</th>
                                                             <th>Attendance Message</th>
                                                             <th></th>
@@ -456,13 +456,12 @@ $attendance_num = mysqli_num_rows($attendance);
                                     Message</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="AttendanceMessageField"
-                                    placeholder="Sorry for late"  name="Attendance_Message">
+                                        placeholder="Sorry for late" name="Attendance_Message">
                                 </div>
                             </div>
                             <div class="text-center">
                                 <div class="wrapper text-center">
-                                    <button class="btn btn-primary btn-icon-text"
-                                    onClick="refreshPage()"><i
+                                    <button class="btn btn-primary btn-icon-text" onClick="refreshPage()"><i
                                             class="ti-file btn-icon-prepend"></i>Submit</button>
                                     <button type="button" class="btn btn-inverse-secondary btn-fw"
                                         data-bs-dismiss="modal">Close</button>
@@ -489,6 +488,7 @@ $attendance_num = mysqli_num_rows($attendance);
                                 <label class="col-sm-3 col-form-label">Employee Code</label>
                                 <div class="col-md-9">
                                     <select class="form-control" id="AddEmployeeCodeField" name="Employee_Code">
+                                        <option>- Please Select Employee Code -</option>
                                         <?php
                                             $sql = "SELECT * FROM employee";
                                             $all_employee = mysqli_query($dbc, $sql);
@@ -522,13 +522,12 @@ $attendance_num = mysqli_num_rows($attendance);
                                     Message</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="AddAttendanceMessageField"
-                                    placeholder="Sorry for late" name="Attendance_Message">
+                                        placeholder="Sorry for late" name="Attendance_Message">
                                 </div>
                             </div>
                             <div class="text-center">
                                 <div class="wrapper text-center">
-                                    <button class="btn btn-primary btn-icon-text"
-                                    onClick="refreshPage()"><i
+                                    <button class="btn btn-primary btn-icon-text" onClick="refreshPage()"><i
                                             class="ti-file btn-icon-prepend"></i>Submit</button>
                                     <button type="button" class="btn btn-inverse-secondary btn-fw"
                                         data-bs-dismiss="modal">Close</button>

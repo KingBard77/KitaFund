@@ -882,7 +882,7 @@ $employee_num = mysqli_num_rows($employee);
                                     <div>
                                         <p class="text-info mb-1"><?php echo $row["First_Name"]; ?></p>
                                         <p class="mb-0"><b><?php echo $row["Employee_Code"]; ?></b></p>
-                                        <small><a href="https://wa.me/<?php echo $row['Phone'];?>" target="_blank"><?php echo $row["Phone"]; ?></a></small> |
+                                        <small><a href="https://wa.me/+6<?php echo $row['Phone'];?>" target="_blank"><?php echo $row["Phone"]; ?></a></small> |
                                         <small><a
                                                 href="mailto:'.strtolower<?php echo $row["Email"]; ?>"><?php echo $row["Email"]; ?></a></small>
                                     </div>

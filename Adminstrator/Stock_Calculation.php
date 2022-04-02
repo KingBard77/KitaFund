@@ -267,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </form>
                         </div>
                         <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
-                            To retrieve the In-Stock and Selling Price for each stock on a certain day, please select an
+                            To retrieve the In-Stock & Selling Price for each stock on a certain day, please select an
                             <b>Stock
                                 Name.</b></p>
                     </div>

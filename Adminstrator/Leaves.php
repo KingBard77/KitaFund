@@ -89,14 +89,14 @@ $leave_num = mysqli_num_rows($leave);
                                                 <table class="display expandable-table dt-responsive display nowrap"
                                                     id="records" style="width:100%">
                                                     <thead>
-                                                        <th class="text-center">#</th>
+                                                        <th>#</th>
                                                         <th>Employee Code</th>
                                                         <th>Leave Type</th>
                                                         <th class="text-center">From Date</th>
                                                         <th class="text-center">To Date</th>
                                                         <th>Leave Message</th>
                                                         <th>Owner Remark</th>
-                                                        <th>Leave Status</th>
+                                                        <th class="text-center">Leave Status</th>
                                                         <th class="text-center">Apply Date</th>
                                                         <th></th>
                                                     </thead>
@@ -503,14 +503,14 @@ $leave_num = mysqli_num_rows($leave);
                                 <label class="col-sm-3 col-form-label">Message</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="LeaveMessageField" name="Leave_Message"
-                                    placeholder="My sister had an accident">
+                                        placeholder="My sister had an accident">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Remark</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="OwnerRemarkField" name="Owner_Remark"
-                                    placeholder="Get enough rest">
+                                        placeholder="Get enough rest">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -533,8 +533,7 @@ $leave_num = mysqli_num_rows($leave);
                             </div>
                             <div class="text-center">
                                 <div class="wrapper text-center">
-                                    <button class="btn btn-primary btn-icon-text"
-                                    onClick="refreshPage()"><i
+                                    <button class="btn btn-primary btn-icon-text" onClick="refreshPage()"><i
                                             class="ti-file btn-icon-prepend"></i>Submit</button>
                                     <button type="button" class="btn btn-inverse-secondary btn-fw"
                                         data-bs-dismiss="modal">Close</button>
@@ -561,6 +560,7 @@ $leave_num = mysqli_num_rows($leave);
                                 <label class="col-sm-3 col-form-label">Employee Code</label>
                                 <div class="col-md-9">
                                     <select class="form-control" id="AddEmployeeCodeField" name="Employee_Code">
+                                        <option>- Please Select Employee Code -</option>
                                         <?php
                                             $sql = "SELECT * FROM employee";
                                             $all_employee = mysqli_query($dbc, $sql);
@@ -605,14 +605,14 @@ $leave_num = mysqli_num_rows($leave);
                                 <label class="col-sm-3 col-form-label">Message</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="AddLeaveMessageField"
-                                    placeholder="My sister had an accident" name="Leave_Message">
+                                        placeholder="My sister had an accident" name="Leave_Message">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Remark</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="AddOwnerRemarkField"
-                                    placeholder="Get enough rest" name="Owner_Remark">
+                                        placeholder="Get enough rest" name="Owner_Remark">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -628,8 +628,7 @@ $leave_num = mysqli_num_rows($leave);
                             </div>
                             <div class="text-center">
                                 <div class="wrapper text-center">
-                                    <button class="btn btn-primary btn-icon-text"
-                                    onClick="refreshPage()"><i
+                                    <button class="btn btn-primary btn-icon-text" onClick="refreshPage()"><i
                                             class="ti-file btn-icon-prepend"></i>Submit</button>
                                     <button type="button" class="btn btn-inverse-secondary btn-fw"
                                         data-bs-dismiss="modal">Close</button>

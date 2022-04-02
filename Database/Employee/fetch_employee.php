@@ -85,7 +85,7 @@ if($_REQUEST['action'] == 'fetch_employee'){
         $nestedData['First_Name'] = $row["First_Name"];
         $nestedData['Last_Name'] = $row["Last_Name"];
         $nestedData['Email'] = '<a href="mailto:'.strtolower($row["Email"]).'">'.strtolower($row["Email"]).'</a>';
-        $nestedData['Phone'] = $row["Phone"];
+        $nestedData['Phone'] = '<a href="https://wa.me/+6'.$row["Phone"].'" target="_blank">'.$row["Phone"].'</a>';
 
         $time = strtotime($row["Joining_Date"]);
         $nestedData['Joining_Date'] = '<div class="col text-center">'.date(' d F, Y', $time).'</div>';

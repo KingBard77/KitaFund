@@ -147,10 +147,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                  // Make the query
                 $query = "INSERT INTO profile (Username, Image_Name, Phone, First_Name, Last_Name, Email,
                 Password, Gender, Address, State, Postal_Code, City, Country,
-                DOB, Nationality, Merital_Status, Identity_No, Vaccination, Typhoid)
+                DOB, Nationality, Merital_Status, Identity_No, Vaccination, Typhoid, Bank_Name, Account_No)
                 VALUES ('$Username','$name', '$Phone', '$First_Name', '$Last_Name', '$Email', '$Password', 
                 '$Gender', '$Address', '$State', '$Postal_Code', '$City', '$Country', '$DOB', '$Nationality', 
-                '$Merital_Status', '$Identity_No', '$Vaccination', '$Typhoid')";
+                '$Merital_Status', '$Identity_No', '$Vaccination', '$Typhoid', '$Bank_Name', '$Account_No')";
                 $result = mysqli_query($dbc, $query); // Run the query.
             }
         }
@@ -254,7 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                     <span class="input-group-text">@</span>
                                                 </div>
                                                 <input type="text" class="form-control" name="Username"
-                                                    placeholder="Employee Username Eg:-Azman98" />
+                                                    placeholder="Enter Employee Username Eg:-Azman98" />
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             Name</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control"
-                                                placeholder="Employee First Name Eg:-Muhammad" name="First_Name">
+                                                placeholder="Enter Employee First Name Eg:-Muhammad" name="First_Name">
                                         </div>
                                     </div>
                                 </div>
@@ -294,7 +294,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             Name</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control"
-                                                placeholder="Employee Last Name Eg:-Azman" name="Last_Name">
+                                                placeholder="Enter Employee Last Name Eg:-Azman" name="Last_Name">
                                         </div>
                                     </div>
                                 </div>
@@ -307,7 +307,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">Email</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control"
-                                                placeholder="Employee Email Eg:-Azman@BurgerByte" name="Email">
+                                                placeholder="Enter Employee Email Eg:-Azman@BurgerByte" name="Email">
                                         </div>
                                     </div>
                                 </div>
@@ -317,7 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">Password</label>
                                         <div class="col-sm-9">
                                             <input type="password" class="form-control"
-                                                placeholder="Employee Password Eg:-251251" name="Password">
+                                                placeholder="Enter Employee Password Eg:-251251" name="Password">
                                         </div>
                                     </div>
                                 </div>
@@ -331,7 +331,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             Phone</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control"
-                                                placeholder="Employee Number Phone Eg:-019-5139569" name="Phone">
+                                                placeholder="Enter Employee Number Phone Eg:-019-5139569" name="Phone">
                                         </div>
                                     </div>
                                 </div>
@@ -372,7 +372,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">Address 1</label>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control" name="Address"
-                                                placeholder="Employee Street Address Eg:-Persiaran Kusmawangi, Taman Wangi Selalu" />
+                                                placeholder="Enter Employee Street Address Eg:-Persiaran Kusmawangi, Taman Wangi Selalu" />
                                         </div>
                                     </div>
                                 </div>
@@ -385,7 +385,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">State</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="State">
-                                                <option value="">---- Select Employee State ----</option>
+                                                <option value="">---- Please Select Employee State ----</option>
                                                 <option value="Perlis">Perlis</option>
                                                 <option value="Selangor">Selangor</option>
                                                 <option value="Perak">Perak</option>
@@ -408,7 +408,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">Postcode</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" name="Postal_Code"
-                                                placeholder="Employee Postal Code Eg:-32400" />
+                                                placeholder="Enter Employee Postal Code Eg:-32400" />
                                         </div>
                                     </div>
                                 </div>
@@ -421,7 +421,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">City</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" name="City"
-                                                placeholder="Employee City Eg:-Perak" />
+                                                placeholder="Enter Employee City Eg:-Perak" />
                                         </div>
                                     </div>
                                 </div>
@@ -431,7 +431,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">Country</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" name="Country"
-                                                placeholder="Employee CountryEg:-Malaysia" />
+                                                placeholder="Enter Employee CountryEg:-Malaysia" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!--========== Employee Account No ==========-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Account No</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="AccountNoField"
+                                                name="Account_No" placeholder="0000-0000-0000-0000">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--========== Employee  Bank Name ==========-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Bank Name</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" name="Bank_Name" id="BankNameField">
+                                                <option value="">---- Please Select Bank Name ----</option>
+                                                <option value="Bank Islam">Bank Islam</option>
+                                                <option value="RHB Bank Berhad">RHB Bank Berhad</option>
+                                                <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                                <option value="Maybank">Maybank</option>
+                                                <option value="CIMB Bank Berhad">CIMB Bank Berhad</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -453,7 +482,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">Nationaility</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="Nationality">
-                                                <option value="">---- Select Employee Nationaility ----</option>
+                                                <option value="">---- Please Select Employee Nationaility ----</option>
                                                 <option value="Nationality">Nationality</option>
                                                 <option value="Non - Nationality">Non - Nationality</option>
                                             </select>
@@ -470,7 +499,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">Merital Status</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="Merital_Status">
-                                                <option value="">---- Select Employee Merital Status ----</option>
+                                                <option value="">---- Please Select Employee Merital Status ----</option>
                                                 <option value="Married">Married</option>
                                                 <option value="Single">Single</option>
                                                 <option value="Widowed">Widowed</option>
@@ -485,7 +514,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <label class="col-sm-3 col-form-label">Identity No</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" name="Identity_No"
-                                                placeholder="Employee Identity Number" />
+                                                placeholder=" Enter Employee Identity Number" />
                                         </div>
                                     </div>
                                 </div>

@@ -79,7 +79,7 @@ if($_REQUEST['action'] == 'fetch_attendance'){
         if($row["Action_Name"] == 'punchOut'){
             $Status ='<label class="badge badge-warning">Punch-Out</label>';
         }
-        $nestedData['Action_Name'] = $Status;
+        $nestedData['Action_Name'] = '<div class="col text-center">'.$Status.'</div>';
         $nestedData['Attendance_Message'] = $row["Attendance_Message"];
 
         $time = strtotime($row["Attendance_Time"]);

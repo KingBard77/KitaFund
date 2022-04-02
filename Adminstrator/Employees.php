@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <label class="col-sm-3 col-form-label">Employee Code</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="Employee_Code"
-                                            placeholder="Employee Code Eg:- EMP20**" />
+                                            placeholder="Enter Employee Code Eg:- EMP20**" />
                                     </div>
                                 </div>
                                 <!--========== Input Employee Username ==========-->
@@ -148,9 +148,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <label class="col-sm-3 col-form-label">Employee Username</label>
                                     <div class="col-sm-9">
                                         <select name="Profile_Id" class="form-control">
-                                            <option>---- Select Employee Username ----</option>
+                                            <option>---- Please Select Employee Username ----</option>
                                             <?php
-                                                $sql = "SELECT * FROM profile";
+                                                $sql = "SELECT p.Username, e.Employee_Code
+                                                FROM employee e, profile p
+                                                WHERE e.Profile_Id = p.Profile_Id
+                                                ORDER BY p.Profile_Id ASC";
                                                 $all_profile = mysqli_query($dbc, $sql);
                                                 
                                                 while ($profile = mysqli_fetch_array(
@@ -510,9 +513,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         var json = JSON.parse(data);
                         status = json.status;
                         if (status == 'success') {
-                            //table.fnDeleteRow( table.$('#' + id)[0] );
-                            //$("#example tbody").find(id).remove();
-                            //table.row($(this).closest("tr")) .remove();
                             $("#" + id).closest('tr').remove();
                         } else {
                             alert('Failed');
@@ -575,15 +575,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <form id="updateUser" enctype="multipart/form-data">
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="trid" id="trid" value="">
-                            <!--<div class="mb-3 row">
+                            <div class="mb-3 row">
                                 <div class="col-md-9">
-                                    <img src="../Images/Employee_Image/<?php echo $values["Image_Name"]; ?>"
-                                    id="ImageNameField<?php echo $values["Image_Name"]; ?>" 
-                                    name="Image_Name<?php echo $values["Image_Name"]; ?>"
-                                    class="rounded-circle float-left img-fluid mx-auto d-block" width="50"
-                                    height="35" />
+                                    <input type="text" class="form-control" id="ImageNameField" name="Image_Name"
+                                        hidden>
                                 </div>
-                            </div>-->
+                            </div>
                             <div class="mb-3 row">
                                 <label for="nameField" class="col-md-3 form-label">Employee Code</label>
                                 <div class="col-md-9">

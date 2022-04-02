@@ -40,7 +40,7 @@ if ((isset($_GET['id'])) && (is_numeric($_GET['id']))) { // From view_users.php
 // Retrieve the user's information:
 $query = "SELECT p.Profile_Id, p.Image_Name, e.Employee_Code, p.Username, p.First_Name, p.Last_Name, p.Email,
 p.Password, p.Phone, p.Gender, p.Address, p.City, p.State, p.Postal_Code, p.Country, p.DOB, p.Merital_Status,
-p.Nationality, p.Identity_No, p.Typhoid, p.Vaccination, p.Joining_Date
+p.Nationality, p.Identity_No, p.Typhoid, p.Vaccination, p.Joining_Date, p.Account_No, p.Bank_Name
 FROM employee e, profile p
 WHERE p.Profile_Id = $id
 AND e.Profile_Id = p.Profile_Id";
@@ -86,7 +86,7 @@ if (mysqli_num_rows($employee) == 1) { // Valid user ID, show the form.
                                         assigned tasks </p>
                                 </div>
                                 <div class="border-bottom py-4">
-                                    <p>Skills</p>
+                                    <p><b>Skills</b></p>
                                     <div class="col text-center">
                                         <label class="badge badge-outline-dark">Chef</label>
                                         <label class="badge badge-outline-dark">Cashier</label>
@@ -111,7 +111,8 @@ if (mysqli_num_rows($employee) == 1) { // Valid user ID, show the form.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="py-4">
+                                <div class="border-bottom py-4">
+                                    <p><b>Connection </b></p>
                                     <p class="clearfix">
                                         <span class="float-left">
                                             Status
@@ -125,7 +126,7 @@ if (mysqli_num_rows($employee) == 1) { // Valid user ID, show the form.
                                             Phone
                                         </span>
                                         <span class="float-right text-muted">
-                                            +6<?php echo $row[8]; ?>
+                                            <a href="https://wa.me/+6<?php echo $row[8]; ?>" target="_blank"><?php echo $row[8]; ?></a>
                                         </span>
                                     </p>
                                     <p class="clearfix">
@@ -133,7 +134,27 @@ if (mysqli_num_rows($employee) == 1) { // Valid user ID, show the form.
                                             Email
                                         </span>
                                         <span class="float-right text-muted">
-                                            <?php echo $row[6]; ?>
+                                        <a
+                                                href="mailto:'.strtolower<?php echo $row[6]; ?>"><?php echo $row[6]; ?></a>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="py-4">
+                                    <p><b>Payment Information</b></p>
+                                    <p class="clearfix">
+                                        <span class="float-left">
+                                            Bank Name
+                                        </span>
+                                        <span class="float-right text-muted">
+                                            <?php echo $row[23]; ?>
+                                        </span>
+                                    </p>
+                                    <p class="clearfix">
+                                        <span class="float-left">
+                                            Account No
+                                        </span>
+                                        <span class="float-right text-muted">
+                                            <?php echo $row[22]; ?>
                                         </span>
                                     </p>
                                 </div>
@@ -173,6 +194,18 @@ if (mysqli_num_rows($employee) == 1) { // Valid user ID, show the form.
                                         </div>
 
                                         <div class="row">
+                                            <!--========== View Employee Joining Date ==========-->
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label">Joining Date</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="Joining_Date"
+                                                                value="<?php echo $row[21]; ?> " disabled/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <!--========== View Employee Gender ==========-->
                                             <div class="col-md-6">
                                                 <div class="form-group row">
