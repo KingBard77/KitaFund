@@ -18,109 +18,121 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = array(); // Initialize an error array.
 
     if (empty($_POST['First_Name'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your First Name.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee First Name.</b>';
     } else {
         $First_Name = trim($_POST['First_Name']);
     }
 
     if (empty($_POST['Last_Name'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Last Name.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Last Name.</b>';
     } else {
         $Last_Name = trim($_POST['Last_Name']);
     }
 
     if (empty($_POST['Email'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Email.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Email.</b>';
     } else {
         $Email = trim($_POST['Email']);
     }
 
     if (empty($_POST['Phone'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Phone.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Phone.</b>';
     } else {
         $Phone = trim($_POST['Phone']);
     }
 
     if (empty($_POST['Password'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Password.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Password.</b>';
     } else {
         $Password = trim($_POST['Password']);
     }
     // Check for a Username:
     if (empty($_POST['Username'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Username.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Username.</b>';
     } else {
         $Username = mysqli_real_escape_string($dbc, trim($_POST['Username']));
     }
     // Check for a Gender:
     if (empty($_POST['Gender'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Gender.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Gender.</b>';
     } else {
         $Gender = mysqli_real_escape_string($dbc, trim($_POST['Gender']));
     }
     // Check for a DOB:
     if (empty($_POST['DOB'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Date of Birth.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Date of Birth.</b>';
     } else {
         $DOB = mysqli_real_escape_string($dbc, trim($_POST['DOB']));
     }
     // Check for a Address:
     if (empty($_POST['Address'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Address.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Address.</b>';
     } else {
         $Address = mysqli_real_escape_string($dbc, trim($_POST['Address']));
     }
     // Check for a City:
     if (empty($_POST['City'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your City.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee City.</b>';
     } else {
         $City = mysqli_real_escape_string($dbc, trim($_POST['City']));
     }
     // Check for a State:
     if (empty($_POST['State'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your State.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee State.</b>';
     } else {
         $State = mysqli_real_escape_string($dbc, trim($_POST['State']));
     }
     // Check for a Postal Code:
     if (empty($_POST['Postal_Code'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Postal Code.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Postal Code.</b>';
     } else {
         $Postal_Code = mysqli_real_escape_string($dbc, trim($_POST['Postal_Code']));
     }
     // Check for a Country:
     if (empty($_POST['Country'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Country.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Country.</b>';
     } else {
         $Country = mysqli_real_escape_string($dbc, trim($_POST['Country']));
     }
+    // Check for a Bank Name:
+    if (empty($_POST['Bank_Name'])) {
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Bank Name.</b>';
+    } else {
+        $Bank_Name = mysqli_real_escape_string($dbc, trim($_POST['Bank_Name']));
+    }
+    // Check for a Account No:
+    if (empty($_POST['Account_No'])) {
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Account No.</b>';
+    } else {
+        $Account_No = mysqli_real_escape_string($dbc, trim($_POST['Account_No']));
+    }
     // Check for a Merital Status:
     if (empty($_POST['Merital_Status'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Merital Status.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Merital Status.</b>';
     } else {
         $Merital_Status = mysqli_real_escape_string($dbc, trim($_POST['Merital_Status']));
     }
     // Check for a Nationality:
     if (empty($_POST['Nationality'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Nationality.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Nationality.</b>';
     } else {
         $Nationality = mysqli_real_escape_string($dbc, trim($_POST['Nationality']));
     }
     // Check for a Identity No:
     if (empty($_POST['Identity_No'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Identity Number.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Identity Number.</b>';
     } else {
         $Identity_No = mysqli_real_escape_string($dbc, trim($_POST['Identity_No']));
     }
     // Check for a Typhoid:
     if (empty($_POST['Typhoid'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Typhoid.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Typhoid.</b>';
     } else {
         $Typhoid = mysqli_real_escape_string($dbc, trim($_POST['Typhoid']));
     }
     // Check for a Vaccination:
     if (empty($_POST['Vaccination'])) {
-        $errors[] = '<b style="color:black;">You forgot to enter your Vaccination.</b>';
+        $errors[] = '<b style="color:black;">You forgot to enter Employee Vaccination.</b>';
     } else {
         $Vaccination = mysqli_real_escape_string($dbc, trim($_POST['Vaccination']));
     }

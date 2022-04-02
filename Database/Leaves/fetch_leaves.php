@@ -80,8 +80,13 @@ if($_REQUEST['action'] == 'fetch_leaves'){
         $nestedData['Leave_Id'] = $count;
         $nestedData['Employee_Code'] = $row["Employee_Code"];
         $nestedData['Leave_Type'] = $row["Leave_Type"];
-        $nestedData['From_Date'] = $row["From_Date"];
-        $nestedData['To_Date'] = $row["To_Date"];
+
+        $From_Date = strtotime($row["From_Date"]);
+        $nestedData['From_Date'] = date('d M, Y', $From_Date);
+
+        $To_Date = strtotime($row["To_Date"]);
+        $nestedData['To_Date'] = date('d M, Y', $To_Date);
+
         $nestedData['Leave_Message'] = $row["Leave_Message"];
         $nestedData['Owner_Remark'] = $row["Owner_Remark"];
         
@@ -99,8 +104,8 @@ if($_REQUEST['action'] == 'fetch_leaves'){
         $nestedData['Leave_Status'] = '<div class="col text-center">'.$Status.'</div>';
             
 
-        $time = strtotime($row["Apply_Date"]);
-        $nestedData['Apply_Date'] = date('h:i:s A - d M, Y', $time);
+        $Apply_Date = strtotime($row["Apply_Date"]);
+        $nestedData['Apply_Date'] = date('h:i:s A - d M, Y', $Apply_Date);
 
         $nestedData['counter'] = '
         <div class="col text-center">

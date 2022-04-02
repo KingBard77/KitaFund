@@ -38,7 +38,7 @@ $purchase_num = mysqli_num_rows($purchase);
                                         <div class="input-group mb-3">
                                             <select class="form-control" name="Purchase_Status" id="Purchase_Status"
                                                 style="height: 40px;">
-                                                <option value="">- Please Select Purchase Status -</option>
+                                                <option value="">---- Please Select Purchase Status ----</option>
                                                 <option value="Pending">Pending</option>
                                                 <option value="Purchase">Purchase</option>
                                             </select>

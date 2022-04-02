@@ -75,7 +75,7 @@ $ordering_num = mysqli_num_rows($ordering);
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Order Status</th>
+                                                        <th class="text-center">Order Status</th>
                                                         <th class="text-center">Order Date</th>
                                                         <th class="text-center">Employee Code</th>
                                                         <th></th>

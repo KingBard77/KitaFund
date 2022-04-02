@@ -338,7 +338,7 @@ $all_employee = mysqli_query($dbc, $sql);
                     $('#ClaimingField').val(json.Claiming);
                     $('#EarningTotalField').val(json.Earning_Total);
                     $('#BasicCommissionField').val(json.Basic_Commission);
-                    $('#CommissionDateield').val(json.Commission_Date);
+                    $('#CommissionDateField').val(json.Commission_Date);
                     $('#CommissionStatusField').val(json.Commission_Status);
                     $('#EmployeeCodeField').val(json.Employee_Code);
                     $('#id').val(id);
@@ -456,7 +456,7 @@ $all_employee = mysqli_query($dbc, $sql);
             window.location.reload();
         }
 
-        // SCRIPT FOR FETCH STOCK SELLING PRICE
+        // SCRIPT FOR FETCH PAYMENT INFO
         function FetchPayment(id) {
             $('#AddAccountNoField').html('');
             $.ajax({
@@ -607,6 +607,12 @@ $all_employee = mysqli_query($dbc, $sql);
                                 <div class="col-md-9">
                                     <input type="textarea" class="form-control" id="CommissionMessageField"
                                         placeholder="Save your money wisely" name="Commission_Message">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-md-9">
+                                    <input type="textarea" class="form-control" id="CommissionDateField"
+                                         name="Commission_Date" disabled hidden>
                                 </div>
                             </div>
                             <div class="text-center">

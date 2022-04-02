@@ -196,12 +196,9 @@ if(isset($_POST["submit"]))
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group row">
-                                        <input type="submit" name="submit" value="Submit"
-                                            class="btn btn-primary mr-2" />
-                                        <button class="btn btn-light">Cancel</button>
-                                    </div>
+                                <div class="col-sm-12" align="right">
+                                    <input type="submit" name="submit" value="Submit" class="btn btn-primary mr-2" />
+                                    <button class="btn btn-light">Cancel</button>
                                 </div>
                             </form>
                         </div>
@@ -393,7 +390,7 @@ if(isset($_POST["submit"]))
                                                 </p>
                                                 <br />
                                                 <p><?php echo $row[4];?></p>
-                                                <p><br><br>Regards,<br>BurgerByte.Co</p>
+                                                <p><br><br>Regards, BurgerByte.Co</p>
                                                 <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>*
                                                     Click an attachment below to see the details:</p>
                                             </div>

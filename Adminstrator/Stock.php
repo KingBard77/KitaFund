@@ -307,12 +307,10 @@ $stock_num = mysqli_num_rows($stock);
                                                         <th>In - Stock</th>
                                                         <th>Buying Price (RM)</th>
                                                         <th>Selling Price (RM)</th>
-                                                        <th class="text-center">TimeStamp</th>
+                                                        <th class="text-center">Stock Date</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                </tbody>
                                             </table>
                                         </div>
                                     </div>

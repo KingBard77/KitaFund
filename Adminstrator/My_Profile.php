@@ -92,6 +92,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = 'You forgot to enter your Country.';
     } else {
         $Country = mysqli_real_escape_string($dbc, trim($_POST['Country']));
+    }    
+    // Check for a Bank Name:
+    if (empty($_POST['Bank_Name'])) {
+        $errors[] = '<b style="color:black;">You forgot to enter your Bank Name.</b>';
+    } else {
+        $Bank_Name = mysqli_real_escape_string($dbc, trim($_POST['Bank_Name']));
+    }
+    // Check for a Account No:
+    if (empty($_POST['Account_No'])) {
+        $errors[] = '<b style="color:black;">You forgot to enter your Account No.</b>';
+    } else {
+        $Account_No = mysqli_real_escape_string($dbc, trim($_POST['Account_No']));
     }
     // Check for a Merital Status:
     if (empty($_POST['Merital_Status'])) {
@@ -145,8 +157,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $query = "UPDATE profile SET
                 Image_Name='$name', Username='$Username', First_Name='$First_Name', Last_Name='$Last_Name', 
                 Email='$Email', Password='$Password', Phone='$Phone', Gender='$Gender', DOB='$DOB', Address='$Address',
-                City='$City', State='$State', Postal_Code='$Postal_Code', Country='$Country', Merital_Status='$Merital_Status',
-                Nationality='$Nationality', Identity_No='$Identity_No', Typhoid='$Typhoid', Vaccination='$Vaccination'
+                City='$City', State='$State', Postal_Code='$Postal_Code', Country='$Country', Bank_Name='$Bank_Name', Account_No='$Account_No', 
+                Merital_Status='$Merital_Status', Nationality='$Nationality', Identity_No='$Identity_No', 
+                Typhoid='$Typhoid', Vaccination='$Vaccination'
                 WHERE Profile_Id=$id LIMIT 1";
                 $result = mysqli_query($dbc, $query);
 
@@ -229,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Retrieve the user's information:
 $query = "SELECT p.Profile_Id, p.Image_Name, o.Owner_Code, p.Username, p.First_Name, p.Last_Name, p.Email,
 p.Password, p.Phone, p.Gender, p.Address, p.City, p.State, p.Postal_Code, p.Country, p.DOB, p.Merital_Status,
-p.Nationality, p.Identity_No, p.Typhoid, p.Vaccination, p.Joining_Date
+p.Nationality, p.Identity_No, p.Typhoid, p.Vaccination, p.Joining_Date, p.Bank_Name, p.Account_No
 FROM owner o, profile p
 WHERE p.Profile_Id = $id
 AND o.Profile_Id = p.Profile_Id";
@@ -509,6 +522,40 @@ echo '';?>
                                                             <input type="text" class="form-control" name="Country"
                                                                 placeholder="Country Eg:-Malaysia"
                                                                 value="<?php echo $row[14]; ?> " />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <!--========== Owner Account No ==========-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Account No</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control"
+                                                                name="Account_No" placeholder="0000-0000-0000-0000"
+                                                                value="<?php echo $row[23]; ?> " />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--========== Owner Bank Name ==========-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Bank Name</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control" name="Bank_Name">
+                                                                <?php
+                                                                $Bank_Name = array('Bank Islam', 'RHB Bank Berhad', 'Public Bank Berhad', 'Maybank', 'CIMB Bank Berhad');
+                                                                    foreach ($Bank_Name as $value) {
+                                                                        if ($row[22] == $value) { // creating sticky
+                                                                            echo "<option value='" . $row[22] . "' selected>" . $row[22] . "</option>";
+                                                                        } else {
+                                                                            echo "<option value=\"$value\">$value</option>\n";
+                                                                        }
+                                                                    }
+                                                                ?>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>

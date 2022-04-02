@@ -118,7 +118,7 @@
             </a>
             <div class="collapse" id="rawmaterials">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="Ordering.php"> Ordering </a>
+                    <li class="nav-item"> <a class="nav-link" href="Ordering.php">Manage Ordering </a>
                 </ul>
             </div>
         </li>
