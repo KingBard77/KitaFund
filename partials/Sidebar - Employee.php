@@ -109,6 +109,7 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="Tutorial.php"> How to Cook</a>
                     <li class="nav-item"> <a class="nav-link" href=""> SOP</a>
+                    <li class="nav-item"> <a class="nav-link" href=""> Calculator</a>
                 </ul>
             </div>
         </li>

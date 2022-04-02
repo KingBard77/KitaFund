@@ -81,7 +81,8 @@ if($_REQUEST['action'] == 'fetch_ordering'){
             $Status ='<label class="badge badge-success">Purchase</label>';
         }
 
-        $nestedData['Order_Status'] = $Status;
+        $nestedData['Order_Status'] = '<div class="col text-center">'.$Status.'  </div>';
+        
         $nestedData['Employee_Code'] = '<div class="col text-center">'.$row['Employee_Code'].'  </div>';
         
         $time = strtotime($row["Order_Date"]);
