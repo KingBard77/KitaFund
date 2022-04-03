@@ -271,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </form>
                         </div>
                         <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
-                            To retrieve the In-Stock and Selling Price for each stock on a certain day, please select an
+                            To retrieve the In-Stock & Selling Price for each stock on a certain day, please select an
                             <b>Stock
                                 Name.</b>
                         </p>
@@ -286,7 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class='card-body'>
                         <h4 class='card-title'>Daily Stock Subtotal Calculation</h4>
                         <p class='card-description'>
-                            Total Daily Subtotal of each Daily Stock
+                            Total Daily Subtotal of each Stock
                         </p>
                         <p class='card-description'>
                         <p>There are currently <?php echo" <b> $sales_num </b>";?>Subtotal Sales of each Stock</p>

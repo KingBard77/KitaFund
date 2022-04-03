@@ -267,7 +267,7 @@ echo '';?>
                         <div class="card-body">
                             <h4 class="card-title">My Profile</h4>
                             <p class='card-description'>
-                            <p>There are currently <?php echo" <b> $owner_num </b>";?>Total Owner</p>
+                            <p>There are currently <?php echo" <b> $owner_num </b>";?>Owner Only</p>
                             </p>
                             <div class="row">
                                 <div class="col-md-4 grid-margin stretch-card">
@@ -475,6 +475,7 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">State</label>
                                                         <div class="col-sm-9">
                                                             <select class="form-control" name="State">
+                                                                <option value="">---- Please Select State ----</option>
                                                                 <?php
                                                                 $states = array("Perlis", "Selangor", "Perak", "Pulau Pinang", "Melaka", "Johor", "Kedah", "Sabah", "Sarawak", "Kelantan", "Terengganu", "N.Sembilan");
                                                                     foreach ($states as $value) {
@@ -533,8 +534,8 @@ echo '';?>
                                                     <div class="form-group row">
                                                         <label class="col-sm-3 col-form-label">Account No</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control"
-                                                                name="Account_No" placeholder="0000-0000-0000-0000"
+                                                            <input type="text" class="form-control" name="Account_No"
+                                                                placeholder="0000-0000-0000-0000"
                                                                 value="<?php echo $row[23]; ?> " />
                                                         </div>
                                                     </div>
@@ -545,6 +546,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Bank Name</label>
                                                         <div class="col-md-9">
                                                             <select class="form-control" name="Bank_Name">
+                                                                <option value="">---- Please Select Bank Name ----
+                                                                </option>
                                                                 <?php
                                                                 $Bank_Name = array('Bank Islam', 'RHB Bank Berhad', 'Public Bank Berhad', 'Maybank', 'CIMB Bank Berhad');
                                                                     foreach ($Bank_Name as $value) {
@@ -578,6 +581,9 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Nationaility</label>
                                                         <div class="col-sm-9">
                                                             <select class="form-control" name="Nationality">
+                                                                <option value="">---- Please Select Nationaility ----
+                                                                </option>
+
                                                                 <?php
                                                                 $Nationality = array('Nationality', 'Non-Nationality');
                                                                     foreach ($Nationality as $value) {
@@ -602,6 +608,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Merital Status</label>
                                                         <div class="col-sm-9">
                                                             <select class="form-control" name="Merital_Status">
+                                                                <option value="">---- Please Select Merital Status ----
+                                                                </option>
                                                                 <?php
                                                                 $Merital_Status = array('Married', 'Single', 'Widowed', 'Dicvorced');
                                                                     foreach ($Merital_Status as $value) {
@@ -636,6 +644,8 @@ echo '';?>
                                                         <label class="col-sm-3 col-form-label">Vaccination</label>
                                                         <div class="col-sm-9">
                                                             <select class="form-control" name="Vaccination">
+                                                                <option value="">---- Please Select Vaccination ----
+                                                                </option>
                                                                 <?php
                                                                 $Vaccination = array('None', 'Partial Vaccination', 'Fully Vaccination');
                                                                     foreach ($Vaccination as $value) {

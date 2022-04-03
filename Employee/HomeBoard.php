@@ -141,7 +141,7 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                 // Count the number of returned rows:
                                 $ordering_num = mysqli_num_rows($ordering);
                                 ?>
-                                <p class="mb-4">Ordering</p>
+                                <p class="mb-4">Total Ordering</p>
                                 <p class="fs-30 mb-2"><?php echo "$ordering_num" ?></p>
                                 <p>22.00% (30 days)</p>
                             </div>
@@ -434,7 +434,7 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                                             <th>Month</th>
                                                             <th>Basic</th>
                                                             <th>Description</th>
-                                                            <th class="text-right">Total</th>
+                                                            <th class="text-right">Total Commission</th>
                                                             <?php
                                                             // Define the query:
                                                             $sql = "SELECT 
@@ -515,70 +515,74 @@ $Employee_Code = $_SESSION['Profile_Id'];
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title mb-0">Ordering Raw Material</p>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th>Employee Code</th>
-                                        <th class="text-center">Ordering Date</th>
-                                        <th class="text-center">Ordering Status</th>
-                                        <th class="text-center"></th>
-                                    </tr>
-                                </thead>
-                                <?php
-                                // Define the query:
-                                $query = "SELECT *
-                                FROM ordering o, employee e, profile p
-                                WHERE o.Employee_Code = e.Profile_Id 
-                                AND o.Employee_Code = p.Profile_Id
-                                AND e.Employee_Code ='$id'
-                                ORDER BY  o.Order_Id ASC";
-                                $ordering = mysqli_query($dbc, $query);
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="pl-0  pb-2 border-bottom">Employee Code</th>
+                                                <th class="border-bottom pb-2 text-center">Ordering Date</th>
+                                                <th class="border-bottom pb-2 text-center">Ordering Status</th>
+                                                <th class="border-bottom pb-2 text-center"></th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        // Define the query:
+                                        $query = "SELECT *
+                                        FROM ordering o, employee e, profile p
+                                        WHERE o.Employee_Code = e.Profile_Id 
+                                        AND o.Employee_Code = p.Profile_Id
+                                        AND e.Employee_Code ='$id'
+                                        ORDER BY  o.Order_Id ASC";
+                                        $ordering = mysqli_query($dbc, $query);
 
-                                // Count the number of returned rows:
-                                $ordering_num = mysqli_num_rows($ordering);
-                                if(mysqli_num_rows($ordering) > 0)  
-                                {  
-                                    while($row = mysqli_fetch_array($ordering))  
-                                    { 
-                                ?>
-                                <tbody>
-                                    <tr>
-                                        <td><?php echo $row["Employee_Code"]; ?></td>
+                                        // Count the number of returned rows:
+                                        $ordering_num = mysqli_num_rows($ordering);
+                                        if(mysqli_num_rows($ordering) > 0)  
+                                        {  
+                                            while($row = mysqli_fetch_array($ordering))  
+                                            { 
+                                        ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?php echo $row["Employee_Code"]; ?></td>
 
-                                        <?php $time = strtotime($row["Order_Date"]);?>
-                                        <td>
-                                            <div class="col text-center">
-                                                <?php echo date(' d F, Y', $time) ?>
-                                            </div>
-                                        </td>
+                                                <?php $time = strtotime($row["Order_Date"]);?>
+                                                <td>
+                                                    <div class="col text-center">
+                                                        <?php echo date(' d F, Y', $time) ?>
+                                                    </div>
+                                                </td>
 
-                                        <td class="font-weight-medium">
-                                            <?php
-                                            $Status = '';
-                                            if($row["Order_Status"] == 'Pending'){
-                                                $Status ='<label class="badge badge-warning">Pending</label>';
-                                            }
-                                            if($row["Order_Status"] == 'Purchase'){
-                                                $Status ='<label class="badge badge-success">Purchase</label>';
-                                            }
+                                                <td class="font-weight-medium">
+                                                    <?php
+                                                    $Status = '';
+                                                    if($row["Order_Status"] == 'Pending'){
+                                                        $Status ='<label class="badge badge-warning">Pending</label>';
+                                                    }
+                                                    if($row["Order_Status"] == 'Purchase'){
+                                                        $Status ='<label class="badge badge-success">Purchase</label>';
+                                                    }
+                                                    ?>
+                                                    <div class="text-center"><?php echo $Status ?></div>
+                                                </td>
+                                                <td>
+                                                    <div class="col text-center">
+                                                        <a href="Ordering_Employee.php"
+                                                            class="btn btn-outline-info btn-sm editbtn"><i
+                                                                class="bi bi-three-dots-vertical"></i>More</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <?php  
+                                                }  
+                                            }  
                                             ?>
-                                            <div class="text-center"><?php echo $Status ?></div>
-                                        </td>
-                                        <td>
-                                            <div class="col text-center">
-                                                <a href="Ordering_Employee.php"
-                                                    class="btn btn-outline-info btn-sm editbtn"><i
-                                                        class="bi bi-three-dots-vertical"></i>More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php  
-                                    }  
-                                }  
-                                ?>
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -650,56 +654,60 @@ $Employee_Code = $_SESSION['Profile_Id'];
 
         <!-- SECTION 5 -->
         <div class="row">
-            <!-- Category Table -->
+            <!-- Stock In Table -->
             <div class="col-md-4 stretch-card grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-title mb-0">Category</p>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th class="pl-0  pb-2 border-bottom">Stock Name</th>
-                                        <th class="border-bottom pb-2 text-center">Categories</th>
-                                        <th class="border-bottom pb-2 text-center">Stock In</th>
-                                    </tr>
-                                </thead>
-                                <?php
-                                // Define the query:
-                                $query = "Select *
-                                FROM stock s JOIN category c ON s.Category_id = c.Category_id 
-                                ORDER BY Stock_Id ASC";
-                                $category = mysqli_query($dbc, $query);
+                        <p class="card-title mb-0">Stock In</p>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="pl-0  pb-2 border-bottom">Stock Name</th>
+                                                <th class="border-bottom pb-2 text-center">Categories</th>
+                                                <th class="border-bottom pb-2 text-center">Availability</th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        // Define the query:
+                                        $query = "Select *
+                                        FROM stock s JOIN category c ON s.Category_id = c.Category_id 
+                                        ORDER BY Stock_Id ASC";
+                                        $category = mysqli_query($dbc, $query);
 
-                                // Count the number of returned rows:
-                                $category_num = mysqli_num_rows($category);
-                                if(mysqli_num_rows($category) > 0)  
-                                {  
-                                    while($row = mysqli_fetch_array($category))  
-                                    {  
-                                ?>
-                                <tbody>
-                                    <tr>
-                                        <td class="pl-0"><?php echo $row["Stock_Name"]; ?></td>
-                                        <td>
-                                            <p class="mb-0">
-                                            <div class="col text-center"><span class="font-weight-bold mr-2">
-                                                    <?php echo $row["Category_Name"]; ?></span>
-                                            </div>
-                                            </p>
-                                        </td>
-                                        <td class="text-muted">
-                                            <div class="col text-center">
-                                                <?php echo $row["Quantity_In"]; ?> / pieces
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <?php  
-                                    }  
-                                }  
-                                ?>
-                            </table>
+                                        // Count the number of returned rows:
+                                        $category_num = mysqli_num_rows($category);
+                                        if(mysqli_num_rows($category) > 0)  
+                                        {  
+                                            while($row = mysqli_fetch_array($category))  
+                                            {  
+                                        ?>
+                                        <tbody>
+                                            <tr>
+                                                <td class="pl-0"><?php echo $row["Stock_Name"]; ?></td>
+                                                <td>
+                                                    <p class="mb-0">
+                                                    <div class="col text-center"><span class="font-weight-bold mr-2">
+                                                            <?php echo $row["Category_Name"]; ?></span>
+                                                    </div>
+                                                    </p>
+                                                </td>
+                                                <td class="text-muted">
+                                                    <div class="col text-center">
+                                                        <?php echo $row["Quantity_In"]; ?> pieces
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <?php  
+                                            }  
+                                        }  
+                                        ?>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -761,14 +769,14 @@ $Employee_Code = $_SESSION['Profile_Id'];
                         </div>
                     </div>
 
-                    <!-- Total Expenses -->
+                    <!-- Total Events -->
                     <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
                         <div class="card data-icon-card-primary">
                             <div class="card-body">
-                                <p class="card-title text-white">Total Expenses </p>
+                                <p class="card-title text-white">Events </p>
                                 <div class="row">
                                     <div class="col-8 text-white">
-                                    <?php
+                                        <?php
                                         // Define the Number of Category query:
                                         $query = "SELECT * FROM event
                                         ORDER BY id ASC";
@@ -822,8 +830,10 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                     <div>
                                         <p class="text-info mb-1"><?php echo $row["First_Name"]; ?></p>
                                         <p class="mb-0"><b><?php echo $row["Employee_Code"]; ?></b></p>
-                                        <small><?php echo $row["Phone"]; ?></small> |
-                                        <small><?php echo $row["Email"]; ?></small>
+                                        <small><a href="https://wa.me/+6<?php echo $row['Phone'];?>"
+                                                target="_blank"><?php echo $row["Phone"]; ?></a></small> |
+                                        <small><a
+                                                href="mailto:'.strtolower<?php echo $row["Email"]; ?>"><?php echo $row["Email"]; ?></a></small>
                                     </div>
                                 </div>
                             </li>

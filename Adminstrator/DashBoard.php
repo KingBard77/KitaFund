@@ -654,7 +654,7 @@ $employee_num = mysqli_num_rows($employee);
 
         <!-- SECTION 5 -->
         <div class="row">
-            <!-- Category Table -->
+            <!-- Stock In Table -->
             <div class="col-md-4 stretch-card grid-margin">
                 <div class="card">
                     <div class="card-body">

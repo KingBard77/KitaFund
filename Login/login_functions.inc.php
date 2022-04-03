@@ -77,14 +77,14 @@ function check_login_employee($dbc, $Employee_Code = '', $Password = '') {
 
    // Validate the username:
    if (empty($Employee_Code)) {
-	   $errors[] = 'You forgot to enter your <b> Employee Code.</b>';
+	   $errors[] = '<b style="color:black;">You forgot to enter your <b> Employee Code.</b>';
    } else {
 	   $Employee_Code = mysqli_real_escape_string($dbc, trim($Employee_Code)); 
    }
 
    // Validate the password:
    if (empty($Password )) {
-	   $errors[] = 'You forgot to enter your <b>  Password.</b>';
+	   $errors[] = '<b style="color:black;">You forgot to enter your <b>  Password.</b>';
    } else {
 	   $Password = mysqli_real_escape_string($dbc, trim($Password ));
    }
@@ -108,7 +108,7 @@ function check_login_employee($dbc, $Employee_Code = '', $Password = '') {
 		   return array(true, $row);
 		   
 	   } else { // Not a match!
-		   $errors[] = 'The Employee Code and Password entered do not match those on file.';
+		   $errors[] = '<b style="color:black;">The Employee Code and Password entered do not match those on file.</b>';
 	   }
 	   
    } // End of empty($errors) IF.
