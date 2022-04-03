@@ -62,7 +62,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_1"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -100,7 +100,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_2"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -138,7 +138,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_3"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -176,7 +176,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_4"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -214,7 +214,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_5"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -252,7 +252,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_6"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -290,7 +290,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_7"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -328,7 +328,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_8"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -366,7 +366,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_9"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -404,7 +404,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_10"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -442,7 +442,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_11"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -480,7 +480,7 @@ include '../partials/Sidebar - Employee.php';
                                                     <div class="col-sm-9">
                                                         <input type="number" id="bal_12"
                                                             placeholder="Insert Balance Quantity Eg:- 5"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" disabled/>
                                                     </div>
                                                 </td>
                                                 <td>
