@@ -24,9 +24,17 @@ if($_REQUEST['action'] == 'fetch_attendance'){
 
     ## Call Query 
     $columns = 'a.Attendance_Id, e.Employee_Code, a.Action_Name, a.Attendance_Time,
-    a.Attendance_Message ';
+    a.Attendance_Message     
+    ,DATE(Attendance_Time) day
+    ,SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND, Attendance_Time, (SELECT IFNULL(MIN(Attendance_Time),NOW())
+                                                    FROM attendance b
+                                                   WHERE b.Employee_Code = a.Employee_Code
+                                                     AND b.Attendance_Time  > a.Attendance_Time
+                                                     AND b.Action_Name = "punchOut"
+                                                  )))) Work_Hours ';
     $table = ' attendance a JOIN employee e ON a.Employee_Code = e.Profile_Id ';
-    $where = " WHERE e.Employee_Code!='' ".$date_range.$Action_Name;
+    $where = " WHERE Action_Name='punchIn' AND e.Employee_Code!='' ".$date_range.$Action_Name;
+    $group = ' GROUP BY Employee_Code, DATE(Attendance_Time)';
 
     $columns_order = array(
         0 => 'Attendance_Id',
@@ -36,7 +44,7 @@ if($_REQUEST['action'] == 'fetch_attendance'){
         4 => 'Attendance_Message',
     );
 
-    $sql = "SELECT ".$columns." FROM ".$table." ".$where;
+    $sql = "SELECT ".$columns." FROM ".$table." ".$where."".$group;
 
     $result = mysqli_query($connection, $sql);
     $totalData = mysqli_num_rows($result);
@@ -80,7 +88,11 @@ if($_REQUEST['action'] == 'fetch_attendance'){
             $Status ='<label class="badge badge-warning">Punch-Out</label>';
         }
         $nestedData['Action_Name'] = '<div class="col text-center">'.$Status.'</div>';
+
         $nestedData['Attendance_Message'] = $row["Attendance_Message"];
+
+        $time = strtotime($row["Work_Hours"]);
+        $nestedData['Work_Hours'] = '<div class="col text-center">'.date('h:i:s', $time).'</div>';
 
         $time = strtotime($row["Attendance_Time"]);
         $nestedData['Attendance_Time'] = '<div class="col text-center">'.date('h:i:s A - d M, Y', $time).'</div>';

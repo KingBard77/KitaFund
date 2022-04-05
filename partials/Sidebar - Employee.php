@@ -93,9 +93,9 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="Calendar_Employee.php">
+            <a class="nav-link" href="Event_Employee.php">
                 <i class="icon-watch menu-icon"></i>
-                <span class="menu-title">Calendar</span>
+                <span class="menu-title">Event</span>
             </a>
         </li>
 

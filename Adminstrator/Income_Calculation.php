@@ -169,13 +169,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         </td>
                                                         <td>
                                                             <input type="number" id="Total_Sales" name="Total_Sales"
-                                                                step="0.01" placeholder="Enter Total Sales Eg:- RM 1.20"
+                                                                step="0.01" placeholder="Retrieve Total Sales Eg:- RM 1.20"
                                                                 class="form-control form-control-sm" />
                                                         </td>
                                                         <td>
                                                             <input type="number" id="Net_Expenses" name="Net_Expenses"
                                                                 step="0.01"
-                                                                placeholder="Enter Net Expenses Eg:- RM 1.20"
+                                                                placeholder="Retrieve Net Expenses Eg:- RM 1.20"
                                                                 class="form-control form-control-sm" />
                                                         </td>
                                                         <td>

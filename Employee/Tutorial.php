@@ -19,7 +19,7 @@ include ('../partials/Sidebar - Employee.php');
              <div class="col-lg-12 grid-margin stretch-card">
                  <div class="card">
                      <div class="card-body">
-                         <h4 class="card-title">How to Make a Perfect Burger:</h4>
+                         <h4 class="card-title">Frequently Asked Question</h4>
                          <p class="card-description">A<code>Step-by-Step</code>Guide</p>
                          <div class="mt-4">
                              <div class="accordion accordion-solid-header" id="accordion">
@@ -212,6 +212,23 @@ include ('../partials/Sidebar - Employee.php');
                                                  </div>
                                                  <div class="col-3">
                                                      <img src="../Images/Index/Tutorial2.png" class="mw-100"
+                                                         alt="image" />
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="card">
+                                     <div class="card-header">
+                                         <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion"
+                                             href="#collapseSix">
+                                             <b>Standard Operating Procedures</b>
+                                         </a>
+                                     </div>
+                                     <div id="collapseSix" class="collapse">
+                                         <div class="card-body">
+                                             <div class="row">
+                                                 <div class="col-12">
+                                                     <img src="../Images/Index/SOP.jpg" class="mw-100"
                                                          alt="image" />
                                                  </div>
                                              </div>

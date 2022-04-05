@@ -1,4 +1,4 @@
-<!--========== CALENDAR ==========-->
+<!--========== EVENT ==========-->
 <?php
 // Set the page title and include the HTML header:
 $page_title = 'Calendar';
