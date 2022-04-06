@@ -120,30 +120,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <p class="card-description">
                             Insert All Category
                         </p>
-                        <form class="forms-sample" action="Category.php" method="post">
-                            <div class="row">
-                                <!--========== Input Category ==========-->
-                                <div class="col-md-12">
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Category</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control"
-                                                placeholder="Enter Category Name Eg:-Buns" name="Category_Name">
+                        <button href="#Bar" class="btn btn-primary mr-2" style="float: right;"
+                            data-toggle="collapse">Insert New Category</button><br /><br /><br />
+                        <div id="Bar" class="collapse in">
+                            <form class="forms-sample" action="Category.php" method="post">
+                                <div class="row">
+                                    <!--========== Input Category ==========-->
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Category</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter Category Name Eg:-Buns" name="Category_Name">
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-12" align="right">
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="reset" class="btn btn-light" name="reset">Reset</button>
-                            </div>
-                        </form>
+                                <div class="col-sm-12" align="right">
+                                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                    <button type="reset" class="btn btn-light" name="reset">Reset</button>
+                                </div>
+                            </form>
+                        </div>
                         <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
-                        Please define Unqiue Category Name that related towards
-                        <b>Stock
-                            Name.</b>
-                    </p>
+                            Please define Unqiue Category Name that related towards
+                            <b>Stock
+                                Name.</b>
+                        </p>
                     </div>
                 </div>
             </div>

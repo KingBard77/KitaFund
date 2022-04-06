@@ -91,7 +91,6 @@ $attendance_num = mysqli_num_rows($attendance);
                                                             <th class="text-center">Action Name</th>
                                                             <th class="text-center">Attendance Time</th>
                                                             <th>Attendance Message</th>
-                                                            <th class="text-center">Work Hours</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -236,9 +235,6 @@ $attendance_num = mysqli_num_rows($attendance);
                     },
                     {
                         "data": "Attendance_Message"
-                    },
-                    {
-                        "data": "Work_Hours"
                     },
                     {
                         "data": "counter"

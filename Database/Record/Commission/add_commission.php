@@ -39,6 +39,10 @@ $msgBody = '
             <td colspan="2">Hai Owner, <b>'.$_SESSION['Employee_Code'].'</b> have apply for the <b>Application Commission</b> for the following details:</td>
         </tr>
         <tr>
+            <td width="10%">Comission Status: </td>
+            <td width="50%">'. $Commission_Status.'</td>
+        </tr>
+        <tr>
             <td width="10%">Bank Name: </td>
             <td width="50%">'. $Bank_Name.'</td>
         </tr>
