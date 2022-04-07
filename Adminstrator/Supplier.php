@@ -1,6 +1,6 @@
 <!--========== EMPLOYEES LEAVES ==========-->
 <!-- Plugin css for this page -->
-
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <!-- End plugin css for this page -->
 
 <?php
@@ -145,7 +145,7 @@ if(isset($_POST["submit"]))
                                         <div class="col-sm-9">
                                             <select type="text" name="Supplier_Name" class="form-control" required>
                                                 <option value="">---- Select Supplier Name ----</option>
-                                                <option value="Season's Enterprise">Season's Enterprise</option>
+                                                <option value="Seasons Enterprise">Seasons Enterprise</option>
                                                 <option value="Rahman Bandar Universiti">Rahman Bandar Universiti
                                                 </option>
                                                 <option value="Al Khaleed Sdn Bhd">Al Khaleed Sdn Bhd</option>
@@ -219,7 +219,7 @@ if(isset($_POST["submit"]))
                                         <ul class="menu-items">
                                             <li class="compose mb-3">
                                                 <button href="#Bar" style="float: right;" data-toggle="collapse"
-                                                    class="btn btn-primary btn-block">Compose
+                                                    class="btn btn-primary btn-block">Compose <i class='far fa-paper-plane'></i>
                                                 </button>
                                             </li>
                                             <li class="active"><a href="#"><i class="ti-email"></i> Inbox</a><span
@@ -316,7 +316,7 @@ if(isset($_POST["submit"]))
                                                         <?php echo $row["Message"]; ?>.
                                                     </p>
                                                 </div>
-                                                <!--<a href="Supplier_View.php?id= <?php echo $row["Supplier_Id"]; ?>">See more</a>-->
+                                                <!--<a href="Supplier_View.php?id=<?php echo $row["Supplier_Id"]; ?>">See more</a>-->
                                                 <div class="details">
                                                     <i class="ti-star favorite"></i>
                                                 </div>
@@ -332,6 +332,19 @@ if(isset($_POST["submit"]))
 
                                 <!-- SECTION 3 -->
                                 <div class="mail-view d-none d-md-block col-md-9 col-lg-7 bg-white">
+                                    <?php
+                                        $Supplier_Id = $_REQUEST['id'];
+                                        // Retrieve the user's information:
+                                        $query = "SELECT *
+                                        FROM supplier
+                                        WHERE Supplier_Id = $Supplier_Id ";
+                                        $supplier = mysqli_query($dbc, $query);
+
+                                        if (mysqli_num_rows($supplier) == 1) { // Valid user ID, show the form.
+
+                                            // Get the user's information:
+                                            $row = mysqli_fetch_array($supplier, MYSQLI_NUM); //MYSQLI_ASSOC
+                                        ?>
                                     <div class="row">
                                         <div class="col-md-12 mb-4 mt-4">
                                             <div class="btn-toolbar">
@@ -348,26 +361,15 @@ if(isset($_POST["submit"]))
                                                     <button type="button" class="btn btn-sm btn-outline-secondary"><i
                                                             class="ti-clip text-primary me-1"></i> Attach</button>
                                                     <button type="button" class="btn btn-sm btn-outline-secondary"><i
-                                                            class="ti-trash text-primary me-1"></i> Delete</button>
+                                                            class="ti-trash text-primary me-1"></i> <a
+                                                            href="Supplier_Delete.php?id=<?php echo $row[0]; ?>"
+                                                            style="text-decoration: none">Delete</a></button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div id="Body-Email">
-                                        <?php
-                                        $Supplier_Id = $_REQUEST['id'];
-                                        // Retrieve the user's information:
-                                        $query = "SELECT *
-                                        FROM supplier
-                                        WHERE Supplier_Id = $Supplier_Id ";
-                                        $supplier = mysqli_query($dbc, $query);
-
-                                        if (mysqli_num_rows($supplier) == 1) { // Valid user ID, show the form.
-
-                                            // Get the user's information:
-                                            $row = mysqli_fetch_array($supplier, MYSQLI_NUM); //MYSQLI_ASSOC
-                                        ?>
                                         <div class="message-body">
                                             <div class="sender-details">
                                                 <img class="img-sm rounded-circle me-3" src="../Images/Logo.png" alt="">
@@ -390,9 +392,9 @@ if(isset($_POST["submit"]))
                                                 </p>
                                                 <br />
                                                 <p><?php echo $row[4];?></p>
-                                                <p><br><br>Regards, BurgerByte.Co</p>
-                                                <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>*
-                                                    Click an attachment below to see the details:</p>
+                                                <p><br><br>Regards, BurgerByte.Co</p><br/>
+                                                <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                                                    Click an <b>attachment</b> below to see the details:</p>
                                             </div>
                                             <div class="attachments-sections">
                                                 <ul>
@@ -415,7 +417,23 @@ if(isset($_POST["submit"]))
                                         </div>
                                         <?php
                                         } else { // Not a valid user ID.
-                                            echo 'No data to display';
+                                            echo '
+                                            <div class="message-body">
+                                                <div class="sender-details">
+                                                    <img class="img-sm rounded-circle me-3" src="../Images/Logo.png" alt="">
+                                                    &nbsp;
+                                                    &nbsp;
+                                                    <div class="details">
+                                                        <p class="msg-subject">
+                                                            Sorry, this email body has been accessed in error
+                                                        </p>
+                                                        <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                                                            To retrieve an email body, please select
+                                                            <b>Subject Email</b> on the left to see more details.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>';
                                         }
                                         
                                         mysqli_close($dbc);?>
