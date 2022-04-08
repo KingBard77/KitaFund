@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         <td>
                                                             <input type="number" id="Total_Sales" name="Total_Sales"
                                                                 step="0.01" placeholder="Retrieve Total Sales Eg:- RM 1.20"
-                                                                class="form-control form-control-sm" />
+                                                                class="form-control form-control-sm" disabled/>
                                                         </td>
                                                         <td>
                                                             <input type="number" id="Net_Expenses" name="Net_Expenses"

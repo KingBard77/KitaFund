@@ -80,7 +80,7 @@ if($_REQUEST['action'] == 'fetch_purchase'){
             $Status ='<label class="badge badge-success">Purchase</label>';
         }
 
-        $nestedData['Purchase_Status'] = $Status;
+        $nestedData['Purchase_Status'] = '<div class="col text-center">'.$Status.'  </div>';
         $nestedData['Owner_Code'] = '<div class="col text-center">'.$row['Owner_Code'].'  </div>';
         
         $time = strtotime($row["Purchase_Date"]);

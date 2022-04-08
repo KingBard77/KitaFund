@@ -73,7 +73,7 @@ $purchase_num = mysqli_num_rows($purchase);
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Purchase Status</th>
+                                                        <th class="text-center">Purchase Status</th>
                                                         <th class="text-center">Purchase Date</th>
                                                         <th class="text-center">Owner Code</th>
                                                         <th></th>
