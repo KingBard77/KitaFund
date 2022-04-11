@@ -227,8 +227,12 @@ include ('../partials/Sidebar - Employee.php');
                                      <div id="collapseSix" class="collapse">
                                          <div class="card-body">
                                              <div class="row">
-                                                 <div class="col-12">
+                                                 <div class="col-6">
                                                      <img src="../Images/Index/SOP.jpg" class="mw-100"
+                                                         alt="image" />
+                                                 </div>
+                                                 <div class="col-6">
+                                                     <img src="../Images/Index/SOP2.jpeg" class="mw-100"
                                                          alt="image" />
                                                  </div>
                                              </div>
