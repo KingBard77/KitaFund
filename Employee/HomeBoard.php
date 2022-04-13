@@ -49,14 +49,14 @@ $Employee_Code = $_SESSION['Profile_Id'];
         <!-- SECTION 1 -->
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
-                <div class="card" style="width: 18rem;">
+                <div class="card mb-3" style="width: 18rem;">
                     <img src="../Images/dashboard/Menu.png" class="rounded" alt="people">
                 </div>
             </div>
             <div class="col-md-6 grid-margin transparent">
                 <div class="row">
                     <div class="col-md-12 mb-4 mb-lg-0 stretch-card transparent">
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-body">
                                 <?php
                                 // Define the Weather Forecasting:
@@ -125,27 +125,27 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                 &nbsp;
                                 <?php
                                 if ($current->description == "Partly sunny"){
-                                    $Status ='<span>Please come <b class="text-success"><i class="ti-arrow-up"></i> 4.45 P.M</b> than usual <b>5.00 P.M</b> into a business.</span></p>';
+                                    $Status ='<span>Prepare a <b class="text-success"><i class="ti-arrow-up"></i> 40%</b> Stock-In into a business.</span></p>';
                                 }
                                 if ($current->description == "Partly cloudy"){
-                                    $Status ='<span>Please come <b class="text-info"><i class="ti-arrow-up"></i> 5.15 P.M</b> than usual <b>5.00 P.M</b> into a business.</span></p>';
+                                    $Status ='<span>Prepare a <b class="text-info"><i class="ti-arrow-up"></i> 25%</b> Stock-In into a business.</span></p>';
                                 }
                                 if ($current->description == "Cloudy in the morning with a shower in spots followed by sun and areas of high clouds"){
-                                    $Status ='<span>Please come <b class="text-warning"><i class="ti-arrow-up"></i> 5.30 P.M</b> than usual <b>5.00 P.M</b> into a business.</span></p>';
+                                    $Status ='<span>Prepare a <b class="text-warning"><i class="ti-arrow-up"></i> 10%</b> Stock-In into a business.</span></p>';
                                 }
                                 if ($current->description == "Mostly cloudy with a thunderstorm in a couple of spots"){
-                                    $Status ='<span>Please come <b class="text-danger"><i class="ti-arrow-down"></i> 6.00 P.M</b> than usual <b>5.00 P.M</b> into a business.</span></p>';
+                                    $Status ='<span>Prepare a <b class="text-danger"><i class="ti-arrow-down"></i> -10%</b> Stock-In into a business.</span></p>';
                                 }
                                 if ($current->description == "Clouds giving way to some sun"){
-                                    $Status ='<span>Please come <b class="text-secondary"><i class="ti-arrow-down"></i> 6.45 P.M</b> than usual <b>5.00 P.M</b> into a business.</span></p>';
+                                    $Status ='<span>Prepare a <b class="text-secondary"><i class="ti-arrow-down"></i> -20%</b> Stock-In into a business.</span></p>';
                                 }
-                                echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Suggestion : </span>".$Status;
+                                echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Prediction : </span>".$Status;
                                 ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br />
+
                 <div class="row">
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-tale">
@@ -194,6 +194,7 @@ $Employee_Code = $_SESSION['Profile_Id'];
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                         <div class="card card-light-blue">
@@ -256,6 +257,7 @@ $Employee_Code = $_SESSION['Profile_Id'];
                             It is the period time in a week to <br>
                             show prediction of <b>Weather</b> every day in BurgerByte
                             Enterprise, page or app, etc.</p>
+                            <br/>
                         <div class="border-top pt-3 text-center">
                             <div class="container">
                                 <div class="row">
@@ -370,7 +372,6 @@ $Employee_Code = $_SESSION['Profile_Id'];
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <p class="card-title">Commission Report</p>
-                            <a href="#" class="text-info">View all</a>
                         </div>
                         <p class="font-weight-500">This is <b class="text-info">bar-graph</b> of the <b>Net
                                 Commission</b> for <b

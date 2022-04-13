@@ -219,7 +219,7 @@ if(isset($_POST["submit"]))
                                         <ul class="menu-items">
                                             <li class="compose mb-3">
                                                 <button href="#Bar" style="float: right;" data-toggle="collapse"
-                                                    class="btn btn-primary btn-block">Compose <i class='far fa-paper-plane'></i>
+                                                    class="btn btn-primary btn-block"><i class='ti-location-arrow'></i> Compose 
                                                 </button>
                                             </li>
                                             <li class="active"><a href="#"><i class="ti-email"></i> Inbox</a><span
@@ -392,7 +392,7 @@ if(isset($_POST["submit"]))
                                                 </p>
                                                 <br />
                                                 <p><?php echo $row[4];?></p>
-                                                <p><br><br>Regards, BurgerByte.Co</p><br/>
+                                                <p><br><br>Regards, BurgerByte.Ent</p><br/>
                                                 <p class="text-primary mb-0"><i class='ti-help-alt'></i>
                                                     Click an <b>attachment</b> below to see the details:</p>
                                             </div>

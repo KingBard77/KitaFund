@@ -61,14 +61,14 @@ $employee_num = mysqli_num_rows($employee);
         <!-- SECTION 1 -->
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
-                <div class="card" style="width: 18rem;">
+                <div class="card mb-3" style="width: 18rem;">
                     <img src="../Images/dashboard/Menu.png" class="rounded" alt="people">
                 </div>
             </div>
             <div class="col-md-6 grid-margin transparent">
                 <div class="row">
                     <div class="col-md-12 mb-4 mb-lg-0 stretch-card transparent">
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-body">
                                 <?php
                                 // Define the Weather Forecasting:
@@ -151,13 +151,13 @@ $employee_num = mysqli_num_rows($employee);
                                 if ($current->description == "Clouds giving way to some sun"){
                                     $Status ='<span>Prepare a <b class="text-secondary"><i class="ti-arrow-down"></i> -20%</b> Stock-In into a business.</span></p>';
                                 }
-                                echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Suggestion : </span>".$Status;
+                                echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Prediction : </span>".$Status;
                                 ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br />
+
                 <div class="row">
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-tale">
@@ -199,6 +199,7 @@ $employee_num = mysqli_num_rows($employee);
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                         <div class="card card-light-blue">
@@ -257,6 +258,7 @@ $employee_num = mysqli_num_rows($employee);
                             It is the period time in a week to <br>
                             show prediction of <b>Weather</b> every day in BurgerByte
                             Enterprise, page or app, etc.</p>
+                        <br/>
                         <div class="border-top pt-3 text-center">
                             <div class="container">
                                 <div class="row">
@@ -373,7 +375,6 @@ $employee_num = mysqli_num_rows($employee);
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <p class="card-title">Sales Report</p>
-                            <a href="#" class="text-info">View all</a>
                         </div>
                         <p class="font-weight-500">This is <b class="text-info">bar-graph</b> of the <b>Total Sales</b>
                             for
