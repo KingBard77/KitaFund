@@ -152,7 +152,7 @@ if (mysqli_num_rows($result) == 1) { // Valid user ID, show the form.
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a class="dropdown-item">
+                            <a href="Profile_Employee.php" class="dropdown-item">
                                 <i class="ti-settings text-primary"></i> Settings
                             </a>
                             <a class="dropdown-item"  href="../Employee/Logout_Employee.php">

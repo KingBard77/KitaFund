@@ -67,6 +67,98 @@ $employee_num = mysqli_num_rows($employee);
             </div>
             <div class="col-md-6 grid-margin transparent">
                 <div class="row">
+                    <div class="col-md-12 mb-4 mb-lg-0 stretch-card transparent">
+                        <div class="card">
+                            <div class="card-body">
+                                <?php
+                                // Define the Weather Forecasting:
+                                $cache_file = 'data.json';
+                                if(file_exists($cache_file)){
+                                $data = json_decode(file_get_contents($cache_file));
+                                }else{
+                                $api_url = 'https://content.api.nytimes.com/svc/weather/v2/current-and-seven-day-forecast.json';
+                                $data = file_get_contents($api_url);
+                                file_put_contents($cache_file, $data);
+                                $data = json_decode($data);
+                                }
+
+                                $current = $data->results->current[0];
+                                $forecast = $data->results->seven_day_forecast;
+
+                                function convert2cen($value,$unit){
+                                    if($unit=='C'){
+                                    return $value;
+                                    }else if($unit=='F'){
+                                    $cen = ($value - 32) / 1.8;
+                                        return round($cen,2);
+                                    }
+                                }
+                                ?>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h5 class="font-weight-bold">
+                                                <?php echo $current->city.' ('.$current->country.')';?></h5><br />
+                                            <p class="fs-30 mb-2" style="font-weight-bold">
+                                                <img style="margin-left:-10px;" src="<?php echo $current->image;?>">
+                                                <?php echo $current->description;?>
+                                            </p>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="font-weight-bold text-right">
+                                                <?php echo convert2cen($current->temp,$current->temp_unit);?> °C</h1>
+                                            <br />
+                                            <h6 class="text-muted text-right"><?php 
+                                                date_default_timezone_set("Asia/Kuala_Lumpur");
+                                                echo date("l | H:i: A");?></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <h5 class="font-weight-bold">Wind Speed</h5>
+                                        <h6 class="text-muted">
+                                            <?php echo $current->windspeed;?>
+                                            <?php echo $current->windspeed_unit;?></h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 class="font-weight-bold">Pressue</h5>
+                                        <h6 class="text-muted">
+                                            <?php echo $current->pressure;?>
+                                            <?php echo $current->pressure_unit;?></h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 class="font-weight-bold">Visibility</h5>
+                                        <h6 class="text-muted">
+                                            <?php echo $current->visibility;?>
+                                            <?php echo $current->visibility_unit;?></h6>
+                                    </div>
+                                </div>
+                                &nbsp;
+                                <?php
+                                if ($current->description == "Partly sunny"){
+                                    $Status ='<span>Prepare a <b class="text-success"><i class="ti-arrow-up"></i> 40%</b> Stock-In into a business.</span></p>';
+                                }
+                                if ($current->description == "Partly cloudy"){
+                                    $Status ='<span>Prepare a <b class="text-info"><i class="ti-arrow-up"></i> 25%</b> Stock-In into a business.</span></p>';
+                                }
+                                if ($current->description == "Cloudy in the morning with a shower in spots followed by sun and areas of high clouds"){
+                                    $Status ='<span>Prepare a <b class="text-warning"><i class="ti-arrow-up"></i> 10%</b> Stock-In into a business.</span></p>';
+                                }
+                                if ($current->description == "Mostly cloudy with a thunderstorm in a couple of spots"){
+                                    $Status ='<span>Prepare a <b class="text-danger"><i class="ti-arrow-down"></i> -10%</b> Stock-In into a business.</span></p>';
+                                }
+                                if ($current->description == "Clouds giving way to some sun"){
+                                    $Status ='<span>Prepare a <b class="text-secondary"><i class="ti-arrow-down"></i> -20%</b> Stock-In into a business.</span></p>';
+                                }
+                                echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Suggestion : </span>".$Status;
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-tale">
                             <div class="card-body">
@@ -149,97 +241,6 @@ $employee_num = mysqli_num_rows($employee);
                         </div>
                     </div>
                 </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-12 mb-4 mb-lg-0 stretch-card transparent">
-                        <div class="card">
-                            <div class="card-body">
-                                <?php
-                                // Define the Weather Forecasting:
-                                $cache_file = 'data.json';
-                                if(file_exists($cache_file)){
-                                $data = json_decode(file_get_contents($cache_file));
-                                }else{
-                                $api_url = 'https://content.api.nytimes.com/svc/weather/v2/current-and-seven-day-forecast.json';
-                                $data = file_get_contents($api_url);
-                                file_put_contents($cache_file, $data);
-                                $data = json_decode($data);
-                                }
-
-                                $current = $data->results->current[0];
-                                $forecast = $data->results->seven_day_forecast;
-
-                                function convert2cen($value,$unit){
-                                    if($unit=='C'){
-                                    return $value;
-                                    }else if($unit=='F'){
-                                    $cen = ($value - 32) / 1.8;
-                                        return round($cen,2);
-                                    }
-                                }
-                                ?>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <h5 class="font-weight-bold">
-                                                <?php echo $current->city.' ('.$current->country.')';?></h5><br />
-                                            <p class="fs-30 mb-2" style="font-weight-bold">
-                                                <img style="margin-left:-10px;" src="<?php echo $current->image;?>">
-                                                <?php echo $current->description;?>
-                                            </p>
-                                        </div>
-                                        <div class="col-4">
-                                            <h1 class="font-weight-bold text-right">
-                                                <?php echo convert2cen($current->temp,$current->temp_unit);?> °C</h1><br />
-                                            <h6 class="text-muted text-right"><?php 
-                                                date_default_timezone_set("Asia/Kuala_Lumpur");
-                                                echo date("l | H:i: A");?></h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row text-center">
-                                    <div class="col-4">
-                                        <h5 class="font-weight-bold">Wind Speed</h5>
-                                        <h6 class="text-muted">
-                                            <?php echo $current->windspeed;?>
-                                            <?php echo $current->windspeed_unit;?></h6>
-                                    </div>
-                                    <div class="col-4">
-                                        <h5 class="font-weight-bold">Pressue</h5>
-                                        <h6 class="text-muted">
-                                            <?php echo $current->pressure;?>
-                                            <?php echo $current->pressure_unit;?></h6>
-                                    </div>
-                                    <div class="col-4">
-                                        <h5 class="font-weight-bold">Visibility</h5>
-                                        <h6 class="text-muted">
-                                            <?php echo $current->visibility;?>
-                                            <?php echo $current->visibility_unit;?></h6>
-                                    </div>
-                                </div>
-                                &nbsp;
-                                <?php
-                                if ($current->description == "Partly sunny"){
-                                    $Status ='<span>Prepare a <b class="text-success"><i class="ti-arrow-up"></i> 40%</b> Stock-In into a business.</span></p>';
-                                }
-                                if ($current->description == "Sun and clouds"){
-                                    $Status ='<span>Prepare a <b class="text-info"><i class="ti-arrow-up"></i> 25%</b> Stock-In into a business.</span></p>';
-                                }
-                                if ($current->description == "Cloudy in the morning with a shower in spots followed by sun and areas of high clouds"){
-                                    $Status ='<span>Prepare a <b class="text-warning"><i class="ti-arrow-up"></i> 10%</b> Stock-In into a business.</span></p>';
-                                }
-                                if ($current->description == "Mostly cloudy with a thunderstorm in a couple of spots"){
-                                    $Status ='<span>Prepare a <b class="text-danger"><i class="ti-arrow-down"></i> -10%</b> Stock-In into a business.</span></p>';
-                                }
-                                if ($current->description == "Clouds giving way to some sun"){
-                                    $Status ='<span>Prepare a <b class="text-secondary"><i class="ti-arrow-down"></i> -20%</b> Stock-In into a business.</span></p>';
-                                }
-                                echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Suggestion : </span>".$Status;
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -249,7 +250,8 @@ $employee_num = mysqli_num_rows($employee);
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title">Weather Forecast for Every Days</p>
-                        <p class="font-weight-500">The is a <b>Weather Forecast</b> of the <b>Current Location</b>
+                        <p class="font-weight-500">This is a <b class="text-info">Weather Forecast</b> of the <b>Current
+                                Location</b>
                             for BurgerByte
                             Enterprise.
                             It is the period time in a week to <br>
@@ -262,11 +264,13 @@ $employee_num = mysqli_num_rows($employee);
                                     <div class="col">
                                         <h6 class="font-weight-bold">
                                             <?php echo $f->day;?></h6>
-                                            <img src="<?php echo $f->image;?>">
-                                            <br/>&nbsp;<br/>
+                                        <img src="<?php echo $f->image;?>">
+                                        <br />&nbsp;<br />
                                         <h7 class="font-weight-bold">
-                                            <?php echo convert2cen($f->low,$f->low_unit);?><h7 class="font-weight-bold"> °C -</h7>
-                                            <?php echo convert2cen($f->high,$f->high_unit);?><h7 class="font-weight-bold"> °C</h7>
+                                            <?php echo convert2cen($f->low,$f->low_unit);?><h7 class="font-weight-bold">
+                                                °C -</h7>
+                                            <?php echo convert2cen($f->high,$f->high_unit);?><h7
+                                                class="font-weight-bold"> °C</h7>
                                         </h7>
                                         <hr style="border-bottom:1px solid #fff;">
                                         <p><?php echo $f->phrase;?></p>
@@ -287,7 +291,8 @@ $employee_num = mysqli_num_rows($employee);
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title">BurgerByte Details</p>
-                        <p class="font-weight-500">The is a <b>line graph</b> of the <b>Selling Price</b>
+                        <p class="font-weight-500">This is a <b class="text-info">line graph</b> of the <b>Selling
+                                Price</b>
                             for BurgerByte
                             Enterprise in every stock.
                             It is the period time in a year to show <b>Selling Price</b> for every stock in
@@ -370,7 +375,8 @@ $employee_num = mysqli_num_rows($employee);
                             <p class="card-title">Sales Report</p>
                             <a href="#" class="text-info">View all</a>
                         </div>
-                        <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Total Sales</b> for
+                        <p class="font-weight-500">This is <b class="text-info">bar-graph</b> of the <b>Total Sales</b>
+                            for
                             BurgerByte
                             Enterprise in every month.
                             It is the period time in a year to show <b>Total Sales</b> for every month in
@@ -427,7 +433,8 @@ $employee_num = mysqli_num_rows($employee);
                                                 </h1>
                                                 <h3 class="font-weight-500 mb-xl-4 text-primary">Total
                                                     Invoices</h3>
-                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total
+                                                <p align="justify" class="mb-2 mb-xl-0">This is <b
+                                                        class="text-info">Total
                                                         Invoices</b> for
                                                     every
                                                     month in this year
@@ -549,7 +556,8 @@ $employee_num = mysqli_num_rows($employee);
                                                 </h1>
                                                 <h3 class="font-weight-500 mb-xl-4 text-primary">Total
                                                     Income</h3>
-                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total
+                                                <p align="justify" class="mb-2 mb-xl-0">This is <b
+                                                        class="text-info">Total
                                                         Income</b> for
                                                     every
                                                     month in this year
@@ -812,7 +820,7 @@ $employee_num = mysqli_num_rows($employee);
                         <div class="row mt-3">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-borderless">
+                                    <table class="table table-borderless" id="table">
                                         <thead>
                                             <tr>
                                                 <th class="pl-0  pb-2 border-bottom">Stock Name</th>
@@ -821,18 +829,21 @@ $employee_num = mysqli_num_rows($employee);
                                             </tr>
                                         </thead>
                                         <?php
-                                        // Define the query:
-                                        $query = "Select *
-                                        FROM stock s JOIN category c ON s.Category_id = c.Category_id 
-                                        ORDER BY Stock_Id ASC";
-                                        $category = mysqli_query($dbc, $query);
+                                        $count_query = "SELECT count(*) as allcount 
+                                                        FROM stock s JOIN category c 
+                                                        ON s.Category_id = c.Category_id
+                                                        ORDER BY Stock_Id ASC";
+                                        $count_result = mysqli_query($dbc,$count_query);
+                                        $count_fetch = mysqli_fetch_array($count_result);
+                                        $postCount = $count_fetch['allcount'];
+                                        $limit = 8;
 
-                                        // Count the number of returned rows:
-                                        $category_num = mysqli_num_rows($category);
-                                        if(mysqli_num_rows($category) > 0)  
-                                        {  
-                                            while($row = mysqli_fetch_array($category))  
-                                            {  
+                                        $query = "SELECT *
+                                        FROM stock s JOIN category c ON s.Category_id = c.Category_id 
+                                        ORDER BY Stock_Id ASC LIMIT 0,".$limit;	
+                                        $result = mysqli_query($dbc,$query);
+                                        if ($result->num_rows > 0) {
+                                            while($row = mysqli_fetch_assoc($result)){ 
                                         ?>
                                         <tbody>
                                             <tr>
@@ -856,6 +867,13 @@ $employee_num = mysqli_num_rows($employee);
                                         }  
                                         ?>
                                     </table>
+                                    <div class="loadmore" align="right">
+                                        <p class="mb-0">
+                                            <a class="text-info" id="loadBtn" value="Load More">View More</a>
+                                        </p>
+                                        <input type="hidden" id="row" value="0">
+                                        <input type="hidden" id="postCount" value="<?php echo $postCount; ?>">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1255,6 +1273,34 @@ $employee_num = mysqli_num_rows($employee);
                     });
             }
         }
+
+        // LOAD MORE DATA FOR STOCK 
+        $(document).ready(function() {
+            $(document).on('click', '#loadBtn', function() {
+                var row = Number($('#row').val());
+                var count = Number($('#postCount').val());
+                var limit = 8;
+                row = row + limit;
+                $('#row').val(row);
+                $("#loadBtn").val('Loading...');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '../Database/Chart/Load.php',
+                    data: 'row=' + row,
+                    success: function(data) {
+                        var rowCount = row + limit;
+                        $('#table').append(data);
+                        if (rowCount >= count) {
+                            $('#loadBtn').css("display",
+                                "none");
+                        } else {
+                            $("#loadBtn").val('Load More');
+                        }
+                    }
+                });
+            });
+        });
         </script>
 
         <!-- Plugin js for this page -->

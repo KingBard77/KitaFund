@@ -1,6 +1,6 @@
 <!--========== EMPLOYEES LEAVES ==========-->
 <!-- Plugin css for this page -->
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 <!-- End plugin css for this page -->
 
 <?php
@@ -393,7 +393,7 @@ if(isset($_POST["submit"]))
                                                 <br />
                                                 <p><?php echo $row[4];?></p>
                                                 <p><br><br>Regards, BurgerByte.Co</p><br/>
-                                                <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
+                                                <p class="text-primary mb-0"><i class='ti-help-alt'></i>
                                                     Click an <b>attachment</b> below to see the details:</p>
                                             </div>
                                             <div class="attachments-sections">
