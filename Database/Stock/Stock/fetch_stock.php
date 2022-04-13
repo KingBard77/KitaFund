@@ -81,7 +81,7 @@ if ($_REQUEST['action'] == 'fetch_stock') {
         $nestedData['Category_Name'] = $row["Category_Name"];
 
         $time = strtotime($row["Stock_Date"]);
-        $nestedData['Stock_Date'] = '<div class="col text-center">'.date('h:i:s A - d M, Y', $time).'</div>';
+        $nestedData['Stock_Date'] = '<div class="col text-center">'.date(' d F, Y', $time).'</div>';
 
         $nestedData['counter'] = '
 		<div class="col text-center">
