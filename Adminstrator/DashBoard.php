@@ -43,7 +43,7 @@ $employee_num = mysqli_num_rows($employee);
                                 <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button"
                                     id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="true">
-                                    <i class="mdi mdi-calendar"></i> Today <?php echo  "( ".date("d M, Y")." )" ?>
+                                    <i class="mdi mdi-calendar"></i> Today <?php echo  "( ".date("d F, Y")." )" ?>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
                                     <a class="dropdown-item" href="#">January - March</a>
@@ -149,6 +149,134 @@ $employee_num = mysqli_num_rows($employee);
                         </div>
                     </div>
                 </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12 mb-4 mb-lg-0 stretch-card transparent">
+                        <div class="card">
+                            <div class="card-body">
+                                <?php
+                                // Define the Weather Forecasting:
+                                $cache_file = 'data.json';
+                                if(file_exists($cache_file)){
+                                $data = json_decode(file_get_contents($cache_file));
+                                }else{
+                                $api_url = 'https://content.api.nytimes.com/svc/weather/v2/current-and-seven-day-forecast.json';
+                                $data = file_get_contents($api_url);
+                                file_put_contents($cache_file, $data);
+                                $data = json_decode($data);
+                                }
+
+                                $current = $data->results->current[0];
+                                $forecast = $data->results->seven_day_forecast;
+
+                                function convert2cen($value,$unit){
+                                    if($unit=='C'){
+                                    return $value;
+                                    }else if($unit=='F'){
+                                    $cen = ($value - 32) / 1.8;
+                                        return round($cen,2);
+                                    }
+                                }
+                                ?>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h5 class="font-weight-bold">
+                                                <?php echo $current->city.' ('.$current->country.')';?></h5><br />
+                                            <p class="fs-30 mb-2" style="font-weight-bold">
+                                                <img style="margin-left:-10px;" src="<?php echo $current->image;?>">
+                                                <?php echo $current->description;?>
+                                            </p>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="font-weight-bold text-right">
+                                                <?php echo convert2cen($current->temp,$current->temp_unit);?> °C</h1><br />
+                                            <h6 class="text-muted text-right"><?php 
+                                                date_default_timezone_set("Asia/Kuala_Lumpur");
+                                                echo date("l | H:i: A");?></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <h5 class="font-weight-bold">Wind Speed</h5>
+                                        <h6 class="text-muted">
+                                            <?php echo $current->windspeed;?>
+                                            <?php echo $current->windspeed_unit;?></h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 class="font-weight-bold">Pressue</h5>
+                                        <h6 class="text-muted">
+                                            <?php echo $current->pressure;?>
+                                            <?php echo $current->pressure_unit;?></h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 class="font-weight-bold">Visibility</h5>
+                                        <h6 class="text-muted">
+                                            <?php echo $current->visibility;?>
+                                            <?php echo $current->visibility_unit;?></h6>
+                                    </div>
+                                </div>
+                                &nbsp;
+                                <?php
+                                if ($current->description == "Partly sunny"){
+                                    $Status ='<span>Prepare a <b class="text-success"><i class="ti-arrow-up"></i> 40%</b> Stock-In into a business.</span></p>';
+                                }
+                                if ($current->description == "Sun and clouds"){
+                                    $Status ='<span>Prepare a <b class="text-info"><i class="ti-arrow-up"></i> 25%</b> Stock-In into a business.</span></p>';
+                                }
+                                if ($current->description == "Cloudy in the morning with a shower in spots followed by sun and areas of high clouds"){
+                                    $Status ='<span>Prepare a <b class="text-warning"><i class="ti-arrow-up"></i> 10%</b> Stock-In into a business.</span></p>';
+                                }
+                                if ($current->description == "Mostly cloudy with a thunderstorm in a couple of spots"){
+                                    $Status ='<span>Prepare a <b class="text-danger"><i class="ti-arrow-down"></i> -10%</b> Stock-In into a business.</span></p>';
+                                }
+                                if ($current->description == "Clouds giving way to some sun"){
+                                    $Status ='<span>Prepare a <b class="text-secondary"><i class="ti-arrow-down"></i> -20%</b> Stock-In into a business.</span></p>';
+                                }
+                                echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Suggestion : </span>".$Status;
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION WEATHER FORECASTING -->
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Weather Forecast for Every Days</p>
+                        <p class="font-weight-500">The is a <b>Weather Forecast</b> of the <b>Current Location</b>
+                            for BurgerByte
+                            Enterprise.
+                            It is the period time in a week to <br>
+                            show prediction of <b>Weather</b> every day in BurgerByte
+                            Enterprise, page or app, etc.</p>
+                        <div class="border-top pt-3 text-center">
+                            <div class="container">
+                                <div class="row">
+                                    <?php $loop=0; foreach($forecast as $f){ $loop++;?>
+                                    <div class="col">
+                                        <h6 class="font-weight-bold">
+                                            <?php echo $f->day;?></h6>
+                                            <img src="<?php echo $f->image;?>">
+                                            <br/>&nbsp;<br/>
+                                        <h7 class="font-weight-bold">
+                                            <?php echo convert2cen($f->low,$f->low_unit);?><h7 class="font-weight-bold"> °C -</h7>
+                                            <?php echo convert2cen($f->high,$f->high_unit);?><h7 class="font-weight-bold"> °C</h7>
+                                        </h7>
+                                        <hr style="border-bottom:1px solid #fff;">
+                                        <p><?php echo $f->phrase;?></p>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -159,10 +287,12 @@ $employee_num = mysqli_num_rows($employee);
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title">BurgerByte Details</p>
-                        <p class="font-weight-500">The is a <b>line graph</b> of the <b>Selling Price</b> for BurgerByte
-                            Company in every stock.
-                            It is the period time in a year to show <b>Selling Price</b> for every stock in BurgerByte
-                            Company, page or app, etc.</p>
+                        <p class="font-weight-500">The is a <b>line graph</b> of the <b>Selling Price</b>
+                            for BurgerByte
+                            Enterprise in every stock.
+                            It is the period time in a year to show <b>Selling Price</b> for every stock in
+                            BurgerByte
+                            Enterprise, page or app, etc.</p>
                         <div class="d-flex flex-wrap mb-5">
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Stock</p>
@@ -240,10 +370,12 @@ $employee_num = mysqli_num_rows($employee);
                             <p class="card-title">Sales Report</p>
                             <a href="#" class="text-info">View all</a>
                         </div>
-                        <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Total Sales</b> for BurgerByte
-                            Company in every month.
-                            It is the period time in a year to show <b>Total Sales</b> for every month in BurgerByte
-                            Company, page or app, etc.
+                        <p class="font-weight-500">The is <b>bar-graph</b> of the <b>Total Sales</b> for
+                            BurgerByte
+                            Enterprise in every month.
+                            It is the period time in a year to show <b>Total Sales</b> for every month in
+                            BurgerByte
+                            Enterprise, page or app, etc.
                         </p>
                         <br />
                         <br />
@@ -293,16 +425,21 @@ $employee_num = mysqli_num_rows($employee);
                                                         echo "RM ". $row['SUM(Total_Sales)']; 
                                                     }?>
                                                 </h1>
-                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total Invoices</h3>
-                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Invoices</b> for
+                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total
+                                                    Invoices</h3>
+                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total
+                                                        Invoices</b> for
                                                     every
                                                     month in this year
                                                     based on <b class="text-success"><?php echo "$stock_num" ?>
                                                         Stock.</b>
-                                                    This part lists the detailed sum sales for all stock in every month
+                                                    This part lists the detailed sum sales for all stock in
+                                                    every month
                                                     into a <b>Pie Chart</b>.
-                                                    <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
-                                                    <b class="text-danger"><i class='ti-arrow-down'></i> Negative</b>
+                                                    <b class="text-success"><i class='ti-arrow-up'></i>
+                                                        Positve</b> or
+                                                    <b class="text-danger"><i class='ti-arrow-down'></i>
+                                                        Negative</b>
                                                     Sales is happen when Total Sales is not balance or equal
                                                     with SubTotal for all stock.
                                                 </p>
@@ -339,7 +476,8 @@ $employee_num = mysqli_num_rows($employee);
                                                                 {  
                                                             ?>
                                                             <tr>
-                                                                <td class="text-muted"><?php echo $row["month"]; ?></td>
+                                                                <td class="text-muted">
+                                                                    <?php echo $row["month"]; ?></td>
 
                                                                 <td class="text-muted">
                                                                     RM <?php echo $row["Total_Shot"];?>
@@ -361,7 +499,8 @@ $employee_num = mysqli_num_rows($employee);
                                                                 </td>
                                                                 <td>
                                                                     <h5 class="font-weight-bold mb-0" align="right">
-                                                                        RM <?php echo $row["Total_Sales"]; ?>
+                                                                        RM
+                                                                        <?php echo $row["Total_Sales"]; ?>
                                                                     </h5>
                                                                 </td>
                                                             </tr>
@@ -375,10 +514,12 @@ $employee_num = mysqli_num_rows($employee);
 
                                                 <!-- Pie Chart Graph Sales Month Report -->
                                                 <div class="col-md-6 mt-3">
-                                                    <p align="center" class="mb-2 mb-xl-0"><b>Total Sales of Every
+                                                    <p align="center" class="mb-2 mb-xl-0"><b>Total Sales of
+                                                            Every
                                                             Month</b>
                                                     </p>
-                                                    <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+                                                    <div id="sales-legend" class="chartjs-legend mt-4 mb-2">
+                                                    </div>
 
                                                     <canvas id="piechartInvoices"></canvas>
                                                 </div>
@@ -406,15 +547,20 @@ $employee_num = mysqli_num_rows($employee);
                                                         echo "RM ". $row['SUM(Net_Income)']; 
                                                     }?>
                                                 </h1>
-                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total Income</h3>
-                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total Income</b> for
+                                                <h3 class="font-weight-500 mb-xl-4 text-primary">Total
+                                                    Income</h3>
+                                                <p align="justify" class="mb-2 mb-xl-0">The is <b>Total
+                                                        Income</b> for
                                                     every
                                                     month in this year
                                                     based on each of sales.
-                                                    This part lists the detailed net income for all sales in every month
+                                                    This part lists the detailed net income for all sales in
+                                                    every month
                                                     into a <b>Pie Chart</b>.
-                                                    <b class="text-success"><i class='ti-arrow-up'></i> Positve</b> or
-                                                    <b class="text-danger"><i class='ti-arrow-down'></i> Negative</b>
+                                                    <b class="text-success"><i class='ti-arrow-up'></i>
+                                                        Positve</b> or
+                                                    <b class="text-danger"><i class='ti-arrow-down'></i>
+                                                        Negative</b>
                                                     Sales is happen when Net Income is not balance or equal
                                                     with Total Sales for all stock.
                                                 </p>
@@ -450,7 +596,8 @@ $employee_num = mysqli_num_rows($employee);
                                                                 {  
                                                             ?>
                                                             <tr>
-                                                                <td class="text-muted"><?php echo $row["month"]; ?></td>
+                                                                <td class="text-muted">
+                                                                    <?php echo $row["month"]; ?></td>
 
                                                                 <td class="text-muted">
                                                                     RM
@@ -488,10 +635,12 @@ $employee_num = mysqli_num_rows($employee);
 
                                                 <!-- Pie Chart Graph Sales Month Report -->
                                                 <div class="col-md-6 mt-3">
-                                                    <p align="center" class="mb-2 mb-xl-0"><b>Total Income of Every
+                                                    <p align="center" class="mb-2 mb-xl-0"><b>Total Income
+                                                            of Every
                                                             Month</b>
                                                     </p>
-                                                    <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+                                                    <div id="sales-legend" class="chartjs-legend mt-4 mb-2">
+                                                    </div>
 
                                                     <canvas id="piechartIncome"></canvas>
                                                 </div>
@@ -520,8 +669,10 @@ $employee_num = mysqli_num_rows($employee);
                                         <thead>
                                             <tr>
                                                 <th class="pl-0  pb-2 border-bottom">Owner Code</th>
-                                                <th class="border-bottom pb-2 text-center">Purchase Date</th>
-                                                <th class="border-bottom pb-2 text-center">Purchase Status</th>
+                                                <th class="border-bottom pb-2 text-center">Purchase Date
+                                                </th>
+                                                <th class="border-bottom pb-2 text-center">Purchase Status
+                                                </th>
                                                 <th class="border-bottom pb-2 text-center"></th>
                                             </tr>
                                         </thead>
@@ -738,7 +889,8 @@ $employee_num = mysqli_num_rows($employee);
                                             // Count the number of returned rows:
                                             $attendance_num = mysqli_num_rows($attendance);
                                             ?>
-                                            <p class="mb-0"><b><?php echo "$attendance_num"?> Registrations</b></p>
+                                            <p class="mb-0"><b><?php echo "$attendance_num"?>
+                                                    Registrations</b></p>
                                         </div>
                                     </div>
                                     <div class="mt-3">
@@ -759,7 +911,8 @@ $employee_num = mysqli_num_rows($employee);
                                             // Count the number of returned rows:
                                             $commission_num = mysqli_num_rows($commission);
                                             ?>
-                                            <p class="mb-0"><b><?php echo "$commission_num"?> Registrations</b></p>
+                                            <p class="mb-0"><b><?php echo "$commission_num"?>
+                                                    Registrations</b></p>
                                         </div>
                                     </div>
                                     <div class="mt-3">
@@ -781,7 +934,8 @@ $employee_num = mysqli_num_rows($employee);
                                             // Count the number of returned rows:
                                             $leave_num = mysqli_num_rows($leave);
                                             ?>
-                                            <p class="mb-0"><b><?php echo "$leave_num"?> Registrations</b></p>
+                                            <p class="mb-0"><b><?php echo "$leave_num"?> Registrations</b>
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="mt-3">
@@ -802,7 +956,8 @@ $employee_num = mysqli_num_rows($employee);
                                             $category_num = mysqli_num_rows($category);
                                             
                                             ?>
-                                            <p class="mb-0"><b><?php echo "$category_num"?> Registrations</b></p>
+                                            <p class="mb-0"><b><?php echo "$category_num"?>
+                                                    Registrations</b></p>
                                         </div>
                                     </div>
                                     <div class="mt-3">
@@ -813,7 +968,8 @@ $employee_num = mysqli_num_rows($employee);
                                                     style="width: 90%" aria-valuenow="25" aria-valuemin="0"
                                                     aria-valuemax="100"></div>
                                             </div>
-                                            <p class="mb-0"><b><?php echo "$stock_num"?> Registrations</b></p>
+                                            <p class="mb-0"><b><?php echo "$stock_num"?> Registrations</b>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -839,9 +995,11 @@ $employee_num = mysqli_num_rows($employee);
                                             echo "RM ". $row['SUM(Net_Expenses)']; 
                                             }?> / year
                                         </h3>
-                                        <p class="text-white font-weight-500 mb-0">The <b>Net Expenses</b> of sessions
+                                        <p class="text-white font-weight-500 mb-0">The <b>Net Expenses</b>
+                                            of sessions
                                             within
-                                            the date range. It is calculated as the sum for Net Expenses over in this
+                                            the date range. It is calculated as the sum for Net Expenses
+                                            over in this
                                             year. </p>
                                     </div>
                                     <div class="col-4 background-icon">
@@ -881,7 +1039,8 @@ $employee_num = mysqli_num_rows($employee);
                                     <div>
                                         <p class="text-info mb-1"><?php echo $row["First_Name"]; ?></p>
                                         <p class="mb-0"><b><?php echo $row["Employee_Code"]; ?></b></p>
-                                        <small><a href="https://wa.me/+6<?php echo $row['Phone'];?>" target="_blank"><?php echo $row["Phone"]; ?></a></small> |
+                                        <small><a href="https://wa.me/+6<?php echo $row['Phone'];?>"
+                                                target="_blank"><?php echo $row["Phone"]; ?></a></small> |
                                         <small><a
                                                 href="mailto:'.strtolower<?php echo $row["Email"]; ?>"><?php echo $row["Email"]; ?></a></small>
                                     </div>
