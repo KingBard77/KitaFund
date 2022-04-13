@@ -1055,12 +1055,14 @@ $Employee_Code = $_SESSION['Profile_Id'];
         <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
         <script src="../js/dataTables.select.min.js"></script>
         <!-- End plugin js for this page -->
+        
         <!-- Custom js for this page-->
         <script src="../js/dashboard.js"></script>
         <script src="../js/Chart.roundedBarCharts.js"></script>
         <!-- End custom js for this page-->
 
+        <!-- Plugin Chart.js for this page -->
         <script type="text/javascript" src="../js/Chart.min.js"></script>
-        <script type="text/javascript" src="../js/Chart.min.js"></script>
+        <!-- End Chart.js for this page-->
         <!--========== INCLUDE FOOTER ==========-->
         <?php include('../partials/Footer.html'); ?>

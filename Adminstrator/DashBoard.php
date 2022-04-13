@@ -228,7 +228,6 @@ $employee_num = mysqli_num_rows($employee);
                         </p>
                         <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
                         <canvas id="lineChart"></canvas>
-
                     </div>
                 </div>
             </div>
@@ -919,7 +918,6 @@ $employee_num = mysqli_num_rows($employee);
                             "rgba(75,73,172, 0.2)"
                         ];
 
-
                         for (var i in data) {
                             Stock_Name.push(data[i].Stock_Name);
                             Selling_Price.push(data[i].Selling_Price);
@@ -1106,12 +1104,14 @@ $employee_num = mysqli_num_rows($employee);
         <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
         <script src="../js/dataTables.select.min.js"></script>
         <!-- End plugin js for this page -->
+
         <!-- Custom js for this page-->
         <script src="../js/dashboard.js"></script>
         <script src="../js/Chart.roundedBarCharts.js"></script>
         <!-- End custom js for this page-->
 
+        <!-- Plugin Chart.js for this page -->
         <script type="text/javascript" src="../js/Chart.min.js"></script>
-        <script type="text/javascript" src="../js/Chart.min.js"></script>
+        <!-- End Chart.js for this page-->
         <!--========== INCLUDE FOOTER ==========-->
         <?php include('../partials/Footer.html'); ?>
