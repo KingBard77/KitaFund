@@ -86,7 +86,7 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                     <div class="row">
                                         <div class="col-8">
                                             <h5 class="font-weight-bold">
-                                                <?php echo $current->city.' ('.$current->state.' / '.$current->country.')';?></h5><br />
+                                                <?php echo $current->city.' (Perak / '.$current->country.')';?></h5><br />
                                             <p class="fs-30 mb-2" style="font-weight-bold">
                                                 <img style="margin-left:-10px;" src="<?php echo $current->image;?>">
                                                 <?php echo $current->description;?>
