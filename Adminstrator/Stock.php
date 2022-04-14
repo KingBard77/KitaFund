@@ -153,7 +153,7 @@ $stock_num = mysqli_num_rows($stock);
                             <form class="forms-sample" action="Stock.php" method="post">
                                 <!--========== Input Stock Name ==========-->
                                 <div class="form-group row">
-                                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Stock
+                                    <label class="col-sm-3 col-form-label">Stock
                                         Name</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
@@ -163,7 +163,7 @@ $stock_num = mysqli_num_rows($stock);
 
                                 <!--========== Input Category ==========-->
                                 <div class="form-group row">
-                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Category</label>
+                                    <label class="col-sm-3 col-form-label">Category</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="Category_Id">
                                             <option value="">---- Select Stock Category ----</option>
@@ -181,19 +181,80 @@ $stock_num = mysqli_num_rows($stock);
                                         </select>
                                     </div>
                                 </div>
+                                <?php
+                                // Define the Weather Forecasting - Prediction:
+                                $cache_file = 'data.json';
+                                if(file_exists($cache_file)){
+                                $data = json_decode(file_get_contents($cache_file));
+                                }else{
+                                $api_url = 'https://content.api.nytimes.com/svc/weather/v2/current-and-seven-day-forecast.json';
+                                $data = file_get_contents($api_url);
+                                file_put_contents($cache_file, $data);
+                                $data = json_decode($data);
+                                }
 
+                                $current = $data->results->current[0];
+                                $forecast = $data->results->seven_day_forecast;
+
+                                function convert2cen($value,$unit){
+                                    if($unit=='C'){
+                                    return $value;
+                                    }else if($unit=='F'){
+                                    $cen = ($value - 32) / 1.8;
+                                        return round($cen,2);
+                                    }
+                                }
+
+                                if ($current->description == "Partly sunny"){
+                                    $Arrow ='<b class="text-success"><i class="ti-arrow-up"></i> ';
+                                    $Status ='0.4';
+                                }
+                                if ($current->description == "Partly cloudy"){
+                                    $Arrow ='<b class="text-info"><i class="ti-arrow-up"></i> ';
+                                    $Status ='0.25';
+                                }
+                                if ($current->description == "Cloudy in the morning with a shower in spots followed by sun and areas of high clouds"){
+                                    $Arrow ='<b class="text-warning"><i class="ti-arrow-up"></i> ';
+                                    $Status ='0.1';
+                                }
+                                if ($current->description == "Mostly cloudy with a thunderstorm in a couple of spots"){
+                                    $Arrow ='<b class="text-danger"><i class="ti-arrow-down"></i> ';
+                                    $Status ='-0.1';
+                                }
+                                if ($current->description == "Clouds giving way to some sun"){
+                                    $Arrow ='<b class="text-secondary"><i class="ti-arrow-down"></i> ';
+                                    $Status ='-0.2';
+                                }
+                                ?>
                                 <!--========== Input Quantity_In ==========-->
                                 <div class="form-group row">
-                                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">In -
+                                    <label class="col-sm-3 col-form-label">In -
                                         Stock</label>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-3">
                                         <input type="number" class="form-control"
-                                            placeholder="Insert In - Stock Quantity Eg:-25" name="Quantity_In">
+                                            placeholder="Insert In - Stock Quantity Eg:-25" name="Quantity_In_Before"
+                                            id="Quantity_In_Before">
+                                    </div>
+                                    <!--========== Prediction ==========-->
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="Prediction" id="Prediction"
+                                                value="<?php echo $Status;?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="number" class="form-control"
+                                            placeholder="Insert In - Stock Quantity Eg:-25" name="Quantity_In"
+                                            id="Quantity_In">
                                     </div>
                                 </div>
+
                                 <!--========== Input Buying_Price ==========-->
                                 <div class="form-group row">
-                                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Buying
+                                    <label class="col-sm-3 col-form-label">Buying
                                         Price (RM)</label>
                                     <div class="col-sm-9">
                                         <div class="input-group">
@@ -208,7 +269,7 @@ $stock_num = mysqli_num_rows($stock);
 
                                 <!--========== Input Selling_Price ==========-->
                                 <div class="form-group row">
-                                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Selling
+                                    <label class="col-sm-3 col-form-label">Selling
                                         Price (RM)</label>
                                     <div class="col-sm-9">
                                         <div class="input-group">
@@ -228,9 +289,8 @@ $stock_num = mysqli_num_rows($stock);
                             </form>
                         </div>
                         <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>
-                            Please define Stock Name that related towards
-                            <b>Category
-                                Name.</b>
+                            Please prepare a <?php echo $Arrow.$Status; ?>%</b>
+                            <b>Stock In</b> into a business.
                         </p>
                     </div>
                 </div>
@@ -620,7 +680,28 @@ $stock_num = mysqli_num_rows($stock);
         function refreshPage() {
             window.location.reload();
         }
+
+        // SCRIPT FOR PREDICTION CALCULATION
+        $(document).ready(function() {
+            // Get value on keyup funtion
+            $("#Prediction, #Quantity_In_Before")
+                .keyup(function() {
+
+                    var Quantity_In = 0;
+
+                    var Prediction = Number($("#Prediction").val());
+                    var Quantity_In_Before = Number($("#Quantity_In_Before").val());
+
+                    //Calculation Net Income
+                    var Quantity_In = (Quantity_In_Before * Prediction) +
+                        Quantity_In_Before;
+
+                    $('#Quantity_In').val(Quantity_In);
+
+                });
+        });
         </script>
+
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
