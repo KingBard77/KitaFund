@@ -72,14 +72,18 @@ $employee_num = mysqli_num_rows($employee);
                             <div class="card-body">
                                 <?php
                                 // Define the Weather Forecasting:
+                                // Define the Weather Forecasting:
+                                // $apiKey = "233cf9a6f1dcf621894d4eb07784dcb6";
+                                // $cityId = "1735268";
+                                // $api_url = "http://api.openweathermap.org/data/2.5/forecast?id=" . $cityId . "&lang=en&units=metric&APPID=" . $apiKey;
                                 $cache_file = 'data.json';
                                 if(file_exists($cache_file)){
-                                $data = json_decode(file_get_contents($cache_file));
+                                    $data = json_decode(file_get_contents($cache_file));
                                 }else{
-                                $api_url = 'https://content.api.nytimes.com/svc/weather/v2/current-and-seven-day-forecast.json';
-                                $data = file_get_contents($api_url);
-                                file_put_contents($cache_file, $data);
-                                $data = json_decode($data);
+                                    $api_url = 'https://content.api.nytimes.com/svc/weather/v2/current-and-seven-day-forecast?';
+                                    $data = file_get_contents($api_url);
+                                    file_put_contents($cache_file, $data);
+                                    $data = json_decode($data);
                                 }
 
                                 $current = $data->results->current[0];
@@ -145,11 +149,11 @@ $employee_num = mysqli_num_rows($employee);
                                     $Works ='<span>Prepare a <b class="text-info"><i class="ti-alarm-clock"></i> 4.45 PM early</b> than <b>5.00 PM</b> usual into a business.</span></p>';
                                     $Prediction ='<span>Prepare a <b class="text-info"><i class="ti-arrow-up"></i> 25%</b> Stock-In into a business.</span></p>';
                                 }
-                                if ($current->description == "Cloudy in the morning with a shower in spots followed by sun and areas of high clouds"){
+                                if ($current->description == "Cloudy"){
                                     $Works ='<span>Prepare a <b class="text-warning"><i class="ti-alarm-clock"></i> 5.15 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
                                     $Prediction ='<span>Prepare a <b class="text-warning"><i class="ti-arrow-up"></i> 10%</b> Stock-In into a business.</span></p>';
                                 }
-                                if ($current->description == "Mostly cloudy with a thunderstorm in a couple of spots"){
+                                if ($current->description == "Mostly cloudy"){
                                     $Works ='<span>Prepare a <b class="text-danger"><i class="ti-alarm-clock"></i> 5.30 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
                                     $Prediction ='<span>Prepare a <b class="text-danger"><i class="ti-arrow-down"></i> -10%</b> Stock-In into a business.</span></p>';
                                 }
