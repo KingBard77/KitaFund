@@ -102,7 +102,7 @@ $employee_num = mysqli_num_rows($employee);
                                     <div class="row">
                                         <div class="col-8">
                                             <h5 class="font-weight-bold">
-                                                <?php echo $current->city.' (Perak / '.$current->country.')';?>
+                                                <?php echo 'Seri Iskandar (Perak / '.$current->country.')';?>
                                             </h5><br />
                                             <p class="fs-30 mb-2" style="font-weight-bold">
                                                 <img style="margin-left:-10px;" src="<?php echo $current->image;?>">
