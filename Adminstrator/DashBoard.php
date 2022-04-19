@@ -102,7 +102,7 @@ $employee_num = mysqli_num_rows($employee);
                                     <div class="row">
                                         <div class="col-8">
                                             <h5 class="font-weight-bold">
-                                                <?php echo 'Seri Iskandar (Perak / '.$current->country.')';?>
+                                                <?php echo ' Seri Iskandar (Perak / '.$current->country.')';?>
                                             </h5><br />
                                             <p class="fs-30 mb-2" style="font-weight-bold">
                                                 <img style="margin-left:-10px;" src="<?php echo $current->image;?>">
@@ -142,23 +142,23 @@ $employee_num = mysqli_num_rows($employee);
                                 &nbsp;
                                 <?php
                                 if ($current->description == "Partly sunny"){
-                                    $Works ='<span>Prepare come <b class="text-success"><i class="ti-alarm-clock"></i> 4.30 PM early</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Works ='<span>Prepare to come <b class="text-success"><i class="ti-alarm-clock"></i> 4.30 PM early</b> than <b>5.00 PM</b> usual into a business.</span></p>';
                                     $Prediction ='<span>Prepare a <b class="text-success"><i class="ti-arrow-up"></i> 40%</b> Stock-In into a business.</span></p>';
                                 }
                                 if ($current->description == "Partly cloudy"){
-                                    $Works ='<span>Prepare a <b class="text-info"><i class="ti-alarm-clock"></i> 4.45 PM early</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Works ='<span>Prepare to come <b class="text-info"><i class="ti-alarm-clock"></i> 4.45 PM early</b> than <b>5.00 PM</b> usual into a business.</span></p>';
                                     $Prediction ='<span>Prepare a <b class="text-info"><i class="ti-arrow-up"></i> 25%</b> Stock-In into a business.</span></p>';
                                 }
                                 if ($current->description == "Cloudy"){
-                                    $Works ='<span>Prepare a <b class="text-warning"><i class="ti-alarm-clock"></i> 5.15 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Works ='<span>Prepare to come <b class="text-warning"><i class="ti-alarm-clock"></i> 5.15 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
                                     $Prediction ='<span>Prepare a <b class="text-warning"><i class="ti-arrow-up"></i> 10%</b> Stock-In into a business.</span></p>';
                                 }
                                 if ($current->description == "Mostly cloudy"){
-                                    $Works ='<span>Prepare a <b class="text-danger"><i class="ti-alarm-clock"></i> 5.30 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Works ='<span>Prepare to come <b class="text-danger"><i class="ti-alarm-clock"></i> 5.30 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
                                     $Prediction ='<span>Prepare a <b class="text-danger"><i class="ti-arrow-down"></i> -10%</b> Stock-In into a business.</span></p>';
                                 }
-                                if ($current->description == "Clouds giving way to some sun"){
-                                    $Works ='<span>Prepare a <b class="text-secondary"><i class="ti-alarm-clock"></i> 6.00 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                if ($current->description == "Raining"){
+                                    $Works ='<span>Prepare to come <b class="text-secondary"><i class="ti-alarm-clock"></i> 6.00 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
                                     $Prediction ='<span>Prepare a <b class="text-secondary"><i class="ti-arrow-down"></i> -20%</b> Stock-In into a business.</span></p>';
                                 }
                                 echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Prediction : </span>".$Prediction;

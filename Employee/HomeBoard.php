@@ -86,7 +86,7 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                     <div class="row">
                                         <div class="col-8">
                                             <h5 class="font-weight-bold">
-                                                <?php echo $current->city.' (Perak / '.$current->country.')';?></h5><br />
+                                                <?php echo ' Seri Iskandar (Perak / '.$current->country.')';?></h5><br />
                                             <p class="fs-30 mb-2" style="font-weight-bold">
                                                 <img style="margin-left:-10px;" src="<?php echo $current->image;?>">
                                                 <?php echo $current->description;?>
@@ -125,21 +125,26 @@ $Employee_Code = $_SESSION['Profile_Id'];
                                 &nbsp;
                                 <?php
                                 if ($current->description == "Partly sunny"){
-                                    $Works ='<span>Prepare come <b class="text-success"><i class="ti-alarm-clock"></i> 4.30 PM early</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Works ='<span>Prepare to come <b class="text-success"><i class="ti-alarm-clock"></i> 4.30 PM early</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Prediction ='<span>Prepare a <b class="text-success"><i class="ti-arrow-up"></i> 40%</b> Stock-In into a business.</span></p>';
                                 }
                                 if ($current->description == "Partly cloudy"){
-                                    $Works ='<span>Prepare a <b class="text-info"><i class="ti-alarm-clock"></i> 4.45 PM early</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Works ='<span>Prepare to come <b class="text-info"><i class="ti-alarm-clock"></i> 4.45 PM early</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Prediction ='<span>Prepare a <b class="text-info"><i class="ti-arrow-up"></i> 25%</b> Stock-In into a business.</span></p>';
                                 }
-                                if ($current->description == "Cloudy in the morning with a shower in spots followed by sun and areas of high clouds"){
-                                    $Works ='<span>Prepare a <b class="text-warning"><i class="ti-alarm-clock"></i> 5.15 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                if ($current->description == "Cloudy"){
+                                    $Works ='<span>Prepare to come <b class="text-warning"><i class="ti-alarm-clock"></i> 5.15 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Prediction ='<span>Prepare a <b class="text-warning"><i class="ti-arrow-up"></i> 10%</b> Stock-In into a business.</span></p>';
                                 }
-                                if ($current->description == "Mostly cloudy with a thunderstorm in a couple of spots"){
-                                    $Works ='<span>Prepare a <b class="text-danger"><i class="ti-alarm-clock"></i> 5.30 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                if ($current->description == "Mostly cloudy"){
+                                    $Works ='<span>Prepare to come <b class="text-danger"><i class="ti-alarm-clock"></i> 5.30 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Prediction ='<span>Prepare a <b class="text-danger"><i class="ti-arrow-down"></i> -10%</b> Stock-In into a business.</span></p>';
                                 }
-                                if ($current->description == "Clouds giving way to some sun"){
-                                    $Works ='<span>Prepare a <b class="text-secondary"><i class="ti-alarm-clock"></i> 6.00 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                if ($current->description == "Raining"){
+                                    $Works ='<span>Prepare to come <b class="text-secondary"><i class="ti-alarm-clock"></i> 6.00 PM late</b> than <b>5.00 PM</b> usual into a business.</span></p>';
+                                    $Prediction ='<span>Prepare a <b class="text-secondary"><i class="ti-arrow-down"></i> -20%</b> Stock-In into a business.</span></p>';
                                 }
-                                echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Business Operation : </span>".$Works;
+                                echo "<p><span class='text-primary font-weight-bold'><i class='ti-help-alt'></i> Prediction : </span>".$Prediction;
                                 ?>
                             </div>
                         </div>
@@ -281,6 +286,9 @@ $Employee_Code = $_SESSION['Profile_Id'];
                             </div>
                         </div>
                         <br/>
+                        <p class="text-primary mb-0"><i class='ti-help-alt'></i> <b>Business Operation :</b>
+                            <?php echo $Works; ?>
+                        </p>
                     </div>
                 </div>
             </div>
