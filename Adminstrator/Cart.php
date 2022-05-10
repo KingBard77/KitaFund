@@ -1,4 +1,4 @@
-<!--========== PURCHASE CART DETAILS ==========-->
+<!--========== PURCHASE CART DETAIL'S ==========-->
 
 <!-- Plugin css for this page -->
 
