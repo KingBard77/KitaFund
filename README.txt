@@ -1,15 +1,13 @@
-****
-The application was initially created by **Badrul Amin bin Hairul Kholidin**, useing [php](http:php.net), [mysql](https://www.mysql.com) and [bootstrap](http://getbootstrap.com).
+### Introduction 
 
+The application was initially created by **Badrul Amin bin Hairul Kholidin**, useing [php](http:php.net), [mysql](https://www.mysql.com) and [bootstrap](http://getbootstrap.com).
 
 BurgerByte is a web based Inventory System, that will allow you to keep tracking of the quantity buying and selling price of the products existing in your 
 warehouse or business. When creating a new products, you can set a quantity,buying and selling price.
 
-
-
 If you find any bug, and a fix for that bug, please contact me via whatsapp number or directly email me:-
-0195139569
-badamin16@gmail.com
+**019 - 5139569**
+**badamin16@gmail.com**
 
 
 ### Installing this application is fairly easy, just follow these steps:
@@ -23,7 +21,7 @@ badamin16@gmail.com
 
 
    
-   |   Owner                 | Employee                 | 
+   |         Owner           | Employee                 | 
    |-------------------------|--------------------------| 
    |**Username** : Badrul    | **Username** : EMP2001   | 
    |**Password**  : 251251   | **Password** : 251251    | 
@@ -34,19 +32,13 @@ badamin16@gmail.com
 
 7. Gmail Account
 
-   |   Owner                            | Employee                          |  
-   |------------------------------------|-----------------------------------| 
-   |**Email**     : BurgerByte1998      | **Email**    : employeeBurgerByte | 
-   |**Password**  : Adminstrator_1998   | **Password** : Employee_1998      | 
-
-
-
-
+   |               Owner                |
+   |------------------------------------| 
+   |**Email**     : BurgerByte1998      | 
+   |**Password**  : Adminstrator_1998   | 
 
 
 
 ## DON'T FORGET TO GIVE US FEEDBACK
 ## THANK YOU
 ## FOLLOW ME ON https://github.com/KingBard77
-
-- - - -
