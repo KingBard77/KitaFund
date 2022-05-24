@@ -150,9 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <select name="Profile_Id" class="form-control">
                                             <option>---- Please Select Employee Username ----</option>
                                             <?php
-                                                $sql = "SELECT p.Username, e.Employee_Code
-                                                FROM employee e, profile p
-                                                WHERE e.Profile_Id = p.Profile_Id
+                                                $sql = "SELECT p.Username, p.Profile_Id
+                                                FROM profile p
                                                 ORDER BY p.Profile_Id ASC";
                                                 $all_profile = mysqli_query($dbc, $sql);
                                                 
