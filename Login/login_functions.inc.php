@@ -24,7 +24,7 @@ function redirect_user ($page = '../index.php') {
 } // End of redirect_user() function.
 
 
-function check_login_owner($dbc, $Username = '', $Password = '') {
+function check_login_adminstrator($dbc, $Username = '', $Password = '') {
 
 	$errors = array(); // Initialize error array.
 

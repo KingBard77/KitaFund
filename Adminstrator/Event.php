@@ -2,9 +2,9 @@
 <?php
 // Set the page title and include the HTML header:
 $page_title = 'Calendar';
-include '../partials/Navbar - Owner.php';
+include '../partials/Navbar - Adminstrator.php';
 include '../partials/SettingPanel.php';
-include '../partials/Sidebar - Owner.php';
+include '../partials/Sidebar - Adminstrator.php';
 
 // Define the query:
 $query = "SELECT * FROM event ORDER BY id ASC";

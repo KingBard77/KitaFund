@@ -6,9 +6,9 @@
 <?php
 // Set the page title and include the HTML header:
 $page_title = 'My Profile';
-include '../partials/Navbar - Owner.php';
+include '../partials/Navbar - Adminstrator.php';
 include '../partials/SettingPanel.php';
-include '../partials/Sidebar - Owner.php';
+include '../partials/Sidebar - Adminstrator.php';
 ?>
 
 <?php
